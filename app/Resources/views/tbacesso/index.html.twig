@@ -1,0 +1,61 @@
+    {% extends ':template:template.html.twig' %}
+
+
+    {% block contentheader %}
+
+
+    <section class="content-header">
+        <h1>
+            TbAcesso
+            <small>Listar</small>
+        </h1>
+    </section>
+
+
+    {% endblock %}
+
+
+    {% block panelheading %}
+    <a href="{{ path('acesso_new') }}" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus"></span>
+            Novo
+        </a>    {% endblock %}
+
+    {% block panelbody %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th>Mostrar</th>
+                <th>Editar</th>
+                    <th>Aceusuario</th>
+                    <th>Acesenha</th>
+                    <th>Aceativo</th>
+                    <th>Acecodigo</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tbAcesso in tbAcessos %}
+            <tr>
+                        <td><a href="{{ path('acesso_show', { 'id': tbAcesso.aceCodigo }) }}">{{ tbAcesso.aceUsuario }}</a></td>
+                        <td>{{ tbAcesso.aceSenha }}</td>
+                        <td>{{ tbAcesso.aceAtivo }}</td>
+                        <td>{{ tbAcesso.aceCodigo }}</td>                            <td>
+                                <a href="{{ path('acesso_show', { 'id': tbAcesso.aceCodigo }) }}" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon"></span>
+                                    show
+                                </a>
+                            </td>                            <td>
+                                <a href="{{ path('acesso_edit', { 'id': tbAcesso.aceCodigo }) }}" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon"></span>
+                                    edit
+                                </a>
+                            </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    {% endblock %}

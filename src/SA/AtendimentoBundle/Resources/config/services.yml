@@ -1,0 +1,8 @@
+services:
+#    sa_atendimento.example:
+#        class: SA\AtendimentoBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+
+     report.atendimentoanalitico:
+          class: SA\AtendimentoBundle\Report\ReportAtendimentoAnalitico
+          arguments: ["@service_container"]

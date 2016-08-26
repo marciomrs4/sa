@@ -1,0 +1,81 @@
+{% if tbAtendimento.satCodigo.satCodigo == 3 %}
+    <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-alert"></span>
+        Este atendimento está {{ tbAtendimento.satCodigo }}, e não é possivel edita-lo.
+    </div>
+{% endif %}
+
+<table class="table table-condensed table-bordered">
+    <tbody>
+    <tr class="info">
+        <th>Protocolo de Atendimento</th>
+        <td>{{ tbAtendimento.atCodigo }}</td>
+    </tr>
+    <tr>
+        <th>Data da Ocorrência</th>
+        <td>{% if tbAtendimento.atDataCadastro %}{{ tbAtendimento.atDataCadastro|date('d-m-Y') }}{% endif %}</td>
+    </tr>
+    <tr>
+        <th>Data do Retorno</th>
+        <td>{% if tbAtendimento.atDataRetorno %}{{ tbAtendimento.atDataRetorno|date('d-m-Y') }}{% endif %}</td>
+    </tr>
+    <tr>
+        <th>Paciente</th>
+        <td>{{ tbAtendimento.atPaciente }}</td>
+    </tr>
+    <tr>
+        <th>CPF</th>
+        <td>{{ tbAtendimento.atCpf }}</td>
+    </tr>
+    <tr>
+        <th>RG</th>
+        <td>{{ tbAtendimento.atRg }}</td>
+    </tr>
+    <tr>
+        <th>CNS</th>
+        <td>{{ tbAtendimento.atCns }}</td>
+    </tr>
+    <tr>
+        <th>Reclamante</th>
+        <td>{{ tbAtendimento.atReclamante }}</td>
+    </tr>
+    <tr>
+        <th>Teletone</th>
+        <td>{{ tbAtendimento.atTeletone }}</td>
+    </tr>
+    <tr>
+        <th>Tipo de Processo</th>
+        <td>{{ tbAtendimento.ttpCodigo }}</td>
+    </tr>
+    <tr>
+        <th>Processo / Protocolo</th>
+        <td>{{ tbAtendimento.atProcesso }}</td>
+    </tr>
+    <tr>
+        <th>Produto</th>
+        <td>{{ tbAtendimento.atMedicamento }}</td>
+    </tr>
+    <tr>
+        <th>Tipo de Atendimento</th>
+        <td>{{ tbAtendimento.taCodigo }}</td>
+    </tr>
+    <tr>
+        <th>Direcionar Para</th>
+        <td>{{ tbAtendimento.tdCodigo }}</td>
+    </tr>
+    <tr>
+        <th>Descrição do Atendimento</th>
+        <td>{{ tbAtendimento.atDescricao }}</td>
+    </tr>
+    <tr>
+        <th>Atendimento Interno</th>
+        <td>
+            {% if tbAtendimento.atLocalidade == 1 %}
+                Sim
+            {% elseif tbAtendimento.atLocalidade == 0 %}
+                Não
+            {% endif %}
+        </td>
+    </tr>
+     </tbody>
+</table>

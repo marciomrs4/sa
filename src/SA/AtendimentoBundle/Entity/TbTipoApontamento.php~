@@ -1,0 +1,54 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbTipoApontamento
+ *
+ * @ORM\Table(name="tb_tipo_apontamento", indexes={@ORM\Index(name="fk_tipo_apontamento_atendimento_idx", columns={"at_codigo"})})
+ * @ORM\Entity
+ */
+class TbTipoApontamento
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="at_codigo", type="integer", nullable=false)
+     */
+    private $atCodigo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tap_titulo", type="string", length=255, nullable=false)
+     */
+    private $tapTitulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tap_descricao", type="text", length=65535, nullable=false)
+     */
+    private $tapDescricao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tap_status", type="string", length=1, nullable=false)
+     */
+    private $tapStatus = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tap_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $tapCodigo;
+
+
+}
+

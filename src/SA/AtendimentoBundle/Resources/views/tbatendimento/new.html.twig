@@ -1,0 +1,164 @@
+{% extends '@SAAtendimento/tbatendimento/template/template.html.twig' %}
+
+{% block contentheader %}
+   <section class="content-header">
+        <h1>
+            Atendimento
+            <small>Novo</small>
+        </h1>
+    </section>
+{% endblock %}
+
+{% block firstrow %}
+    <a href="{{ path('atendimento_new') }}" id="link"></a>
+{%  endblock %}
+
+{% block panelheading %}
+    <a href="{{ path('atendimento_index') }}" class="btn btn-primary btn-sm">
+        <span class="fa fa-reply"></span>
+        Voltar
+    </a>
+{% endblock %}
+        {#{{ form(form) }}#}
+
+{% block panelbody %}
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+    <div class="row">
+        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+            {{ form_label(form.atDataCadastro,'Data da Ocorrência') }}
+            {{ form_widget(form.atDataCadastro) }}
+            {{ form_errors(form.atDataCadastro) }}
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atPaciente) }}
+            {{ form_widget(form.atPaciente,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.atPaciente) }}
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atCpf) }}
+            {{ form_widget(form.atCpf,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.atCpf) }}
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atRg) }}
+            {{ form_widget(form.atRg,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.atRg) }}
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atCns) }}
+            {{ form_widget(form.atCns,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.atCns) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atReclamante) }}
+            {{ form_widget(form.atReclamante,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.atReclamante) }}
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atTeletone) }}
+            {{ form_widget(form.atTeletone,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.atTeletone) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.ttpCodigo) }}
+            {{ form_widget(form.ttpCodigo,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.ttpCodigo) }}
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atProcesso) }}
+            {{ form_widget(form.atProcesso,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.atProcesso) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+            {{ form_label(form.atMedicamento) }}
+            {{ form_widget(form.atMedicamento,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.atMedicamento) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.taCodigo) }}
+            {{ form_widget(form.taCodigo,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.taCodigo) }}
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.tdCodigo) }}
+            {{ form_widget(form.tdCodigo,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.tdCodigo) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+            {{ form_label(form.tipoResposta,'Tipo de Resposta') }}
+            {{ form_widget(form.tipoResposta,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.tipoResposta) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+            {{ form_label(form.atDescricao) }}
+            {{ form_widget(form.atDescricao,{ 'attr' : { 'class': 'input-sm'}}) }}
+            {{ form_errors(form.atDescricao) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-1 col-sm-3 col-xs-3">
+            {{ form_label(form.atLocalidade) }}
+            {{ form_widget(form.atLocalidade) }}
+            {{ form_errors(form.atLocalidade) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block panelfooter %}
+
+    <div class="form-group">
+       <button type="submit" class="btn btn-primary">
+          <span class="glyphicon glyphicon-floppy-disk"></span>
+          Salvar
+       </button>
+    </div>
+
+     {{ form_end(form) }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/form-dinamic-atendimento.js') }}"></script>
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery.mask.js') }}"></script>
+
+    <script src="{{ asset('bundles/saatendimento/js/maskAtendimento.js') }}"></script>
+
+{% endblock %}

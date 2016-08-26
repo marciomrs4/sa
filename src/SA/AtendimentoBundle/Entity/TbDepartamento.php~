@@ -1,0 +1,47 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbDepartamento
+ *
+ * @ORM\Table(name="tb_departamento")
+ * @ORM\Entity
+ */
+class TbDepartamento
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dep_descricao", type="string", length=45, nullable=false)
+     */
+    private $depDescricao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dep_email", type="string", length=45, nullable=false)
+     */
+    private $depEmail;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="pro_permite_listar_chamado", type="boolean", nullable=true)
+     */
+    private $proPermiteListarChamado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dep_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $depCodigo;
+
+
+}
+

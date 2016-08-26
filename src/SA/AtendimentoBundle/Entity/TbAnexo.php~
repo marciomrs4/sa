@@ -1,0 +1,64 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbAnexo
+ *
+ * @ORM\Table(name="tb_anexo", indexes={@ORM\Index(name="fk_solicitacao", columns={"sol_codigo"})})
+ * @ORM\Entity
+ */
+class TbAnexo
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ane_anexo", type="blob", nullable=true)
+     */
+    private $aneAnexo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ane_tipo", type="string", length=255, nullable=true)
+     */
+    private $aneTipo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ane_nome", type="string", length=255, nullable=true)
+     */
+    private $aneNome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ane_tamanho", type="string", length=255, nullable=true)
+     */
+    private $aneTamanho;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ane_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $aneCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbSolicitacao
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbSolicitacao")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sol_codigo", referencedColumnName="sol_codigo")
+     * })
+     */
+    private $solCodigo;
+
+
+}
+

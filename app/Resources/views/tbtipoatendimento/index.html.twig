@@ -1,0 +1,67 @@
+{% extends ':template:template.html.twig' %}
+
+
+    {% block contentheader %}
+
+
+        <section class="content-header">
+            <h1>
+                TbTipoAtendimento
+                <small>Listar</small>
+            </h1>
+        </section>
+
+
+    {% endblock %}
+
+
+    {% block panelheading %}
+        <a href="{{ path('tipoatendimento_new') }}" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus"></span>
+            Novo
+        </a>    {% endblock %}
+
+    {% block panelbody %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Mostrar</th>
+                    <th>Editar</th>
+                    <th>Atdescricao</th>
+                    <th>Atativo</th>
+                    <th>Attextopadrao</th>
+                    <th>Atcodigo</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tbTipoAtendimento in tbTipoAtendimentos %}
+                    <tr>
+                        <td>
+
+                            <a href="{{ path('tipoatendimento_show', { 'id': tbTipoAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                Mostrar
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('tipoatendimento_edit', { 'id': tbTipoAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                Editar
+                            </a>
+
+
+                        </td>
+                        <td><a href="{{ path('tipoatendimento_show', { 'id': tbTipoAtendimento.atCodigo }) }}">{{ tbTipoAtendimento.atDescricao }}</a></td>
+                        <td>{{ tbTipoAtendimento.atAtivo }}</td>
+                        <td>{{ tbTipoAtendimento.atTextoPadrao }}</td>
+                        <td>{{ tbTipoAtendimento.atCodigo }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    {% endblock %}

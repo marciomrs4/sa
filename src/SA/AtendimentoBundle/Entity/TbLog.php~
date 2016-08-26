@@ -1,0 +1,61 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbLog
+ *
+ * @ORM\Table(name="tb_log")
+ * @ORM\Entity
+ */
+class TbLog
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="log_data_time", type="datetime", nullable=false)
+     */
+    private $logDataTime = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="log_tipo_acao", type="string", length=255, nullable=false)
+     */
+    private $logTipoAcao;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="log_codigo_usuario", type="integer", nullable=false)
+     */
+    private $logCodigoUsuario;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="log_codigo_aterado", type="integer", nullable=false)
+     */
+    private $logCodigoAterado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="log_descricao_alteracao_acao", type="string", length=255, nullable=false)
+     */
+    private $logDescricaoAlteracaoAcao;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="log_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $logCodigo;
+
+
+}
+

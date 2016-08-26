@@ -1,0 +1,27 @@
+parameters:
+    template:
+    #Buttons
+        buttons:
+          buttonNew: Novo
+          buttonReturn: Voltar
+          buttonCancel: Cancelar
+          buttonSave: Salvar
+          buttonDelete: Remover
+          buttonEdit: Editar
+    #Actions
+        actions:
+          action: Opções
+          show: Mostrar
+          edit: Editar
+          export: Exportar
+    #Colors
+        colors:
+          buttons:
+            buttonNew: "btn btn-primary"
+            buttonReturn: "btn btn-primary"
+            buttonCancel: "btn btn-primary"
+            buttonSave: "btn btn-primary"
+            buttonDelete: "btn btn-danger"
+            buttonEdit: "btn btn-primary"
+          actions:
+            action: "btn btn-primary"

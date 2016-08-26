@@ -1,0 +1,87 @@
+{% extends '::baselogin.html.twig' %}
+{% block title %}Login{% endblock %}
+{% block stylesheets %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ asset('bundles/saatendimento/css/bootstrap.css') }}" rel="stylesheet" media="screen">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+{% endblock %}
+{% block menuprincipal %}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="alert alert-dismissable"></div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-3 col-md-4">
+                {# Lado esquerdo#}
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title center-block">Acesso Restrito</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <form action="{{ path('login_check') }}" method="post">
+
+                            <div class="form-group">
+                                <label for="username">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    Usuário:
+                                </label>
+                                <input class="form-control" type="text" id="username" name="_username" placeholder="Usuário" value="{{ last_username }}" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                    Senha:
+                                </label>
+                                <input class="form-control" type="password" id="password" name="_password" placeholder="Senha" required />
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                                Entrar
+                            </button>
+                        </form>
+
+                    </div>
+                    <div class="panel-footer">
+                        {% if error %}
+                            <div class="alert alert-danger" role="alert">
+                            <span class="glyphicon glyphicon-alert"></span>
+                                {{ error.messageKey|trans(error.messageData, 'security') }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-4">
+                {# lado direito #}
+            </div>
+
+        </div>
+
+        {#<div class="row">#}
+            {#<div class="col-md-12">#}
+                {#{{ dump(error) }}#}
+                {#{{ dump(encoder) }}#}
+            {#</div>#}
+        {#</div>#}
+
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

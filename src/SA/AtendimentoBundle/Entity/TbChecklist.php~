@@ -1,0 +1,81 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbChecklist
+ *
+ * @ORM\Table(name="tb_checklist", indexes={@ORM\Index(name="fk_tb_checklist_tb_departamento1", columns={"dep_codigo"}), @ORM\Index(name="fk_tb_checklist_tb_usuario1", columns={"usu_codigo"})})
+ * @ORM\Entity
+ */
+class TbChecklist
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="che_titulo", type="string", length=255, nullable=false)
+     */
+    private $cheTitulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="che_descricao", type="text", length=65535, nullable=true)
+     */
+    private $cheDescricao;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="che_data_cadastro", type="datetime", nullable=false)
+     */
+    private $cheDataCadastro = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="che_email_envio", type="string", length=255, nullable=false)
+     */
+    private $cheEmailEnvio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="che_ativo", type="string", length=1, nullable=true)
+     */
+    private $cheAtivo = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="che_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $cheCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbUsuario
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbUsuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usu_codigo", referencedColumnName="usu_codigo")
+     * })
+     */
+    private $usuCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbDepartamento
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbDepartamento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="dep_codigo", referencedColumnName="dep_codigo")
+     * })
+     */
+    private $depCodigo;
+
+
+}
+

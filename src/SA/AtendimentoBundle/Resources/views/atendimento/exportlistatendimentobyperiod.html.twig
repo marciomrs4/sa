@@ -1,0 +1,4 @@
+Protocolo de Atendimento;Atendente;Paciente;Status;Data do Atendimento;Data de Finalização;Tempo de Atendimento
+{% for tbAtendimento in tbAtendimentos %}
+    {{ tbAtendimento.atCodigo }};{{ tbAtendimento.usuCodigo }};{{ tbAtendimento.atPaciente }};{{ tbAtendimento.satCodigo }};{{ tbAtendimento.atDataCadastroReal|date('d-m-Y H:i:s') }};{{ tbAtendimento.dataFechamento|date('d-m-Y H:i:s') }};{{ tbAtendimento.diferenca }}
+{% endfor %}

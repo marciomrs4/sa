@@ -1,0 +1,161 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbAtendimento
+ *
+ * @ORM\Table(name="tb_atendimento", indexes={@ORM\Index(name="fk_tipo_atendimento", columns={"ta_codigo"}), @ORM\Index(name="fk_direcionar_para", columns={"td_codigo"}), @ORM\Index(name="fk_tipo_direcionamento", columns={"td_codigo"}), @ORM\Index(name="fk_status_atendimento", columns={"sat_codigo"})})
+ * @ORM\Entity
+ */
+class TbAtendimento
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="at_data_cadastro", type="date", nullable=false)
+     */
+    private $atDataCadastro;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="at_data_retorno", type="date", nullable=true)
+     */
+    private $atDataRetorno;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_paciente", type="string", length=255, nullable=false)
+     */
+    private $atPaciente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_cpf", type="string", length=20, nullable=true)
+     */
+    private $atCpf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_rg", type="string", length=20, nullable=true)
+     */
+    private $atRg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_reclamante", type="string", length=255, nullable=true)
+     */
+    private $atReclamante;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_teletone", type="string", length=45, nullable=true)
+     */
+    private $atTeletone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_descricao", type="text", length=65535, nullable=false)
+     */
+    private $atDescricao;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="usu_codigo", type="integer", nullable=false)
+     */
+    private $usuCodigo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="at_data_cadastro_real", type="datetime", nullable=false)
+     */
+    private $atDataCadastroReal = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_processo", type="string", length=255, nullable=true)
+     */
+    private $atProcesso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_medicamento", type="string", length=255, nullable=true)
+     */
+    private $atMedicamento;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ttp_codigo", type="integer", nullable=true)
+     */
+    private $ttpCodigo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_cns", type="string", length=45, nullable=true)
+     */
+    private $atCns;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_localidade", type="string", length=1, nullable=true)
+     */
+    private $atLocalidade;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="at_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $atCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbTipoDirecionamento
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbTipoDirecionamento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="td_codigo", referencedColumnName="td_codigo")
+     * })
+     */
+    private $tdCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbTipoAtendimento
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbTipoAtendimento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ta_codigo", referencedColumnName="at_codigo")
+     * })
+     */
+    private $taCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbStatusAtendimento
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbStatusAtendimento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sat_codigo", referencedColumnName="sat_codigo")
+     * })
+     */
+    private $satCodigo;
+
+
+}
+

@@ -1,0 +1,33 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbTipoAcesso
+ *
+ * @ORM\Table(name="tb_tipo_acesso")
+ * @ORM\Entity
+ */
+class TbTipoAcesso
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tac_descricao", type="string", length=45, nullable=false)
+     */
+    private $tacDescricao;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tac_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $tacCodigo;
+
+
+}
+

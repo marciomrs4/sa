@@ -1,0 +1,122 @@
+{% extends ':template:base.html.twig' %}
+
+
+ {% block contentheader %}
+     <section class="content-header">
+         <h1>
+             {#Atendimento#}
+             {#<small>principal</small>#}
+         </h1>
+
+     </section>
+ {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+
+        <div class="col-lg-3 col-md-3 col-sm-1 col-xs-1">
+
+        </div>
+
+
+        <div class="col-lg-6 col-md-6 col-sm-10 col-xs-10">
+
+            <!-- Widget: user widget style 1 -->
+            <div class="panel panel-default">
+
+                <div class="panel-heading bg-green-gradient"></div>
+
+                <!-- /.box-header -->
+                <div class="panel-body">
+
+                    <div class="box box-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-green-gradient">
+                            <h3 class="widget-user-username"><strong>UDTP</strong></h3>
+                            <h5 class="widget-user-desc">UNIDADE DISPENSADORA TENENTE PENA</h5>
+                        </div>
+                        <div class="widget-user-image">
+                            {#<img class="img-circle" src="{{ asset('bundles/framework/images/logo_symfony.png') }}" alt="User Avatar">#}
+                        </div>
+                        <div class="box-footer">
+                            <div class="row">
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">SA</h5>
+                                        <span class="description-text">SISTEMA DE ATENDIMENTO</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">2.0.0</h5>
+                                        <span class="description-text">VERSÃO</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">{{ 'now'|date('Y') }}</h5>
+                                        <span class="description-text">TECNOLOGIA CEADIS</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+                    <!-- /.widget-user -->
+
+
+                </div>
+                <!-- /.box-body -->
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-1 col-xs-1">
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+
+        $(document).ready(function(){
+
+        /*
+         $.ajax({
+         type: 'GET',
+         url: "http://sistema3.saude.sp.gov.br/scodesws/api/demanda/unidade_protocolo/161/01061742014",
+         dataType: 'jsonp',
+         crossDomain: true,
+         success: function(data){
+         //console.log(data);
+         console.log('teste');
+         },
+         error: function (err) {
+         console.log(err);
+         }
+
+         });
+
+         //console.log(data);
+
+         });
+         */
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends '@SAAtendimento/tbapontamento/template/template.html.twig' %}
+
+{% block firstrow %}
+    <div class="col-md-6 col-sm-12 col-xs-12">
+
+        <div class="box box-primary collapsed-box">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    <button type="button" class="btn btn-primary btn-xs" data-widget="collapse">
+                        <i class="fa fa-plus"></i>
+                        Protocolo de Atendimento
+                    </button>
+                    <span class="label label-default">{{ tbAtendimento.atCodigo }}</span>
+                </h3>
+
+                <div class="box-tools pull-right">
+
+                </div>
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="display: none;">
+                {{ include('SAAtendimentoBundle:tbatendimento/template:tableshow.html.twig', { 'tbAtendimento' : tbAtendimento }) }}
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        {{ render(controller('SAAtendimentoBundle:TbApontamento:index',{ 'atendimento' : tbAtendimento.atCodigo })) }}
+    </div>
+
+{% endblock %}
+
+{% block panelheading %}
+
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <a href="{{ path('atendimento_show',{'id': tbAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm"
+               data-toggle="tooltip" data-placement="top" title="Volta para o Atendimento como mostrar">
+                <span class="fa fa-phone-square"></span>
+                Atendimento
+            </a>
+
+            <a href="{{ path('atendimento_index') }}" class="btn btn-primary btn-sm"
+               data-toggle="tooltip" data-placement="top" title="Volta para lista de Atendimento">
+                <span class="fa fa-reply"></span>
+                Voltar
+            </a>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block panelbody %}
+    {{ form_start(form,{ 'attr' : { 'novalidate': 'novalidate'} }) }}
+    {{ form_widget(form) }}
+
+{% endblock %}
+
+{% block panelfooter %}
+
+    {% if tbAtendimento.satCodigo.satCodigo != 3 %}
+        <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Salva um novo apontamento">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            Salvar
+        </button>
+    {% endif %}
+
+    {{ form_end(form) }}
+
+    <a href="{{ path('apontamento_new', {'atendimento': tbAtendimento.atCodigo }) }}" id="link"></a>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script>
+
+        $('body').on('change',"#apontamento_tapCodigo",function(){
+
+            $("#apontamento_apDescricao").html($('#apontamento_tapCodigo :selected').text());
+            //alert($(this).text());
+
+        });
+
+
+        $("#apontamento_tapCodigo").select2();
+
+    </script>
+
+{% endblock %}
+

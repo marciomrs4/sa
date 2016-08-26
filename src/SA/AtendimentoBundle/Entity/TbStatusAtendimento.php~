@@ -1,0 +1,40 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbStatusAtendimento
+ *
+ * @ORM\Table(name="tb_status_atendimento")
+ * @ORM\Entity
+ */
+class TbStatusAtendimento
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sat_descricao", type="string", length=255, nullable=false)
+     */
+    private $satDescricao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sat_ativo", type="string", length=1, nullable=false)
+     */
+    private $satAtivo = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sat_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $satCodigo;
+
+
+}
+

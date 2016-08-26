@@ -1,0 +1,118 @@
+{% extends ':template:base.html.twig' %}
+
+{% block contentheader %}
+
+    <section class="content-header">
+        <h1>
+            Departamento
+            <small>Mostrar</small>
+        </h1>
+    </section>
+
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="row">
+
+        <div class="col-md-6 col-xs-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                    <div class="row">
+
+
+                        <div class="col-md-1 col-xs-2 col-sm-1">
+
+                            <!-- Single button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ path('adm_departamento_edit',{ 'id': tbDepartamento.id }) }}">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                            Editar
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('adm_departamento_index') }}">
+                                            <span class="glyphicon glyphicon-list"></span>
+                                            Listar
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-1 col-xs-2 col-sm-1">
+
+                            <a href="{{ path('adm_departamento_index') }}" class="btn btn-primary">
+                                <span class="fa fa-reply"></span>
+                                {#{{ template.buttons.buttonReturn }}#}
+                            </a>
+                        </div>
+                        <div class="col-md-1 col-xs-2 col-sm-1">
+
+                            <a href="{{ path('adm_departamento_edit', { 'id': tbDepartamento.depCodigo }) }}" class="btn btn-primary remover-link">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                {#{{ template.buttons.buttonEdit  }}#}
+                            </a>
+                        </div>
+
+                        {% if is_granted('ROLE_Técnico-ADM') %}
+                            <div class="col-md-1 col-xs-2">
+                                {{ form_start(delete_form) }}
+                                <button type="submit" class="btn btn-danger remover-form">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    {#{{ template.buttons.buttonDelete }}#}
+                                </button>
+                                {{ form_end(delete_form) }}
+                            </div>
+                        {% endif %}
+
+
+                    </div>
+
+                </div>
+                <div class="panel-body">
+
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>Descrição:</th>
+                            <td>{{ tbDepartamento.depDescricao }}</td>
+                        </tr>
+                        <tr>
+                            <th>E-mail:</th>
+                            <td>{{ tbDepartamento.depEmail }}</td>
+                        </tr>
+                        <tr>
+                            <th>Permite Listar chamado:</th>
+                            <td>{% if tbDepartamento.proPermiteListarChamado %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Código</th>
+                            <td>{{ tbDepartamento.depCodigo }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="panel-footer">
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends '@SAAtendimento/tbatendimento/template/template.html.twig' %}
+
+{% block contentheader %}
+
+    <section class="content-header">
+        <h1>
+            Atendimento
+            <small>Mostrar</small>
+        </h1>
+    </section>
+
+{% endblock %}
+
+{% block firstrow %}
+
+
+    {% for message in app.session.flashBag.get('notice') %}
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="fa fa-info"></i> {{ message }}. <i class="fa fa-smile-o"></i>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        {{ render(controller('SAAtendimentoBundle:TbApontamento:index',{ 'atendimento' : tbAtendimento.atCodigo })) }}
+    </div>
+
+{% endblock %}
+
+{% block panelheading %}
+
+    <a href="{{ path('atendimento_index') }}" class="btn btn-primary btn-sm">
+        <span class="fa fa-reply"></span>
+        Voltar
+    </a>
+
+    <a href="{{ path('atendimento_edit', { 'id': tbAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
+        <span class="glyphicon glyphicon-edit"></span>
+        Editar
+    </a>
+
+    <a href="{{ path('apontamento_new', { 'atendimento': tbAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
+        <span class="glyphicon glyphicon-book"></span>
+        Novo Apontamento
+    </a>
+
+{% endblock %}
+
+{% block panelbody %}
+
+    {{ include('SAAtendimentoBundle:tbatendimento/template:tableshow.html.twig', { 'tbAtendimento' : tbAtendimento }) }}
+
+{% endblock %}

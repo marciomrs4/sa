@@ -1,0 +1,54 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbTipoResposta
+ *
+ * @ORM\Table(name="tb_tipo_resposta", indexes={@ORM\Index(name="fk_tipo_atendimento_codigo_idx", columns={"at_codigo"})})
+ * @ORM\Entity
+ */
+class TbTipoResposta
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="at_codigo", type="integer", nullable=false)
+     */
+    private $atCodigo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tir_titulo", type="string", length=255, nullable=false)
+     */
+    private $tirTitulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tir_descricao", type="text", length=65535, nullable=false)
+     */
+    private $tirDescricao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tir_status", type="string", length=1, nullable=false)
+     */
+    private $tirStatus = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tir_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $tirCodigo;
+
+
+}
+

@@ -1,0 +1,62 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbAtendenteSolicitacao
+ *
+ * @ORM\Table(name="tb_atendente_solicitacao", indexes={@ORM\Index(name="pk_usuario", columns={"usu_codigo_atendente"}), @ORM\Index(name="pk_solicitcao", columns={"sol_codigo"}), @ORM\Index(name="pk_prioridade", columns={"pri_codigo"})})
+ * @ORM\Entity
+ */
+class TbAtendenteSolicitacao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ats_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $atsCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbUsuario
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="SA\AtendimentoBundle\Entity\TbUsuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usu_codigo_atendente", referencedColumnName="usu_codigo")
+     * })
+     */
+    private $usuCodigoAtendente;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbSolicitacao
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="SA\AtendimentoBundle\Entity\TbSolicitacao")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sol_codigo", referencedColumnName="sol_codigo")
+     * })
+     */
+    private $solCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbPrioridade
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="SA\AtendimentoBundle\Entity\TbPrioridade")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pri_codigo", referencedColumnName="pri_codigo")
+     * })
+     */
+    private $priCodigo;
+
+
+}
+

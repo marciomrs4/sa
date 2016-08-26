@@ -1,0 +1,118 @@
+{% extends '@SAAtendimento/tbusuario/template/template.html.twig' %}
+
+{% block contentheader %}
+
+    <section class="content-header">
+        <h1>
+            Usuário
+            <small>Mostrar</small>
+        </h1>
+    </section>
+
+{% endblock %}
+
+{% block firstrow %}
+
+    {% for message in app.session.flashBag.get('notice') %}
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="fa fa-info"></i> {{ message }}. <i class="fa fa-smile-o"></i>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+
+
+{% block panelheading %}
+
+    <div class="row">
+
+        <div class="col-md-2 col-sm-3 col-xs-3">
+
+            <a href="{{ path('admin_usuario_index') }}" class="btn btn-primary btn-sm">
+                <span class="fa fa-reply"></span>
+                Voltar
+            </a>
+        </div>
+
+        <div class="col-md-2 col-sm-3 col-xs-3">
+            <a href="{{ path('admin_usuario_edit', { 'id': tbUsuario.usuCodigo }) }}" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-edit"></span>
+                Editar
+            </a>
+
+        </div>
+
+        <div class="col-md-2 col-sm-3 col-xs-3">
+            <a href="{{ path('acesso_new',{ 'usuario': tbUsuario.id }) }}" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-plus"></span>
+                Acesso
+            </a>
+
+        </div>
+
+        <div class="col-md-2 col-sm-3 col-xs-3">
+
+            {% if is_granted('ROLE_Técnico-ADM') %}
+                {{ form_start(delete_form) }}
+                <button type="submit" class="btn btn-sm btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                {{ form_end(delete_form) }}
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block panelbody %}
+
+    <table class="table table-bordered table-condensed">
+        <tbody>
+        <tr>
+            <th>Nome</th>
+            <td>{{ tbUsuario.usuNome }}</td>
+        </tr>
+        <tr>
+            <th>Sobre Nome</th>
+            <td>{{ tbUsuario.usuSobrenome }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ tbUsuario.usuEmail }}</td>
+        </tr>
+        <tr>
+            <th>Ramal</th>
+            <td>{{ tbUsuario.usuRamal }}</td>
+        </tr>
+        <tr>
+            <th>Cargo</th>
+            <td>{{ tbUsuario.usuCargo }}</td>
+        </tr>
+        <tr>
+            <th>DRT</th>
+            <td>{{ tbUsuario.usuDrt }}</td>
+        </tr>
+        <tr>
+            <th>Permite Lista Atedimento</th>
+            <td>{{ tbUsuario.usuPermiteAtedimento }}</td>
+        </tr>
+        <tr>
+            <th>Departamento</th>
+            <td>{{ tbUsuario.depCodigo.depDescricao}}</td>
+        </tr>
+        <tr>
+            <th>Tipo de Acesso</th>
+            <td>{{ tbUsuario.tacCodigo.tacDescricao }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

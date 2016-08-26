@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}Sistema de Atendimento{% endblock %}</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+{% block stylesheets %}
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/bootstrap.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/font-awesome.min.css') }}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/ionicons.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/AdminLTE.css') }}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/skin-green.css') }}">
+    <!-- pace.css -->
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/pace.css') }}">
+    <!-- select2.css -->
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/select2.min.css') }}">
+
+    <style type="text/css">
+
+        .pagination {
+            display: inline;
+        }
+
+        .help-block {
+            color: #dd4b39;
+        }
+
+
+    </style>
+
+{% endblock %}
+
+{#
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+#}
+
+</head>
+<body class="hold-transition skin-green sidebar-mini fixed sidebar-collapse">
+
+<div class="wrapper">
+
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="{{ path('home') }}" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>SA</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">UDTP - Atendimento</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown user user-menu">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span class="hidden-xs">
+                                {{ app.user.usuCodigo.usuNome }}
+                            </span>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+
+                            <li class="user-header">
+                                <h1>UDTP</h1>
+                                <p>
+                                    {{ app.user.usuCodigo.usuNome }} {{ app.user.usuCodigo.usuSobrenome }}
+                                    <small>{{ app.user.usuCodigo.usuEmail }}</small>
+                                </p>
+
+                            </li>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+
+                                <div class="pull-left">
+                                    <a href="{{ path('home') }}" class="btn btn-default btn-flat">
+                                        <span class="glyphicon glyphicon-home"></span>
+                                        Home
+                                    </a>
+                                </div>
+
+                                <div class="pull-right">
+                                    <a href="{{ path('user_logout') }}" class="btn btn-default btn-flat">
+                                    <span class="glyphicon glyphicon-off"></span>
+                                        Sair
+                                    </a>
+                                </div>
+
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+
+                <li class="treeview">
+                    <a href="{{ path('home') }}">
+                        <i class="fa fa-home"></i><span>Home</span>
+                    </a>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-navicon"></i>
+                            <span>Atendimento</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ path('atendimento_index') }}"><i class="fa fa-phone-square"></i>Atendimento</a></li>
+                        <li><a href="{{ path('atendimento_search') }}"><i class="fa fa-search"></i> Pesquisar</a></li>
+                        {% if is_granted('ROLE_Técnico-ADM') %}
+                        <li><a href="{{ path('atendimento_analitico') }}"><i class="fa fa-file-text-o"></i> Atendimento Analitico</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-newspaper-o"></i>
+                        <span>Relatórios</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ path('list_atendimento_period') }}"><i class="fa fa-file-text-o"></i>Tempo de Atendimento</a></li>
+                        <li><a href={{ path('atendimento_status') }}><i class="fa fa-file-text-o"></i>Atendimento por Status</a></li>
+                        <li><a href="{{ path('atendimento_tipo_status') }}"><i class="fa fa-file-text-o"></i>Tipo de Atendimento</a></li>
+                    </ul>
+                </li>
+
+{% if is_granted('ROLE_Técnico-ADM') %}
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-sliders"></i> <span>Administração</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="{{ path('adm_departamento_index') }}"><i class="fa fa-users"></i> Departamentos </a>
+                            <a href="{{ path('admin_usuario_index') }}"><i class="fa fa-user"></i> Usuário </a>
+                            <a href="{{ path('tipodirecionamento_index') }}"><i class="fa fa-external-link-square"></i> Direcionamento </a>
+                            <a href="{{ path('tipoatendimento_index') }}"><i class="fa fa-phone"></i> Tipo Atendimento </a>
+                            <a href="{{ path('tiporesposta_index') }}"><i class="glyphicon glyphicon-bullhorn"></i> Tipo Resposta </a>
+                            <a href="{{ path('tipoapontamento_index') }}"><i class="glyphicon glyphicon-hand-right"></i> Tipo Apontamento </a>
+                            <a href="{{ path('tipoprocesso_index') }}"><i class="glyphicon glyphicon-cog"></i> Tipo Processo </a>
+                        </li>
+                    </ul>
+                </li>
+{% endif %}
+
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+
+        {% block contentheader %}
+            <section class="content-header">
+                <h1>
+                    Dashboard
+                    <small>Control panel</small>
+                </h1>
+
+            </section>
+        {% endblock %}
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Small boxes (Stat box) -->
+
+            {% block content %}
+
+                <div class="row">
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-aqua">
+                            <div class="inner">
+                                <h3>150</h3>
+
+                                <p>New Orders</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="index.html" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-green">
+                            <div class="inner">
+                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                                <p>Bounce Rate</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <h3>44</h3>
+
+                                <p>User Registrations</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <h3>65</h3>
+
+                                <p>Unique Visitors</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6 col-xs-6">
+
+                        <div class="box box-solid box-default">...</div>
+
+                        <div class="panel panel-heading">
+                            <div class="panel panel-body">
+                                <p>Direita</p>
+                                <button class="btn btn-primary" id="click">
+                                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                                    Hello
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-12 col-xs-6">
+                        <div class="box box-solid box-info">...</div>
+                        <div class="panel panel-heading">
+                            <div class="panel panel-body">
+                                <p id="text">Esquerda</p>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#mymodal">Modal</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endblock %}
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {% block footer %}
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>IP: {{ app.request.clientIp }}</b>
+            </div>
+            <small>UDTP - Tecnologia da Informação</small>
+            <strong>&copy; {{ 'now'|date('Y') }}.</strong>
+        </footer>
+    {% endblock %}
+
+
+</div>
+<!-- ./wrapper -->
+
+{% block javascripts %}
+<!-- jQuery 2.2.0 -->
+<script src="{{ asset('bundles/saatendimento/js/jQuery-2.2.0.min.js') }}"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{{ asset('bundles/saatendimento/js/bootstrap.js') }}"></script>
+<!-- jquery.slimscroll -->
+<script src="{{ asset('bundles/saatendimento/js/jquery.slimscroll.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('bundles/saatendimento/js/app.js') }}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ asset('bundles/saatendimento/js/pace.min.js') }}"></script>
+<!-- jqueryConfirm  -->
+<script src="{{ asset('bundles/saatendimento/js/jquery.confirm.js') }}"></script>
+<!-- jqueryConfirm  -->
+<script src="{{ asset('bundles/saatendimento/js/select2.full.js') }}"></script>
+
+<script>
+
+    $(document).ajaxStart(function() { Pace.restart(); });
+
+
+/**
+ * This function confirm all action about remove buttons
+ */
+
+    $(".remover-form").confirm({
+        title: "É necessário confirmar essa ação",
+        text: "Quer mesmo remover esse item ?",
+
+        confirm: function(button){
+            form.submit();
+        },
+        cancel: function(button) {
+            // nothing to do
+        },
+        confirmButton: "Sim",
+        submitForm: true,
+        post: true,
+        cancelButton: "Não",
+        confirmButtonClass: "btn-danger",
+        cancelButtonClass: "btn-primary",
+        dialogClass: "modal-dialog modal-lg" // Bootstrap classes for large modal
+    });
+
+    $(".remover-link").confirm({
+        title: "É necessário confirmar essa ação",
+        text: "Quer mesmo remover esse item ?",
+
+        cancel: function(button) {
+            // nothing to do
+        },
+        confirmButton: "Sim",
+        cancelButton: "Não",
+        confirmButtonClass: "btn-danger",
+        cancelButtonClass: "btn-primary",
+        dialogClass: "modal-dialog modal-lg" // Bootstrap classes for large modal
+    });
+
+
+    //$(document).on("click","#remover",myConfirm() );
+
+
+
+/*
+    var ajaxAPI = {
+
+        ajaxAPISucess: function(data){
+            $(ajaxAPI.options.putText).html(data);
+        },
+
+        clickAction: function(){
+
+            ajaxAPI.validationFuncion();
+        },
+
+        validationFuncion: function(){
+
+            var text =  prompt('What do you want ?');
+            if(text){
+                ajaxAPI.text = text;
+            }
+
+            ajaxAPI.ajaxFunction();
+
+        },
+
+        ajaxFunction: function(){
+
+            $.ajax({
+                url: ajaxAPI.options.url+ajaxAPI.text,
+                type: ajaxAPI.options.type,
+
+                success: function(result){
+                    ajaxAPI.ajaxAPISucess(result);
+                },
+
+                beforeSend: function(){
+                    $(ajaxAPI.options.buttonClick).hide();
+                },
+
+                complete: function(){
+                    $(ajaxAPI.options.buttonClick).show();
+                },
+                error: function(){
+                    $(ajaxAPI.options.putText).html(ajaxAPI.options.phrasePutText);
+                }
+
+            });
+        },
+
+        start: function(){
+            ajaxAPI.options = {
+                url: 'http://localhost/blog/web/hello/',
+                type: 'GET',
+                putText: '#text',
+                buttonClick: '#click',
+                phrasePutText: 'Nao encontrado, vish mano ñ tem',
+            },
+
+                    ajaxAPI.clickFunction();
+            ajaxAPI.clickNewButton();
+        },
+
+        clickFunction: function(){
+            $(ajaxAPI.options.buttonClick).click(function(){
+                ajaxAPI.clickAction();
+            });
+        },
+
+        clickNewButton: function(){
+
+            $("#mymodal").click(function(){
+                $(".modal-body").html("Carregou o Modal");
+            });
+        }
+
+    };
+
+    $(document).on("ready",ajaxAPI.start);
+*/
+
+</script>
+
+{% endblock %}
+
+<div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+
+                <div id="load"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% block extends %}
+    {{ "{% extends ':template:template.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+
+    {{ "{% block contentheader %}" }}
+
+    <section class="content-header">
+        <h1>
+            {{ entity }}
+            <small>Editar</small>
+        </h1>
+    </section>
+
+    {{ "{% endblock %}" }}
+
+    {{ "{% block panelheading %}" }}
+
+    {% set hide_edit, hide_delete = true, false %}
+    {{ include('crud/views/others/record_actions.html.twig.twig') -}}
+
+    {{ "{% endblock %}" }}
+
+    {{ "{% block panelbody %}" }}
+
+
+    {{ '{{ form_start(edit_form) }}' }}
+    {{ '{{ form_widget(edit_form) }}' }}
+    <button type="submit" class="btn btn-primary btn-sm">
+        <span class="glyphicon glyphicon-floppy-disk"></span>
+        Salvar
+    </button>
+    {{ '{{ form_end(edit_form) }}' }}
+
+    {{ "{% endblock %}" }}
+
+{% endblock body %}

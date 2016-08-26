@@ -1,0 +1,655 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * TbAtendimento
+ *
+ * @ORM\Table(name="tb_atendimento", indexes={@ORM\Index(name="fk_tipo_atendimento", columns={"ta_codigo"}), @ORM\Index(name="fk_direcionar_para", columns={"td_codigo"}), @ORM\Index(name="fk_tipo_direcionamento", columns={"td_codigo"}), @ORM\Index(name="fk_status_atendimento", columns={"sat_codigo"})})
+ * @ORM\Entity(repositoryClass="SA\AtendimentoBundle\Repository\AtendimentoRepository")
+ */
+class TbAtendimento
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="at_data_cadastro", type="date", nullable=false)
+     */
+    private $atDataCadastro;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="at_data_retorno", type="date", nullable=true)
+     */
+    private $atDataRetorno;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_paciente", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Nome do paciente é Obrigatório")
+     */
+    private $atPaciente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_cpf", type="string", length=20, nullable=true)
+     */
+    private $atCpf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_rg", type="string", length=20, nullable=true)
+     */
+    private $atRg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_reclamante", type="string", length=255, nullable=true)
+     */
+    private $atReclamante;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_teletone", type="string", length=45, nullable=true)
+     */
+    private $atTeletone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_descricao", type="text", length=65535, nullable=false)
+     * @Assert\NotBlank(message="A descrição do atendimento é obrigatório")
+     * @Assert\Length(min=20, minMessage="É necessário ter ao menos {{ limit }} caracteres.")
+     */
+    private $atDescricao;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbUsuario
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbUsuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usu_codigo", referencedColumnName="usu_codigo")
+     * })
+     */
+    private $usuCodigo;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="at_data_cadastro_real", type="datetime", nullable=false)
+     */
+    private $atDataCadastroReal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_processo", type="string", length=255, nullable=true)
+     */
+    private $atProcesso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_medicamento", type="string", length=255, nullable=false)
+     */
+    private $atMedicamento;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbTipoProcesso
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbTipoProcesso")
+     * @ORM\JoinColumn(name="ttp_codigo", referencedColumnName="ttp_codigo")
+     * @Assert\NotBlank(message="Tipo de Processo é obrigatório")
+     */
+    private $ttpCodigo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_cns", type="string", length=45, nullable=true)
+     */
+    private $atCns;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_localidade", type="string", length=1, nullable=true)
+     */
+    private $atLocalidade;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="at_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $atCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbTipoDirecionamento
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbTipoDirecionamento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="td_codigo", referencedColumnName="td_codigo")
+     * })
+     * @Assert\NotBlank(message="Direcionar para é obrigatório")
+     */
+    private $tdCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbTipoAtendimento
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbTipoAtendimento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ta_codigo", referencedColumnName="at_codigo")
+     * })
+     * @Assert\NotBlank(message="Tipo de Atendimento é obrigatório")
+     */
+    private $taCodigo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_tipo_resposta", type="text", length=65535, nullable=true)
+     */
+    private $tipoResposta;
+
+
+    public function __construct()
+    {
+        $date = new \DateTime('now');
+        $this->atDataCadastroReal = $date;
+        $this->atDataRetorno = $date;
+
+        $this->atMedicamento = " ";
+        $this->atProcesso = " ";
+    }
+
+    /**
+     * @return string
+     */
+    public function getTipoResposta()
+    {
+        return $this->tipoResposta;
+    }
+
+    /**
+     * @param string $tipoResposta
+     * @return TbAtendimento
+     */
+    public function setTipoResposta($tipoResposta)
+    {
+        $this->tipoResposta = $tipoResposta;
+        return $this;
+    }
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbStatusAtendimento
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbStatusAtendimento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sat_codigo", referencedColumnName="sat_codigo")
+     * })
+     */
+    private $satCodigo;
+
+
+
+    /**
+     * Set atDataCadastro
+     *
+     * @param \DateTime $atDataCadastro
+     *
+     * @return TbAtendimento
+     */
+    public function setAtDataCadastro($atDataCadastro)
+    {
+        $this->atDataCadastro = $atDataCadastro;
+
+        return $this;
+    }
+
+    /**
+     * Get atDataCadastro
+     *
+     * @return \DateTime
+     */
+    public function getAtDataCadastro()
+    {
+        return $this->atDataCadastro;
+    }
+
+    /**
+     * Set atDataRetorno
+     *
+     * @param \DateTime $atDataRetorno
+     *
+     * @return TbAtendimento
+     */
+    public function setAtDataRetorno($atDataRetorno)
+    {
+        $this->atDataRetorno = $atDataRetorno;
+
+        return $this;
+    }
+
+    /**
+     * Get atDataRetorno
+     *
+     * @return \DateTime
+     */
+    public function getAtDataRetorno()
+    {
+        return $this->atDataRetorno;
+    }
+
+    /**
+     * Set atPaciente
+     *
+     * @param string $atPaciente
+     *
+     * @return TbAtendimento
+     */
+    public function setAtPaciente($atPaciente)
+    {
+        $this->atPaciente = $atPaciente;
+
+        return $this;
+    }
+
+    /**
+     * Get atPaciente
+     *
+     * @return string
+     */
+    public function getAtPaciente()
+    {
+        return $this->atPaciente;
+    }
+
+    /**
+     * Set atCpf
+     *
+     * @param string $atCpf
+     *
+     * @return TbAtendimento
+     */
+    public function setAtCpf($atCpf)
+    {
+        $this->atCpf = $atCpf;
+
+        return $this;
+    }
+
+    /**
+     * Get atCpf
+     *
+     * @return string
+     */
+    public function getAtCpf()
+    {
+        return $this->atCpf;
+    }
+
+    /**
+     * Set atRg
+     *
+     * @param string $atRg
+     *
+     * @return TbAtendimento
+     */
+    public function setAtRg($atRg)
+    {
+        $this->atRg = $atRg;
+
+        return $this;
+    }
+
+    /**
+     * Get atRg
+     *
+     * @return string
+     */
+    public function getAtRg()
+    {
+        return $this->atRg;
+    }
+
+    /**
+     * Set atReclamante
+     *
+     * @param string $atReclamante
+     *
+     * @return TbAtendimento
+     */
+    public function setAtReclamante($atReclamante)
+    {
+        $this->atReclamante = $atReclamante;
+
+        return $this;
+    }
+
+    /**
+     * Get atReclamante
+     *
+     * @return string
+     */
+    public function getAtReclamante()
+    {
+        return $this->atReclamante;
+    }
+
+    /**
+     * Set atTeletone
+     *
+     * @param string $atTeletone
+     *
+     * @return TbAtendimento
+     */
+    public function setAtTeletone($atTeletone)
+    {
+        $this->atTeletone = $atTeletone;
+
+        return $this;
+    }
+
+    /**
+     * Get atTeletone
+     *
+     * @return string
+     */
+    public function getAtTeletone()
+    {
+        return $this->atTeletone;
+    }
+
+    /**
+     * Set atDescricao
+     *
+     * @param string $atDescricao
+     *
+     * @return TbAtendimento
+     */
+    public function setAtDescricao($atDescricao)
+    {
+        $this->atDescricao = $atDescricao;
+
+        return $this;
+    }
+
+    /**
+     * Get atDescricao
+     *
+     * @return string
+     */
+    public function getAtDescricao()
+    {
+        return $this->atDescricao;
+    }
+
+    /**
+     * Set usuCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo
+     *
+     * @return TbAcesso
+     */
+    public function setUsuCodigo(\SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo = null)
+    {
+        $this->usuCodigo = $usuCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get usuCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbUsuario
+     */
+    public function getUsuCodigo()
+    {
+        return $this->usuCodigo;
+    }
+
+    /**
+     * Set atDataCadastroReal
+     *
+     * @param \DateTime $atDataCadastroReal
+     *
+     * @return TbAtendimento
+     */
+    public function setAtDataCadastroReal($atDataCadastroReal)
+    {
+        $this->atDataCadastroReal = $atDataCadastroReal;
+
+        return $this;
+    }
+
+    /**
+     * Get atDataCadastroReal
+     *
+     * @return \DateTime
+     */
+    public function getAtDataCadastroReal()
+    {
+        return $this->atDataCadastroReal;
+    }
+
+    /**
+     * Set atProcesso
+     *
+     * @param string $atProcesso
+     *
+     * @return TbAtendimento
+     */
+    public function setAtProcesso($atProcesso)
+    {
+        $this->atProcesso = $atProcesso;
+
+        return $this;
+    }
+
+    /**
+     * Get atProcesso
+     *
+     * @return string
+     */
+    public function getAtProcesso()
+    {
+        return $this->atProcesso;
+    }
+
+    /**
+     * Set atMedicamento
+     *
+     * @param string $atMedicamento
+     *
+     * @return TbAtendimento
+     */
+    public function setAtMedicamento($atMedicamento)
+    {
+        $this->atMedicamento = $atMedicamento;
+
+        return $this;
+    }
+
+    /**
+     * Get atMedicamento
+     *
+     * @return string
+     */
+    public function getAtMedicamento()
+    {
+        return $this->atMedicamento;
+    }
+
+    /**
+     * Set ttpCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbTipoProcesso
+     *
+     * @return TbAtendimento
+     */
+    public function setTtpCodigo(\SA\AtendimentoBundle\Entity\TbTipoProcesso $ttpCodigo = null)
+    {
+        $this->ttpCodigo = $ttpCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get ttpCodigo
+     *
+     * @return integer
+     */
+    public function getTtpCodigo()
+    {
+        return $this->ttpCodigo;
+    }
+
+    /**
+     * Set atCns
+     *
+     * @param string $atCns
+     *
+     * @return TbAtendimento
+     */
+    public function setAtCns($atCns)
+    {
+        $this->atCns = $atCns;
+
+        return $this;
+    }
+
+    /**
+     * Get atCns
+     *
+     * @return string
+     */
+    public function getAtCns()
+    {
+        return $this->atCns;
+    }
+
+    /**
+     * Set atLocalidade
+     *
+     * @param string $atLocalidade
+     *
+     * @return TbAtendimento
+     */
+    public function setAtLocalidade($atLocalidade)
+    {
+        $this->atLocalidade = $atLocalidade;
+
+        return $this;
+    }
+
+    /**
+     * Get atLocalidade
+     *
+     * @return string
+     */
+    public function getAtLocalidade()
+    {
+        return $this->atLocalidade;
+    }
+
+    /**
+     * Get atCodigo
+     *
+     * @return integer
+     */
+    public function getAtCodigo()
+    {
+        return $this->atCodigo;
+    }
+
+    /**
+     * Set tdCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbTipoDirecionamento $tdCodigo
+     *
+     * @return TbAtendimento
+     */
+    public function setTdCodigo(\SA\AtendimentoBundle\Entity\TbTipoDirecionamento $tdCodigo = null)
+    {
+        $this->tdCodigo = $tdCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get tdCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbTipoDirecionamento
+     */
+    public function getTdCodigo()
+    {
+        return $this->tdCodigo;
+    }
+
+    /**
+     * Set taCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbTipoAtendimento $taCodigo
+     *
+     * @return TbAtendimento
+     */
+    public function setTaCodigo(\SA\AtendimentoBundle\Entity\TbTipoAtendimento $taCodigo = null)
+    {
+        $this->taCodigo = $taCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get taCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbTipoAtendimento
+     */
+    public function getTaCodigo()
+    {
+        return $this->taCodigo;
+    }
+
+    /**
+     * Set satCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbStatusAtendimento $satCodigo
+     *
+     * @return TbAtendimento
+     */
+    public function setSatCodigo(\SA\AtendimentoBundle\Entity\TbStatusAtendimento $satCodigo = null)
+    {
+        $this->satCodigo = $satCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get satCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbStatusAtendimento
+     */
+    public function getSatCodigo()
+    {
+        return $this->satCodigo;
+    }
+
+    public function getId()
+    {
+        return $this->getAtCodigo();
+    }
+
+}

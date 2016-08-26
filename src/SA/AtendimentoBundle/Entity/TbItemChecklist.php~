@@ -1,0 +1,57 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbItemChecklist
+ *
+ * @ORM\Table(name="tb_item_checklist", indexes={@ORM\Index(name="fk_tb_item_checklist_tb_checklist1", columns={"che_codigo"})})
+ * @ORM\Entity
+ */
+class TbItemChecklist
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ich_titulo_tarefa", type="string", length=255, nullable=false)
+     */
+    private $ichTituloTarefa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ich_ativo", type="string", length=1, nullable=false)
+     */
+    private $ichAtivo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ich_link", type="string", length=45, nullable=true)
+     */
+    private $ichLink;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ich_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $ichCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbChecklist
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbChecklist")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="che_codigo", referencedColumnName="che_codigo")
+     * })
+     */
+    private $cheCodigo;
+
+
+}
+

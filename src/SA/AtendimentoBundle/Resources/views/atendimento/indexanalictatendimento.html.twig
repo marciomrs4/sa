@@ -1,0 +1,161 @@
+{% extends '@SAAtendimento/tbatendimento/template/template.html.twig' %}
+
+{% block contentheader %}
+    <section class="content-header">
+        <h1>
+            Atendimento
+            <small>Analitico</small>
+        </h1>
+    </section>
+{% endblock %}
+
+{% block firstrow %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                <div class="row">
+
+                    <div class="form-group col-md-3 col-sm-3 col-xs-6">
+                        {{ form_label(form.satCodigo) }}
+                        {{ form_errors(form.satCodigo) }}
+                        {{ form_widget(form.satCodigo) }}
+                    </div>
+                    <div class="form-group col-md-3 col-sm-3 col-xs-6">
+                        {{ form_label(form.taCodigo) }}
+                        {{ form_errors(form.taCodigo) }}
+                        {{ form_widget(form.taCodigo) }}
+                    </div>
+                    <div class="form-group col-md-3 col-sm-3 col-xs-6">
+                        {{ form_label(form.atDataRetornoA) }}
+
+                        {{ form_widget(form.atDataRetornoA) }}
+                    </div>
+                    <div class="form-group col-md-3 col-sm-3 col-xs-6">
+                        {{ form_label(form.atDataRetornoB) }}
+                        {{ form_errors(form.atDataRetornoB) }}
+                        {{ form_widget(form.atDataRetornoB) }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="panel-footer">
+
+                    <button class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-search"></span>
+                        Procurar
+                    </button>
+
+                {{ form_end(form) }}
+
+                <button  class="btn btn-primary btn-sm" id="exceldownload"
+                         data-toggle="tooltip" data-placement="top" data-delay="5000"
+                         title="Para baixar um novo excel faça uma nova busca">
+                    <span class="glyphicon glyphicon-download-alt" ></span>
+                    Excel
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    {#{{ dump(mydata) }}#}
+    {#{{ dump(app.user) }}#}
+
+{% endblock %}
+
+{% block panelheading%}
+
+{% endblock %}
+
+{% block panelbody %}
+    <div class="table table-responsive">
+        <table class="table table-bordered table-hover table-condensed table-striped">
+            <thead>
+            <tr>
+                <th>Opções</th>
+                <th>Protocolo</th>
+                <th>Data do Atendimento</th>
+                <th>Data de Retorno</th>
+                <th>Status</th>
+                <th>Tipo de Atendimento</th>
+                <th>Paciente</th>
+                <th>Atendente</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tbAtendimento in tbAtendimentos %}
+                <tr>
+                    <td>
+                        <a href="{{ path('atendimento_show',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+
+                        <a href="{{ path('atendimento_edit',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </td>
+                    <td>{{ tbAtendimento.atCodigo }}</td>
+                    <td>{{ tbAtendimento.atDataCadastroReal|date('d-m-Y H:i:s') }}</td>
+                    <td>
+                        {% if tbAtendimento.atDataRetorno %}
+                            {{ tbAtendimento.atDataRetorno|date('d-m-Y') }}
+                        {% endif %}
+                    </td>
+                    <td>{{ tbAtendimento.satCodigo }}</td>
+                    <td>{{ tbAtendimento.taCodigo }}</td>
+                    <td>{{ tbAtendimento.atPaciente }}</td>
+                    <td>{{ tbAtendimento.usuCodigo }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ path('report_atendimento_analitico') }}" id="link"></a>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery-download.js') }}"></script>
+
+    <script>
+
+        $(document).ready(function(){
+
+            var url = $('#link').attr('href');
+
+            $('#exceldownload').click(function(){
+
+                $('#exceldownload').attr('disabled','disabled');
+
+
+                $.fileDownload(url,{
+                    httpMethod: "GET",
+                    data:{
+                        satcodigo : $('#atendimento_analitico_satCodigo').val(),
+                        taCodigo : $('#atendimento_analitico_taCodigo').val(),
+                        atDataRetornoA : $('#atendimento_analitico_atDataRetornoA').val(),
+                        atDataRetornoB : $('#atendimento_analitico_atDataRetornoB').val()
+                    }
+                });
+
+
+            });
+
+        });
+
+    </script>
+
+{% endblock %}

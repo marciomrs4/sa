@@ -1,0 +1,63 @@
+{% extends ':template:template.html.twig' %}
+
+
+    {% block contentheader %}
+
+
+        <section class="content-header">
+            <h1>
+                Tipo Resposta
+                <small>Listar</small>
+            </h1>
+        </section>
+
+
+    {% endblock %}
+
+
+    {% block panelheading %}
+        <a href="{{ path('tiporesposta_new') }}" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus"></span>
+            Novo
+        </a>
+    {% endblock %}
+
+    {% block panelbody %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Opções</th>
+                    <th>Tipo de Atendimento</th>
+                    <th>Titulo</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tbTipoRespostum in tbTipoRespostas %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('tiporesposta_show', { 'id': tbTipoRespostum.tirCodigo }) }}"
+                               class="btn btn-primary btn-xs">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
+
+                            <a href="{{ path('tiporesposta_edit', { 'id': tbTipoRespostum.tirCodigo }) }}"
+                               class="btn btn-primary btn-xs">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                        </td>
+                        <td>{{ tbTipoRespostum.atCodigo }}</td>
+                        <td>{{ tbTipoRespostum.tirTitulo }}</td>
+                        <td>{{ tbTipoRespostum.tirDescricao }}</td>
+                        <td>{{ tbTipoRespostum.tirStatus }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    {% endblock %}

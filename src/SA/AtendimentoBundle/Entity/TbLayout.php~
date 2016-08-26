@@ -1,0 +1,99 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbLayout
+ *
+ * @ORM\Table(name="tb_layout", indexes={@ORM\Index(name="fk_usuario_layout", columns={"usu_codigo"})})
+ * @ORM\Entity
+ */
+class TbLayout
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lay_fundo_tela", type="string", length=8, nullable=false)
+     */
+    private $layFundoTela;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lay_menu_principal", type="string", length=8, nullable=false)
+     */
+    private $layMenuPrincipal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lay_botoes_menu", type="string", length=8, nullable=false)
+     */
+    private $layBotoesMenu = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lay_botoes_tela", type="string", length=8, nullable=false)
+     */
+    private $layBotoesTela;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lay_tabela", type="string", length=8, nullable=false)
+     */
+    private $layTabela;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lay_tabela_linha_par", type="string", length=8, nullable=false)
+     */
+    private $layTabelaLinhaPar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lay_tabela_linha_impar", type="string", length=8, nullable=false)
+     */
+    private $layTabelaLinhaImpar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lay_passar_mouse_botao", type="string", length=8, nullable=false)
+     */
+    private $layPassarMouseBotao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lay_passar_mouse_tabela", type="string", length=8, nullable=false)
+     */
+    private $layPassarMouseTabela;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="lay_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $layCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbUsuario
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbUsuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usu_codigo", referencedColumnName="usu_codigo")
+     * })
+     */
+    private $usuCodigo;
+
+
+}
+

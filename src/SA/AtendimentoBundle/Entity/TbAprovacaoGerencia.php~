@@ -1,0 +1,57 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbAprovacaoGerencia
+ *
+ * @ORM\Table(name="tb_aprovacao_gerencia", indexes={@ORM\Index(name="fk_pro", columns={"pro_codigo_projeto"})})
+ * @ORM\Entity
+ */
+class TbAprovacaoGerencia
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apr_status", type="string", length=1, nullable=true)
+     */
+    private $aprStatus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="usu_codigo_gerencia", type="integer", nullable=true)
+     */
+    private $usuCodigoGerencia;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="apr_data_aprovado", type="datetime", nullable=true)
+     */
+    private $aprDataAprovado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="apr_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $aprCodigo;
+
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TbProjeto
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbProjeto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pro_codigo_projeto", referencedColumnName="pro_codigo")
+     * })
+     */
+    private $proCodigoProjeto;
+
+
+}
+

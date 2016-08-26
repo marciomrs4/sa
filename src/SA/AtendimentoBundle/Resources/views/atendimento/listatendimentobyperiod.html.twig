@@ -1,0 +1,145 @@
+{% extends '@SAAtendimento/tbatendimento/template/template.html.twig' %}
+
+{% block contentheader %}
+    <section class="content-header">
+        <h1>
+            Atendimentos
+            <small>Por Período</small>
+        </h1>
+    </section>
+{% endblock %}
+
+{% block firstrow %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                <div class="row">
+
+                    <div class="form-group col-md-3 col-sm-3 col-xs-6">
+                        {{ form_label(form.atDataRetornoA) }}
+
+                        {{ form_widget(form.atDataRetornoA) }}
+                    </div>
+                    <div class="form-group col-md-3 col-sm-3 col-xs-6">
+                        {{ form_label(form.atDataRetornoB) }}
+                        {{ form_errors(form.atDataRetornoB) }}
+                        {{ form_widget(form.atDataRetornoB) }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="panel-footer">
+
+                <button class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-search"></span>
+                    Procurar
+                </button>
+
+                {{ form_end(form) }}
+
+                <button  class="btn btn-primary btn-sm" id="exceldownload"
+                         data-toggle="tooltip" data-placement="top" data-delay="5000"
+                         title="Para baixar um novo excel faça uma nova busca">
+                    <span class="glyphicon glyphicon-download-alt" ></span>
+                    Excel
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block panelheading%}
+
+    <h3 class="panel-title">
+        Quantidade de Resultado(s): {{ tbAtendimentos|length }}
+    </h3>
+
+{% endblock %}
+
+{% block panelbody %}
+    <div class="table table-responsive">
+        <table class="table table-bordered table-hover table-condensed table-striped">
+            <thead>
+            <tr>
+                <th>Opções</th>
+                <th>Protocolo de Atendimento</th>
+                <th>Atendente</th>
+                <th>Paciente</th>
+                <th>Status</th>
+                <th>Data do Atendimento</th>
+                <th>Data de Finalização</th>
+                <th>Tempo de Atendimento</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tbAtendimento in tbAtendimentos %}
+                <tr>
+                    <td>
+                        <a href="{{ path('atendimento_show',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+
+                        <a href="{{ path('atendimento_edit',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </td>
+                    <td>{{ tbAtendimento.atCodigo }}</td>
+                    <td>{{ tbAtendimento.usuCodigo }}</td>
+                    <td>{{ tbAtendimento.atPaciente }}</td>
+                    <td>{{ tbAtendimento.satCodigo }}</td>
+                    <td>{{ tbAtendimento.atDataCadastroReal|date('d-m-Y H:i:s') }}</td>
+                    <td>{{ tbAtendimento.dataFechamento|date('d-m-Y H:i:s') }}</td>
+                    <td>{{ tbAtendimento.diferenca }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ path('export_list_atendimento_period') }}" id="link"></a>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery-download.js') }}"></script>
+
+    <script>
+
+        $(document).ready(function(){
+
+            var url = $('#link').attr('href');
+
+            $('#exceldownload').click(function(){
+
+                $('#exceldownload').attr('disabled','disabled');
+
+
+                $.fileDownload(url,{
+                    httpMethod: "GET",
+                    data:{
+                        atDataRetornoA : $('#atendimento_period_atDataRetornoA').val(),
+                        atDataRetornoB : $('#atendimento_period_atDataRetornoB').val()
+                    }
+                });
+
+
+            });
+
+        });
+
+    </script>
+
+{% endblock %}

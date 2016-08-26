@@ -1,0 +1,40 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbTipoProcesso
+ *
+ * @ORM\Table(name="tb_tipo_processo")
+ * @ORM\Entity
+ */
+class TbTipoProcesso
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ttp_descricao", type="string", length=45, nullable=false)
+     */
+    private $ttpDescricao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ttp_status", type="string", length=1, nullable=false)
+     */
+    private $ttpStatus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ttp_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $ttpCodigo;
+
+
+}
+

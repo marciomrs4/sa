@@ -1,0 +1,124 @@
+{% extends ':template:base.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/dataTables.bootstrap.css') }}">
+
+{% endblock %}
+
+{% block contentheader %}
+    <section class="content-header">
+        <h1>
+            Departamento
+            <small>Listagem</small>
+        </h1>
+
+    </section>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="row">
+
+
+        <div class="col-md-12 col-xs-12">
+
+            <div class="panel panel-default">
+
+
+
+                <div class="panel-heading">
+
+
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+
+                            <div class="navigation pull-left">
+                                {#{{ knp_pagination_render(tbDepartamentos) }}#}
+                            </div>
+
+                            <div class="">
+                                <a href="{{ path('adm_departamento_new') }}" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span>
+
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="table table-responsive">
+                        <table class="table table-bordered table-hover table-condensed table-striped table-datatable">
+                            <thead>
+                            <tr>
+                                <th>Ações</th>
+                                <th>Descricao</th>
+                                <th>Email</th>
+                                <th>Listar Chamado</th>
+                                <th>Codigo</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for tbDepartamento in tbDepartamentos %}
+                                <tr>
+
+                                    <td>
+
+
+                                        <a href="{{ path('adm_departamento_show', { 'id': tbDepartamento.depCodigo }) }}" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+
+                                        </a>
+
+                                        <a href="{{ path('adm_departamento_edit', { 'id': tbDepartamento.depCodigo }) }}" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-edit"></span>
+
+                                        </a>
+
+
+
+
+                                    </td>
+
+                                    <td><a href="{{ path('adm_departamento_show', { 'id': tbDepartamento.depCodigo }) }}">{{ tbDepartamento.depDescricao }}</a></td>
+                                    <td>{{ tbDepartamento.depEmail }}</td>
+                                    <td>{% if tbDepartamento.proPermiteListarChamado %}SIM{% else %}NÃO{% endif %}</td>
+                                    <td>{{ tbDepartamento.depCodigo }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+                <div class="panel-footer">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/mrs-dataTable.js') }}"></script>
+
+{% endblock %}

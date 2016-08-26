@@ -1,0 +1,175 @@
+{% extends '@SAAtendimento/tbatendimento/template/template.html.twig' %}
+
+{% block contentheader %}
+    <section class="content-header">
+        <h1>
+            Atendimento
+            <small>Editar</small>
+        </h1>
+    </section>
+{% endblock %}
+
+{% block firstrow %}
+    <a href="{{ path('atendimento_new') }}" id="link"></a>
+{%  endblock %}
+
+{% block panelheading %}
+    <a href="{{ path('atendimento_index') }}" class="btn btn-primary btn-sm">
+        <span class="fa fa-reply"></span>
+        Voltar
+    </a>
+    <a href="{{ path('atendimento_show', { 'id': tbAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
+        <span class="glyphicon glyphicon-eye-open"></span>
+        Mostrar
+    </a>
+    <a href="{{ path('apontamento_new', { 'atendimento': tbAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
+        <span class="glyphicon glyphicon-book"></span>
+        Novo Apontamento
+    </a>
+{% endblock %}
+        {#{{ form(form) }}#}
+
+{% block panelbody %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+    <div class="row">
+        <div class="form-group col-md-3 col-sm-6 col-xs-6">
+            <label class="control-label">Protocolo de Atendimento</label>
+            <input type="text" value="{{ tbAtendimento.id }}" class="form-control input-sm" readonly>
+        </div>
+        <div class="form-group col-md-3 col-sm-6 col-xs-6">
+            {{ form_label(form.atDataCadastro,'Data da Ocorrência') }}
+            {{ form_errors(form.atDataCadastro) }}
+            {{ form_widget(form.atDataCadastro,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atPaciente) }}
+            {{ form_errors(form.atPaciente) }}
+            {{ form_widget(form.atPaciente,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atCpf) }}
+            {{ form_errors(form.atCpf) }}
+            {{ form_widget(form.atCpf,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atRg) }}
+            {{ form_errors(form.atRg) }}
+            {{ form_widget(form.atRg,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atCns) }}
+            {{ form_errors(form.atCns) }}
+            {{ form_widget(form.atCns,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atReclamante) }}
+            {{ form_errors(form.atReclamante) }}
+            {{ form_widget(form.atReclamante,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atTeletone) }}
+            {{ form_errors(form.atTeletone) }}
+            {{ form_widget(form.atTeletone,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.ttpCodigo) }}
+            {{ form_errors(form.ttpCodigo) }}
+            {{ form_widget(form.ttpCodigo,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.atProcesso) }}
+            {{ form_errors(form.atProcesso) }}
+            {{ form_widget(form.atProcesso,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+            {{ form_label(form.atMedicamento) }}
+            {{ form_errors(form.atMedicamento) }}
+            {{ form_widget(form.atMedicamento,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.taCodigo) }}
+            {{ form_errors(form.taCodigo) }}
+            {{ form_widget(form.taCodigo,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+            {{ form_label(form.tdCodigo) }}
+            {{ form_errors(form.tdCodigo) }}
+            {{ form_widget(form.tdCodigo,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+            {{ form_label(form.tipoResposta,'Tipo de Resposta') }}
+            {{ form_errors(form.tipoResposta) }}
+            {{ form_widget(form.tipoResposta) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+            {{ form_label(form.atDescricao) }}
+            {{ form_errors(form.atDescricao) }}
+            {{ form_widget(form.atDescricao,{ 'attr' : { 'class': 'input-sm'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-1 col-sm-3 col-xs-3">
+            {{ form_label(form.atLocalidade) }}
+            {{ form_errors(form.atLocalidade) }}
+            {{ form_widget(form.atLocalidade) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block panelfooter %}
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            Salvar
+        </button>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/form-dinamic-atendimento.js') }}"></script>
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery.mask.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/maskAtendimento.js') }}"></script>
+
+{% endblock %}

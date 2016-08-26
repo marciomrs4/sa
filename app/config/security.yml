@@ -1,0 +1,60 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        SA\AtendimentoBundle\Entity\TbAcesso:
+            algorithm: sha1
+            iterations: 1
+            encode_as_base64: false
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+      db_user_provider:
+          entity: { class: SAAtendimentoBundle:TbAcesso, property: aceUsuario }
+        #in_memory:
+        #    memory: ~
+
+    firewalls:
+        secured_area:
+            pattern: ^/
+            form_login:
+                check_path: /login_check
+                login_path: /login
+                default_target_path: /home
+            remember_me:
+                lifetime: 86400
+                secret: "%secret%"
+                name: SaCooKie
+                always_remember_me: true
+            logout:
+                path: /logout
+                target: /login
+            anonymous: ~
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+           - { path: ^/home, roles: ROLE_Solicitante }
+           - { path: ^/atendimento, roles: ROLE_Solicitante }
+           - { path: ^/apontamento, roles: ROLE_Solicitante }
+           - { path: ^/search, roles: ROLE_Solicitante }
+           - { path: ^/cadastro, roles: ROLE_Técnico-ADM }
+           - { path: ^/admin, roles: ROLE_Técnico-ADM }
+           - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    role_hierarchy:
+        ROLE_Técnico: [ROLE_Solicitante]
+        ROLE_Técnico-ADM: [ROLE_Técnico, ROLE_ALLOWED_TO_SWITCH]
+        #'ROLE_Solicitante'
+        #'ROLE_Técnico'
+        #'ROLE_Técnico-ADM'
+        #'ROLE_Aprovador'

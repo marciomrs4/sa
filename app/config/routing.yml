@@ -1,0 +1,67 @@
+sa_atendimento_tb_acesso:
+    resource: "@SAAtendimentoBundle/Controller/TbAcessoController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_apontamento:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoApontamentoController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_resposta:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoRespostaController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_atendimento:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoAtendimentoController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_direcionamento:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoDirecionamentoController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_direcionamento:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoDirecionamentoController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_processo:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoProcessoController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_atendimento:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoAtendimentoController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_direcionamento:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoDirecionamentoController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_direcionamento:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoDirecionamentoController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_atendimento:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoAtendimentoController.php"
+    type:     annotation
+
+sa_atendimento_tb_tipo_processo:
+    resource: "@SAAtendimentoBundle/Controller/TbTipoProcessoController.php"
+    type:     annotation
+
+sa_atendimento_tb_apontamento:
+    resource: "@SAAtendimentoBundle/Controller/TbApontamentoController.php"
+    type:     annotation
+
+sa_atendimento_tb_usuario:
+    resource: "@SAAtendimentoBundle/Controller/TbUsuarioController.php"
+    type:     annotation
+
+sa_atendimento_tb_atendimento:
+    resource: "@SAAtendimentoBundle/Controller/TbAtendimentoController.php"
+    type:     annotation
+
+sa_atendimento_tb_departamento:
+    resource: "@SAAtendimentoBundle/Controller/TbDepartamentoController.php"
+    type:     annotation
+
+sa_atendimento:
+    resource: "@SAAtendimentoBundle/Controller"
+    type: annotation

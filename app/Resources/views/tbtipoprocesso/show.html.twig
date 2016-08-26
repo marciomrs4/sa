@@ -1,0 +1,65 @@
+{% extends ':template:template.html.twig' %}
+
+
+{% block contentheader %}
+    <section class="content-header">
+        <h1>
+            Tipo de processo
+            <small>Mostrar</small>
+        </h1>
+    </section>
+{% endblock %}
+
+{% block panelheading %}
+
+    <div class="row">
+
+        <div class="col-md-2 col-sm-3 col-xs-3">
+
+            <a href="{{ path('tipoprocesso_index') }}" class="btn btn-primary btn-sm">
+                <span class="fa fa-reply"></span>
+                Voltar
+            </a>
+        </div>
+
+        <div class="col-md-2 col-sm-3 col-xs-3">
+
+            <a href="{{ path('tipoprocesso_edit', { 'id': tbTipoProcesso.ttpCodigo }) }}" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-edit"></span>
+                Editar
+            </a>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-3">
+
+            {{ form_start(delete_form) }}
+            <button type="submit" class="btn btn-danger btn-sm">
+                <span class="glyphicon glyphicon-trash"></span>
+                Deletar
+            </button>
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block panelbody %}
+    <table class="table table-bordered table-condensed">
+        <tbody>
+        <tr>
+            <th>Descrição</th>
+            <td>{{ tbTipoProcesso.ttpDescricao }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>
+                {% if tbTipoProcesso.ttpStatus == 1%}
+                    Ativo
+                {% else %}
+                    Inativo
+                {% endif %}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

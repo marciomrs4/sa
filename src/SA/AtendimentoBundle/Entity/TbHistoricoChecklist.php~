@@ -1,0 +1,61 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbHistoricoChecklist
+ *
+ * @ORM\Table(name="tb_historico_checklist")
+ * @ORM\Entity
+ */
+class TbHistoricoChecklist
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="che_codigo", type="integer", nullable=false)
+     */
+    private $cheCodigo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="che_titulo", type="string", length=255, nullable=false)
+     */
+    private $cheTitulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usu_email", type="string", length=255, nullable=false)
+     */
+    private $usuEmail;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="hck_data", type="datetime", nullable=false)
+     */
+    private $hckData = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="hck_status", type="string", length=1, nullable=false)
+     */
+    private $hckStatus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="hck_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $hckCodigo;
+
+
+}
+

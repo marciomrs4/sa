@@ -1,0 +1,37 @@
+<div class="col-md-12 col-xs-12">
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+
+
+            <a href="{{ path('atendimento_index') }}" class="btn btn-primary btn-sm">
+                <span class="fa fa-reply"></span>
+                Voltar
+            </a>
+
+            <a href="{{ path('atendimento_edit',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-edit"></span>
+                Editar
+            </a>
+
+            <a href="{{ path('apontamento_new',{'atendimento': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-book"></span>
+                Novo Apontamento
+            </a>
+
+        </div>
+
+        <div class="panel-body">
+
+            {{ include('SAAtendimentoBundle:tbatendimento/template:tableshow.html.twig', { 'tbAtendimento' : tbAtendimento }) }}
+
+        </div>
+
+        <div class="panel-footer">
+
+
+        </div>
+    </div>
+
+</div>

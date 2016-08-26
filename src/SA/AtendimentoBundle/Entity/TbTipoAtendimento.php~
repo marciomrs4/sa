@@ -1,0 +1,47 @@
+<?php
+
+namespace SA\AtendimentoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TbTipoAtendimento
+ *
+ * @ORM\Table(name="tb_tipo_atendimento")
+ * @ORM\Entity
+ */
+class TbTipoAtendimento
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_descricao", type="string", length=255, nullable=false)
+     */
+    private $atDescricao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_ativo", type="string", length=1, nullable=false)
+     */
+    private $atAtivo = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="at_texto_padrao", type="text", length=65535, nullable=true)
+     */
+    private $atTextoPadrao;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="at_codigo", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $atCodigo;
+
+
+}
+
