@@ -64,7 +64,6 @@ class TbAtendimentoController extends Controller
     public function newAction(Request $request)
     {
 
-
         $tbAtendimento = new TbAtendimento();
         $date = new \DateTime('now');
         $tbAtendimento->setAtDataCadastro($date);
@@ -104,6 +103,7 @@ class TbAtendimentoController extends Controller
      */
     public function showAction(TbAtendimento $tbAtendimento)
     {
+        sleep(4);
         $deleteForm = $this->createDeleteForm($tbAtendimento);
 
         return $this->render('@SAAtendimento/tbatendimento/show.html.twig', array(

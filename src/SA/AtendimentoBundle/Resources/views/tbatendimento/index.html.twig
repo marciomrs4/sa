@@ -67,6 +67,35 @@
                 </div>
 
                 <div class="row">
+
+                    <div class="form-group col-md-3 col-sm-3 col-xs-6">
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <div class="input-load">
+                                        <button class="btn btn-default pull-left input-search"
+                                                data-toggle="tooltip" data-placement="bottom" data-delay="1000"
+                                                title="Pesquisar de acordo com os filtros utilizados">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                            Procurar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6 col-xs-6">
+
+                                <div class="form-group">
+                                    <a href="{{ path('atendimento_index') }}" class="btn btn-default pull-right link-search"
+                                       data-toggle="tooltip" data-placement="bottom" data-delay="1000"
+                                       title="Limpar os filtros utilizados">
+                                        <span class="glyphicon glyphicon-erase"></span>
+                                        Limpar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group col-md-3 col-sm-3 col-xs-6">
                         {{ form_label(form.atProcesso) }}
                         {{ form_errors(form.atProcesso) }}
@@ -82,32 +111,6 @@
                         {{ form_label(form.atLocalidade) }}
                         {{ form_errors(form.atLocalidade) }}
                         {{ form_widget(form.atLocalidade) }}
-                    </div>
-
-                    <div class="form-group col-md-3 col-sm-3 col-xs-6">
-                        <div class="row">
-                            <div class="form-group col-md-6 col-sm-6 col-xs-6">
-                                <div class="form-group">
-                                    <button class="btn btn-default pull-left"
-                                       data-toggle="tooltip" data-placement="bottom" data-delay="1000"
-                                       title="Pesquisar de acordo com os filtros utilizados">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                        Procurar
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6 col-sm-6 col-xs-6">
-
-                                <div class="form-group">
-                                    <a href="{{ path('atendimento_index') }}" class="btn btn-default pull-right"
-                                       data-toggle="tooltip" data-placement="bottom" data-delay="1000"
-                                       title="Limpar os filtros utilizados">
-                                        <span class="glyphicon glyphicon-erase"></span>
-                                      Limpar
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -129,7 +132,7 @@
             {#</div>#}
 
             <div class="pull-left">
-                <a href="{{ path('atendimento_new') }}" class="btn btn-primary btn-sm"
+                <a href="{{ path('atendimento_new') }}" class="btn btn-primary btn-sm link-search"
                    data-toggle="tooltip" title="Novo Atendimento">
                     <span class="glyphicon glyphicon-plus"></span>
                     Novo
@@ -159,12 +162,12 @@
             {% for tbAtendimento in tbAtendimentos %}
                 <tr>
                     <td>
-                        <a href="{{ path('atendimento_show',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs"
+                        <a href="{{ path('atendimento_show',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs link-search"
                            data-toggle="tooltip" title="Mostrar Atendimento">
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
 
-                        <a href="{{ path('atendimento_edit',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs"
+                        <a href="{{ path('atendimento_edit',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs link-search"
                            data-toggle="tooltip" title="Editar Atendimento">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>

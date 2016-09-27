@@ -1,7 +1,7 @@
 {% extends '@SAAtendimento/tbatendimento/template/template.html.twig' %}
 
 {% block contentheader %}
-   <section class="content-header">
+    <section class="content-header">
         <h1>
             Atendimento
             <small>Novo</small>
@@ -14,15 +14,17 @@
 {%  endblock %}
 
 {% block panelheading %}
-    <a href="{{ path('atendimento_index') }}" class="btn btn-primary btn-sm">
-        <span class="fa fa-reply"></span>
-        Voltar
-    </a>
+    <div class="link-search">
+        <a href="{{ path('atendimento_index') }}" class="btn btn-primary btn-sm input-search">
+            <span class="fa fa-reply"></span>
+            Voltar
+        </a>
+    </div>
 {% endblock %}
         {#{{ form(form) }}#}
 
 {% block panelbody %}
-        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
     <div class="row">
         <div class="form-group col-md-3 col-sm-6 col-xs-12">
@@ -140,13 +142,15 @@
 {% block panelfooter %}
 
     <div class="form-group">
-       <button type="submit" class="btn btn-primary">
-          <span class="glyphicon glyphicon-floppy-disk"></span>
-          Salvar
-       </button>
+        <div class="input-load">
+        <button type="submit" class="btn btn-primary input-search">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            Salvar
+        </button>
+        </div>
     </div>
 
-     {{ form_end(form) }}
+    {{ form_end(form) }}
 
 {% endblock %}
 

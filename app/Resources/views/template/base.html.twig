@@ -24,18 +24,18 @@
     <!-- select2.css -->
     <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/select2.min.css') }}">
 
-    <style type="text/css">
+    {#<style type="text/css">#}
 
-        .pagination {
-            display: inline;
-        }
+        {#.pagination {#}
+            {#display: inline;#}
+        {#}#}
 
-        .help-block {
-            color: #dd4b39;
-        }
+        {#.help-block {#}
+            {#color: #dd4b39;#}
+        {#}#}
 
 
-    </style>
+    {#</style>#}
 
 {% endblock %}
 
@@ -85,7 +85,7 @@
                             <!-- User image -->
 
                             <li class="user-header">
-                                <h1>UDTP</h1>
+                                <h1 class="box-default ">UDTP</h1>
                                 <p>
                                     {{ app.user.usuCodigo.usuNome }} {{ app.user.usuCodigo.usuSobrenome }}
                                     <small>{{ app.user.usuCodigo.usuEmail }}</small>
@@ -378,6 +378,23 @@
         confirmButtonClass: "btn-danger",
         cancelButtonClass: "btn-primary",
         dialogClass: "modal-dialog modal-lg" // Bootstrap classes for large modal
+    });
+
+
+    //Usado para botoes que são Links
+    $(".link-search").click(function(){
+
+        $(this).replaceWith('<img src="{{ asset('load.gif') }}" />');
+
+    });
+
+    //usado para botoes input de formularios
+    $(".input-search").click(function(){
+
+        $(this).hide();
+
+        $('.input-load').append('<img src="{{ asset('load.gif') }}" />');
+
     });
 
 
