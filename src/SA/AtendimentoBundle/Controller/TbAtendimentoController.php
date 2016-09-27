@@ -103,7 +103,7 @@ class TbAtendimentoController extends Controller
      */
     public function showAction(TbAtendimento $tbAtendimento)
     {
-        sleep(4);
+
         $deleteForm = $this->createDeleteForm($tbAtendimento);
 
         return $this->render('@SAAtendimento/tbatendimento/show.html.twig', array(
