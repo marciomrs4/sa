@@ -57,5 +57,134 @@ class TbLog
     private $logCodigo;
 
 
-}
 
+    /**
+     * Set logDataTime
+     *
+     * @param \DateTime $logDataTime
+     *
+     * @return TbLog
+     */
+    public function setLogDataTime($logDataTime)
+    {
+        $this->logDataTime = $logDataTime;
+
+        return $this;
+    }
+
+    /**
+     * Get logDataTime
+     *
+     * @return \DateTime
+     */
+    public function getLogDataTime()
+    {
+        return $this->logDataTime;
+    }
+
+    /**
+     * Set logTipoAcao
+     *
+     * @param string $logTipoAcao
+     *
+     * @return TbLog
+     */
+    public function setLogTipoAcao($logTipoAcao)
+    {
+        $this->logTipoAcao = $logTipoAcao;
+
+        return $this;
+    }
+
+    /**
+     * Get logTipoAcao
+     *
+     * @return string
+     */
+    public function getLogTipoAcao()
+    {
+        return $this->logTipoAcao;
+    }
+
+    /**
+     * Set logCodigoUsuario
+     *
+     * @param integer $logCodigoUsuario
+     *
+     * @return TbLog
+     */
+    public function setLogCodigoUsuario($logCodigoUsuario)
+    {
+        $this->logCodigoUsuario = $logCodigoUsuario;
+
+        return $this;
+    }
+
+    /**
+     * Get logCodigoUsuario
+     *
+     * @return integer
+     */
+    public function getLogCodigoUsuario()
+    {
+        return $this->logCodigoUsuario;
+    }
+
+    /**
+     * Set logCodigoAterado
+     *
+     * @param integer $logCodigoAterado
+     *
+     * @return TbLog
+     */
+    public function setLogCodigoAterado($logCodigoAterado)
+    {
+        $this->logCodigoAterado = $logCodigoAterado;
+
+        return $this;
+    }
+
+    /**
+     * Get logCodigoAterado
+     *
+     * @return integer
+     */
+    public function getLogCodigoAterado()
+    {
+        return $this->logCodigoAterado;
+    }
+
+    /**
+     * Set logDescricaoAlteracaoAcao
+     *
+     * @param string $logDescricaoAlteracaoAcao
+     *
+     * @return TbLog
+     */
+    public function setLogDescricaoAlteracaoAcao($logDescricaoAlteracaoAcao)
+    {
+        $this->logDescricaoAlteracaoAcao = $logDescricaoAlteracaoAcao;
+
+        return $this;
+    }
+
+    /**
+     * Get logDescricaoAlteracaoAcao
+     *
+     * @return string
+     */
+    public function getLogDescricaoAlteracaoAcao()
+    {
+        return $this->logDescricaoAlteracaoAcao;
+    }
+
+    /**
+     * Get logCodigo
+     *
+     * @return integer
+     */
+    public function getLogCodigo()
+    {
+        return $this->logCodigo;
+    }
+}

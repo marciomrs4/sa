@@ -3,7 +3,8 @@
 namespace SA\AtendimentoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use SA\AtendimentoBundle\SAAtendimentoBundle;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * TbUsuario
@@ -82,8 +83,32 @@ class TbUsuario
      * })
      */
     private $depCodigo;
-    
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usu_permite_atedimento", type="string", length=1, nullable=true)
+     * @Assert\Length(max=1,maxMessage="Por favor Informe apenas a letra S pra SIM ou N pra NÃO")
+     */
+    private $usuPermiteAtedimento;
+
+    /**
+     * @return string
+     */
+    public function getUsuPermiteAtedimento()
+    {
+        return $this->usuPermiteAtedimento;
+    }
+
+    /**
+     * @param string $usuPermiteAtedimento
+     * @return TbUsuario
+     */
+    public function setUsuPermiteAtedimento($usuPermiteAtedimento)
+    {
+        $this->usuPermiteAtedimento = $usuPermiteAtedimento;
+        return $this;
+    }
 
 
     /**
@@ -286,6 +311,11 @@ class TbUsuario
     public function getDepCodigo()
     {
         return $this->depCodigo;
+    }
+
+    public function getId()
+    {
+        return $this->getUsuCodigo();
     }
 
     public function __toString()

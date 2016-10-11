@@ -95,5 +95,254 @@ class TbLayout
     private $usuCodigo;
 
 
-}
 
+    /**
+     * Set layFundoTela
+     *
+     * @param string $layFundoTela
+     *
+     * @return TbLayout
+     */
+    public function setLayFundoTela($layFundoTela)
+    {
+        $this->layFundoTela = $layFundoTela;
+
+        return $this;
+    }
+
+    /**
+     * Get layFundoTela
+     *
+     * @return string
+     */
+    public function getLayFundoTela()
+    {
+        return $this->layFundoTela;
+    }
+
+    /**
+     * Set layMenuPrincipal
+     *
+     * @param string $layMenuPrincipal
+     *
+     * @return TbLayout
+     */
+    public function setLayMenuPrincipal($layMenuPrincipal)
+    {
+        $this->layMenuPrincipal = $layMenuPrincipal;
+
+        return $this;
+    }
+
+    /**
+     * Get layMenuPrincipal
+     *
+     * @return string
+     */
+    public function getLayMenuPrincipal()
+    {
+        return $this->layMenuPrincipal;
+    }
+
+    /**
+     * Set layBotoesMenu
+     *
+     * @param string $layBotoesMenu
+     *
+     * @return TbLayout
+     */
+    public function setLayBotoesMenu($layBotoesMenu)
+    {
+        $this->layBotoesMenu = $layBotoesMenu;
+
+        return $this;
+    }
+
+    /**
+     * Get layBotoesMenu
+     *
+     * @return string
+     */
+    public function getLayBotoesMenu()
+    {
+        return $this->layBotoesMenu;
+    }
+
+    /**
+     * Set layBotoesTela
+     *
+     * @param string $layBotoesTela
+     *
+     * @return TbLayout
+     */
+    public function setLayBotoesTela($layBotoesTela)
+    {
+        $this->layBotoesTela = $layBotoesTela;
+
+        return $this;
+    }
+
+    /**
+     * Get layBotoesTela
+     *
+     * @return string
+     */
+    public function getLayBotoesTela()
+    {
+        return $this->layBotoesTela;
+    }
+
+    /**
+     * Set layTabela
+     *
+     * @param string $layTabela
+     *
+     * @return TbLayout
+     */
+    public function setLayTabela($layTabela)
+    {
+        $this->layTabela = $layTabela;
+
+        return $this;
+    }
+
+    /**
+     * Get layTabela
+     *
+     * @return string
+     */
+    public function getLayTabela()
+    {
+        return $this->layTabela;
+    }
+
+    /**
+     * Set layTabelaLinhaPar
+     *
+     * @param string $layTabelaLinhaPar
+     *
+     * @return TbLayout
+     */
+    public function setLayTabelaLinhaPar($layTabelaLinhaPar)
+    {
+        $this->layTabelaLinhaPar = $layTabelaLinhaPar;
+
+        return $this;
+    }
+
+    /**
+     * Get layTabelaLinhaPar
+     *
+     * @return string
+     */
+    public function getLayTabelaLinhaPar()
+    {
+        return $this->layTabelaLinhaPar;
+    }
+
+    /**
+     * Set layTabelaLinhaImpar
+     *
+     * @param string $layTabelaLinhaImpar
+     *
+     * @return TbLayout
+     */
+    public function setLayTabelaLinhaImpar($layTabelaLinhaImpar)
+    {
+        $this->layTabelaLinhaImpar = $layTabelaLinhaImpar;
+
+        return $this;
+    }
+
+    /**
+     * Get layTabelaLinhaImpar
+     *
+     * @return string
+     */
+    public function getLayTabelaLinhaImpar()
+    {
+        return $this->layTabelaLinhaImpar;
+    }
+
+    /**
+     * Set layPassarMouseBotao
+     *
+     * @param string $layPassarMouseBotao
+     *
+     * @return TbLayout
+     */
+    public function setLayPassarMouseBotao($layPassarMouseBotao)
+    {
+        $this->layPassarMouseBotao = $layPassarMouseBotao;
+
+        return $this;
+    }
+
+    /**
+     * Get layPassarMouseBotao
+     *
+     * @return string
+     */
+    public function getLayPassarMouseBotao()
+    {
+        return $this->layPassarMouseBotao;
+    }
+
+    /**
+     * Set layPassarMouseTabela
+     *
+     * @param string $layPassarMouseTabela
+     *
+     * @return TbLayout
+     */
+    public function setLayPassarMouseTabela($layPassarMouseTabela)
+    {
+        $this->layPassarMouseTabela = $layPassarMouseTabela;
+
+        return $this;
+    }
+
+    /**
+     * Get layPassarMouseTabela
+     *
+     * @return string
+     */
+    public function getLayPassarMouseTabela()
+    {
+        return $this->layPassarMouseTabela;
+    }
+
+    /**
+     * Get layCodigo
+     *
+     * @return integer
+     */
+    public function getLayCodigo()
+    {
+        return $this->layCodigo;
+    }
+
+    /**
+     * Set usuCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo
+     *
+     * @return TbLayout
+     */
+    public function setUsuCodigo(\SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo = null)
+    {
+        $this->usuCodigo = $usuCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get usuCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbUsuario
+     */
+    public function getUsuCodigo()
+    {
+        return $this->usuCodigo;
+    }
+}

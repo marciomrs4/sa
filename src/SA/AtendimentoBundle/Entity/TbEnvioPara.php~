@@ -52,5 +52,86 @@ class TbEnvioPara
     private $depCodigo;
 
 
-}
 
+    /**
+     * Get enpCodigo
+     *
+     * @return integer
+     */
+    public function getEnpCodigo()
+    {
+        return $this->enpCodigo;
+    }
+
+    /**
+     * Set usuCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo
+     *
+     * @return TbEnvioPara
+     */
+    public function setUsuCodigo(\SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo = null)
+    {
+        $this->usuCodigo = $usuCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get usuCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbUsuario
+     */
+    public function getUsuCodigo()
+    {
+        return $this->usuCodigo;
+    }
+
+    /**
+     * Set proCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbProblema $proCodigo
+     *
+     * @return TbEnvioPara
+     */
+    public function setProCodigo(\SA\AtendimentoBundle\Entity\TbProblema $proCodigo = null)
+    {
+        $this->proCodigo = $proCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get proCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbProblema
+     */
+    public function getProCodigo()
+    {
+        return $this->proCodigo;
+    }
+
+    /**
+     * Set depCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbDepartamento $depCodigo
+     *
+     * @return TbEnvioPara
+     */
+    public function setDepCodigo(\SA\AtendimentoBundle\Entity\TbDepartamento $depCodigo = null)
+    {
+        $this->depCodigo = $depCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get depCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbDepartamento
+     */
+    public function getDepCodigo()
+    {
+        return $this->depCodigo;
+    }
+}

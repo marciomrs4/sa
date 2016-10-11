@@ -1,0 +1,59 @@
+    {% extends ':template:template.html.twig' %}
+
+
+    {% block contentheader %}
+
+
+    <section class="content-header">
+        <h1>
+            TipoLigacao
+            <small>Listar</small>
+        </h1>
+    </section>
+
+
+    {% endblock %}
+
+
+    {% block panelheading %}
+    <a href="{{ path('cadastro_tipoligacao_new') }}" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus"></span>
+            Novo
+        </a>    {% endblock %}
+
+    {% block panelbody %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th>Mostrar</th>
+                <th>Editar</th>
+                    <th>Descricao</th>
+                    <th>Status</th>
+                    <th>Id</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tipoLigacao in tipoLigacaos %}
+            <tr>
+                        <td><a href="{{ path('cadastro_tipoligacao_show', { 'id': tipoLigacao.id }) }}">{{ tipoLigacao.descricao }}</a></td>
+                        <td>{{ tipoLigacao.status }}</td>
+                        <td>{{ tipoLigacao.id }}</td>                            <td>
+                                <a href="{{ path('cadastro_tipoligacao_show', { 'id': tipoLigacao.id }) }}" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon"></span>
+                                    show
+                                </a>
+                            </td>                            <td>
+                                <a href="{{ path('cadastro_tipoligacao_edit', { 'id': tipoLigacao.id }) }}" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon"></span>
+                                    edit
+                                </a>
+                            </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    {% endblock %}

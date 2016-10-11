@@ -9,14 +9,15 @@
 
 namespace SA\AtendimentoBundle\HttpClient;
 
-use Symfony\Component\BrowserKit\Client;
-use Symfony\Component\BrowserKit\Response;
+use GuzzleHttp\Client;
 
 class HttpClient extends Client
 {
 
-    protected function doRequest($request)
+    public function doRequest()
     {
-        return new Response('');
+        $resp = $this->request('GET',' http://200.205.202.42:8880/udtp/dyn-mvc/rest/protocolo/011251182012');
+
+        print_r($resp->getBody());
     }
 }

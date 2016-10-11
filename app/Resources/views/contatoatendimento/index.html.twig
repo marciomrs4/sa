@@ -1,0 +1,93 @@
+{% extends ':template:template.html.twig' %}
+
+
+    {% block contentheader %}
+
+
+        <section class="content-header">
+            <h1>
+                Contato
+                <small>Listar</small>
+            </h1>
+        </section>
+
+
+    {% endblock %}
+
+ {% block firstrow %}
+     <div class="col-md-6 col-sm-12 col-xs-12">
+
+         <div class="box box-primary collapsed-box">
+             <div class="box-header with-border">
+                 <h3 class="box-title">
+                     <button type="button" class="btn btn-primary btn-xs" data-widget="collapse">
+                         <i class="fa fa-plus"></i>
+                         Protocolo de Atendimento
+                     </button>
+                     <span class="label label-default">{{ tbAtendimento.atCodigo }}</span>
+                 </h3>
+
+                 <div class="box-tools pull-right">
+
+                 </div>
+                 <!-- /.box-tools -->
+             </div>
+             <!-- /.box-header -->
+             <div class="box-body" style="display: none;">
+                 {{ include('SAAtendimentoBundle:tbatendimento/template:tableshow.html.twig', { 'tbAtendimento' : tbAtendimento }) }}
+             </div>
+             <!-- /.box-body -->
+         </div>
+     </div>
+
+     <div class="col-md-6 col-sm-12 col-xs-12">
+         {{ render(controller('SAAtendimentoBundle:TbApontamento:index',{ 'atendimento' : tbAtendimento.atCodigo })) }}
+     </div>
+
+ {% endblock %}
+
+    {% block panelheading %}
+        <a href="{{ path('contatoatendimento_new', { 'atendimento' : atendimento }) }}" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus"></span>
+            Novo Contato
+        </a>
+
+        <a href="{{ path('atendimento_show', { 'id': atendimento}) }}" class="btn btn-primary btn-sm">
+            <span class="fa fa-phone-square"></span>
+            Mostrar Atendimento
+        </a>
+    {% endblock %}
+
+    {% block panelbody %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Opções</th>
+                    <th>Número telefone</th>
+                    <th>Contato</th>
+                    <th>Tipo de telefone</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for contatoAtendimento in contatoAtendimentos %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('contatoatendimento_show', { 'id': contatoAtendimento.id }) }}" class="btn btn-primary btn-xs">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
+                            <a href="{{ path('contatoatendimento_edit', { 'id': contatoAtendimento.id }) }}" class="btn btn-primary btn-xs">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                        </td>
+                        <td>{{ contatoAtendimento.numeroTelefone }}</td>
+                        <td>{{ contatoAtendimento.contato }}</td>
+                        <td>{{ contatoAtendimento.tipoTelefone }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    {% endblock %}

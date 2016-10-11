@@ -58,5 +58,100 @@ class TbAtendenteSolicitacao
     private $priCodigo;
 
 
-}
 
+    /**
+     * Set atsCodigo
+     *
+     * @param integer $atsCodigo
+     *
+     * @return TbAtendenteSolicitacao
+     */
+    public function setAtsCodigo($atsCodigo)
+    {
+        $this->atsCodigo = $atsCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get atsCodigo
+     *
+     * @return integer
+     */
+    public function getAtsCodigo()
+    {
+        return $this->atsCodigo;
+    }
+
+    /**
+     * Set usuCodigoAtendente
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbUsuario $usuCodigoAtendente
+     *
+     * @return TbAtendenteSolicitacao
+     */
+    public function setUsuCodigoAtendente(\SA\AtendimentoBundle\Entity\TbUsuario $usuCodigoAtendente)
+    {
+        $this->usuCodigoAtendente = $usuCodigoAtendente;
+
+        return $this;
+    }
+
+    /**
+     * Get usuCodigoAtendente
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbUsuario
+     */
+    public function getUsuCodigoAtendente()
+    {
+        return $this->usuCodigoAtendente;
+    }
+
+    /**
+     * Set solCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbSolicitacao $solCodigo
+     *
+     * @return TbAtendenteSolicitacao
+     */
+    public function setSolCodigo(\SA\AtendimentoBundle\Entity\TbSolicitacao $solCodigo)
+    {
+        $this->solCodigo = $solCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get solCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbSolicitacao
+     */
+    public function getSolCodigo()
+    {
+        return $this->solCodigo;
+    }
+
+    /**
+     * Set priCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbPrioridade $priCodigo
+     *
+     * @return TbAtendenteSolicitacao
+     */
+    public function setPriCodigo(\SA\AtendimentoBundle\Entity\TbPrioridade $priCodigo)
+    {
+        $this->priCodigo = $priCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get priCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbPrioridade
+     */
+    public function getPriCodigo()
+    {
+        return $this->priCodigo;
+    }
+}

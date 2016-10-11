@@ -56,5 +56,110 @@ class TbAssentamento
     private $solCodigo;
 
 
-}
 
+    /**
+     * Set assDescricao
+     *
+     * @param string $assDescricao
+     *
+     * @return TbAssentamento
+     */
+    public function setAssDescricao($assDescricao)
+    {
+        $this->assDescricao = $assDescricao;
+
+        return $this;
+    }
+
+    /**
+     * Get assDescricao
+     *
+     * @return string
+     */
+    public function getAssDescricao()
+    {
+        return $this->assDescricao;
+    }
+
+    /**
+     * Set assDataCadastro
+     *
+     * @param \DateTime $assDataCadastro
+     *
+     * @return TbAssentamento
+     */
+    public function setAssDataCadastro($assDataCadastro)
+    {
+        $this->assDataCadastro = $assDataCadastro;
+
+        return $this;
+    }
+
+    /**
+     * Get assDataCadastro
+     *
+     * @return \DateTime
+     */
+    public function getAssDataCadastro()
+    {
+        return $this->assDataCadastro;
+    }
+
+    /**
+     * Get assCodigo
+     *
+     * @return integer
+     */
+    public function getAssCodigo()
+    {
+        return $this->assCodigo;
+    }
+
+    /**
+     * Set usuCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo
+     *
+     * @return TbAssentamento
+     */
+    public function setUsuCodigo(\SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo = null)
+    {
+        $this->usuCodigo = $usuCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get usuCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbUsuario
+     */
+    public function getUsuCodigo()
+    {
+        return $this->usuCodigo;
+    }
+
+    /**
+     * Set solCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbSolicitacao $solCodigo
+     *
+     * @return TbAssentamento
+     */
+    public function setSolCodigo(\SA\AtendimentoBundle\Entity\TbSolicitacao $solCodigo = null)
+    {
+        $this->solCodigo = $solCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get solCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbSolicitacao
+     */
+    public function getSolCodigo()
+    {
+        return $this->solCodigo;
+    }
+}

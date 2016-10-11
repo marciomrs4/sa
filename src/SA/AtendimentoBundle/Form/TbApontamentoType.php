@@ -58,6 +58,7 @@ class TbApontamentoType extends AbstractType
             ->add('apDataRetorno',DateType::class,array('label'=>'Data do Retorno',
                                                         'widget'=>'single_text',
                                                         'attr'=>array('class'=>'input-sm')))
+            ->add('tipoLigacao',null,array('label'=>'Tipo de ligação','placeholder'=>''))
 
             ;
 

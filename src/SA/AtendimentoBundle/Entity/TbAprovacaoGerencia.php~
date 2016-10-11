@@ -53,5 +53,110 @@ class TbAprovacaoGerencia
     private $proCodigoProjeto;
 
 
-}
 
+    /**
+     * Set aprStatus
+     *
+     * @param string $aprStatus
+     *
+     * @return TbAprovacaoGerencia
+     */
+    public function setAprStatus($aprStatus)
+    {
+        $this->aprStatus = $aprStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get aprStatus
+     *
+     * @return string
+     */
+    public function getAprStatus()
+    {
+        return $this->aprStatus;
+    }
+
+    /**
+     * Set usuCodigoGerencia
+     *
+     * @param integer $usuCodigoGerencia
+     *
+     * @return TbAprovacaoGerencia
+     */
+    public function setUsuCodigoGerencia($usuCodigoGerencia)
+    {
+        $this->usuCodigoGerencia = $usuCodigoGerencia;
+
+        return $this;
+    }
+
+    /**
+     * Get usuCodigoGerencia
+     *
+     * @return integer
+     */
+    public function getUsuCodigoGerencia()
+    {
+        return $this->usuCodigoGerencia;
+    }
+
+    /**
+     * Set aprDataAprovado
+     *
+     * @param \DateTime $aprDataAprovado
+     *
+     * @return TbAprovacaoGerencia
+     */
+    public function setAprDataAprovado($aprDataAprovado)
+    {
+        $this->aprDataAprovado = $aprDataAprovado;
+
+        return $this;
+    }
+
+    /**
+     * Get aprDataAprovado
+     *
+     * @return \DateTime
+     */
+    public function getAprDataAprovado()
+    {
+        return $this->aprDataAprovado;
+    }
+
+    /**
+     * Get aprCodigo
+     *
+     * @return integer
+     */
+    public function getAprCodigo()
+    {
+        return $this->aprCodigo;
+    }
+
+    /**
+     * Set proCodigoProjeto
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbProjeto $proCodigoProjeto
+     *
+     * @return TbAprovacaoGerencia
+     */
+    public function setProCodigoProjeto(\SA\AtendimentoBundle\Entity\TbProjeto $proCodigoProjeto = null)
+    {
+        $this->proCodigoProjeto = $proCodigoProjeto;
+
+        return $this;
+    }
+
+    /**
+     * Get proCodigoProjeto
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbProjeto
+     */
+    public function getProCodigoProjeto()
+    {
+        return $this->proCodigoProjeto;
+    }
+}

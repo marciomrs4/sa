@@ -1,0 +1,95 @@
+{% extends ':template:template.html.twig' %}
+
+
+    {% block contentheader %}
+
+        <section class="content-header">
+            <h1>
+                Produto
+                <small>Editar</small>
+            </h1>
+        </section>
+
+    {% endblock %}
+
+ {% block firstrow %}
+     <div class="col-md-6 col-sm-12 col-xs-12">
+
+         <div class="box box-primary collapsed-box">
+             <div class="box-header with-border">
+                 <h3 class="box-title">
+                     <button type="button" class="btn btn-primary btn-xs" data-widget="collapse">
+                         <i class="fa fa-plus"></i>
+                         Protocolo de Atendimento
+                     </button>
+                     <span class="label label-default">{{ produto.atendimento.atCodigo }}</span>
+                 </h3>
+
+                 <div class="box-tools pull-right">
+
+                 </div>
+                 <!-- /.box-tools -->
+             </div>
+             <!-- /.box-header -->
+             <div class="box-body" style="display: none;">
+                 {{ include('SAAtendimentoBundle:tbatendimento/template:tableshow.html.twig', { 'tbAtendimento' : produto.atendimento }) }}
+             </div>
+             <!-- /.box-body -->
+         </div>
+     </div>
+
+     <div class="col-md-6 col-sm-12 col-xs-12">
+         {{ render(controller('SAAtendimentoBundle:TbApontamento:index',{ 'atendimento' : produto.atendimento.atCodigo })) }}
+     </div>
+
+ {% endblock %}
+
+    {% block panelheading %}
+
+        <div class="row">
+
+            <div class="col-md-2 col-sm-3 col-xs-3">
+
+                <a href="{{ path('atendimento_show',{ 'id' : produto.atendimento.id }) }}" class="btn btn-primary btn-sm">
+                    <span class="fa fa-phone-square"></span>
+                    Mostrar Atendimento
+                </a>
+
+            </div>
+
+            <div class="col-md-2 col-sm-3 col-xs-3">
+
+                <a href="{{ path('cadastro_produto_index', { 'atendimento' : produto.atendimento.id }) }}" class="btn btn-primary btn-sm">
+                    <span class="fa fa-reply"></span>
+                    Listar Produtos
+                </a>
+
+            </div>
+
+
+
+            <div class="col-md-2 col-sm-3 col-xs-3">
+                {{ form_start(delete_form) }}
+                <button type="submit" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    Deletar
+                </button>
+                {{ form_end(delete_form) }}
+
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block panelbody %}
+
+
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <button type="submit" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            Salvar
+        </button>
+        {{ form_end(edit_form) }}
+
+    {% endblock %}
+

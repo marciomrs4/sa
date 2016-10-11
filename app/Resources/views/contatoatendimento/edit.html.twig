@@ -1,0 +1,107 @@
+    {% extends ':template:template.html.twig' %}
+
+
+    {% block contentheader %}
+
+    <section class="content-header">
+        <h1>
+            ContatoAtendimento
+            <small>Editar</small>
+        </h1>
+    </section>
+
+    {% endblock %}
+
+
+ {% block firstrow %}
+     <div class="col-md-6 col-sm-12 col-xs-12">
+
+         <div class="box box-primary collapsed-box">
+             <div class="box-header with-border">
+                 <h3 class="box-title">
+                     <button type="button" class="btn btn-primary btn-xs" data-widget="collapse">
+                         <i class="fa fa-plus"></i>
+                         Protocolo de Atendimento
+                     </button>
+                     <span class="label label-default">{{ tbAtendimento.atCodigo }}</span>
+                 </h3>
+
+                 <div class="box-tools pull-right">
+
+                 </div>
+                 <!-- /.box-tools -->
+             </div>
+             <!-- /.box-header -->
+             <div class="box-body" style="display: none;">
+                 {{ include('SAAtendimentoBundle:tbatendimento/template:tableshow.html.twig', { 'tbAtendimento' : tbAtendimento }) }}
+             </div>
+             <!-- /.box-body -->
+         </div>
+     </div>
+
+     <div class="col-md-6 col-sm-12 col-xs-12">
+         {{ render(controller('SAAtendimentoBundle:TbApontamento:index',{ 'atendimento' : tbAtendimento.atCodigo })) }}
+     </div>
+
+ {% endblock %}
+
+    {% block panelheading %}
+
+        <div class="row">
+
+    <div class="col-md-2 col-sm-3 col-xs-3">
+
+        <a href="{{ path('contatoatendimento_index',{ 'atendimento' : contatoAtendimento.atendimentoId }) }}" class="btn btn-primary btn-sm">
+            <span class="fa fa-reply"></span>
+            Listar Contatos
+        </a>
+
+    </div>
+        <div class="col-md-2 col-sm-3 col-xs-3">
+            {{ form_start(delete_form) }}
+            <button type="submit" class="btn btn-danger btn-sm">
+                <span class="glyphicon glyphicon-trash"></span>
+                Deletar
+            </button>
+            {{ form_end(delete_form) }}
+
+        </div>
+</div>{% endblock %}
+
+    {% block panelbody %}
+
+
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <button type="submit" class="btn btn-primary btn-sm">
+        <span class="glyphicon glyphicon-floppy-disk"></span>
+        Salvar
+    </button>
+    {{ form_end(edit_form) }}
+
+    {% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery.mask.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            var SPMaskBehavior = function (val) {
+                        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+                    },
+                    spOptions = {
+                        onKeyPress: function(val, e, field, options) {
+                            field.mask(SPMaskBehavior.apply({}, arguments), options);
+                        }
+                    };
+
+            $('.telefone').mask(SPMaskBehavior,spOptions);
+
+        });
+    </script>
+
+{% endblock %}

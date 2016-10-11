@@ -155,7 +155,8 @@
                 <th>Status</th>
                 <th>Tipo de Atendimento</th>
                 <th>Paciente</th>
-                <th>Atendente</th>
+                <th>Atendente Inicial</th>
+                <th>Atendente Atual</th>
             </tr>
             </thead>
             <tbody>
@@ -179,6 +180,7 @@
                     <td>{{ tbAtendimento.taCodigo }}</td>
                     <td>{{ tbAtendimento.atPaciente }}</td>
                     <td>{{ tbAtendimento.usuCodigo }}</td>
+                    <td>{{ tbAtendimento.atendente }}</td>
 
                 </tr>
             {% endfor %}

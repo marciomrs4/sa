@@ -57,5 +57,134 @@ class TbHistoricoChecklist
     private $hckCodigo;
 
 
-}
 
+    /**
+     * Set cheCodigo
+     *
+     * @param integer $cheCodigo
+     *
+     * @return TbHistoricoChecklist
+     */
+    public function setCheCodigo($cheCodigo)
+    {
+        $this->cheCodigo = $cheCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get cheCodigo
+     *
+     * @return integer
+     */
+    public function getCheCodigo()
+    {
+        return $this->cheCodigo;
+    }
+
+    /**
+     * Set cheTitulo
+     *
+     * @param string $cheTitulo
+     *
+     * @return TbHistoricoChecklist
+     */
+    public function setCheTitulo($cheTitulo)
+    {
+        $this->cheTitulo = $cheTitulo;
+
+        return $this;
+    }
+
+    /**
+     * Get cheTitulo
+     *
+     * @return string
+     */
+    public function getCheTitulo()
+    {
+        return $this->cheTitulo;
+    }
+
+    /**
+     * Set usuEmail
+     *
+     * @param string $usuEmail
+     *
+     * @return TbHistoricoChecklist
+     */
+    public function setUsuEmail($usuEmail)
+    {
+        $this->usuEmail = $usuEmail;
+
+        return $this;
+    }
+
+    /**
+     * Get usuEmail
+     *
+     * @return string
+     */
+    public function getUsuEmail()
+    {
+        return $this->usuEmail;
+    }
+
+    /**
+     * Set hckData
+     *
+     * @param \DateTime $hckData
+     *
+     * @return TbHistoricoChecklist
+     */
+    public function setHckData($hckData)
+    {
+        $this->hckData = $hckData;
+
+        return $this;
+    }
+
+    /**
+     * Get hckData
+     *
+     * @return \DateTime
+     */
+    public function getHckData()
+    {
+        return $this->hckData;
+    }
+
+    /**
+     * Set hckStatus
+     *
+     * @param string $hckStatus
+     *
+     * @return TbHistoricoChecklist
+     */
+    public function setHckStatus($hckStatus)
+    {
+        $this->hckStatus = $hckStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get hckStatus
+     *
+     * @return string
+     */
+    public function getHckStatus()
+    {
+        return $this->hckStatus;
+    }
+
+    /**
+     * Get hckCodigo
+     *
+     * @return integer
+     */
+    public function getHckCodigo()
+    {
+        return $this->hckCodigo;
+    }
+}

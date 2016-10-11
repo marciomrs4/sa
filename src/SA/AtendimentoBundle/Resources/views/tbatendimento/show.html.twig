@@ -49,6 +49,50 @@
         Novo Apontamento
     </a>
 
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-earphone"></span>
+                Contato
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{{ path('contatoatendimento_new', { 'atendimento': tbAtendimento.atCodigo }) }}">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    Novo Contato
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('contatoatendimento_index', { 'atendimento': tbAtendimento.atCodigo }) }}">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    Listar Contatos
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            Produto
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{{ path('cadastro_produto_new', { 'atendimento': tbAtendimento.atCodigo }) }}">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    Novo Produto
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('cadastro_produto_index', { 'atendimento': tbAtendimento.atCodigo }) }}">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    Listar Produtos
+                </a>
+            </li>
+        </ul>
+    </div>
+
 {% endblock %}
 
 {% block panelbody %}

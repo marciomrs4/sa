@@ -29,5 +29,38 @@ class TbStatusProjeto
     private $stpCodigo;
 
 
-}
 
+    /**
+     * Set stpDescricao
+     *
+     * @param string $stpDescricao
+     *
+     * @return TbStatusProjeto
+     */
+    public function setStpDescricao($stpDescricao)
+    {
+        $this->stpDescricao = $stpDescricao;
+
+        return $this;
+    }
+
+    /**
+     * Get stpDescricao
+     *
+     * @return string
+     */
+    public function getStpDescricao()
+    {
+        return $this->stpDescricao;
+    }
+
+    /**
+     * Get stpCodigo
+     *
+     * @return integer
+     */
+    public function getStpCodigo()
+    {
+        return $this->stpCodigo;
+    }
+}

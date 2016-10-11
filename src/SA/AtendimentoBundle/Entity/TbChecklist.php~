@@ -77,5 +77,182 @@ class TbChecklist
     private $depCodigo;
 
 
-}
 
+    /**
+     * Set cheTitulo
+     *
+     * @param string $cheTitulo
+     *
+     * @return TbChecklist
+     */
+    public function setCheTitulo($cheTitulo)
+    {
+        $this->cheTitulo = $cheTitulo;
+
+        return $this;
+    }
+
+    /**
+     * Get cheTitulo
+     *
+     * @return string
+     */
+    public function getCheTitulo()
+    {
+        return $this->cheTitulo;
+    }
+
+    /**
+     * Set cheDescricao
+     *
+     * @param string $cheDescricao
+     *
+     * @return TbChecklist
+     */
+    public function setCheDescricao($cheDescricao)
+    {
+        $this->cheDescricao = $cheDescricao;
+
+        return $this;
+    }
+
+    /**
+     * Get cheDescricao
+     *
+     * @return string
+     */
+    public function getCheDescricao()
+    {
+        return $this->cheDescricao;
+    }
+
+    /**
+     * Set cheDataCadastro
+     *
+     * @param \DateTime $cheDataCadastro
+     *
+     * @return TbChecklist
+     */
+    public function setCheDataCadastro($cheDataCadastro)
+    {
+        $this->cheDataCadastro = $cheDataCadastro;
+
+        return $this;
+    }
+
+    /**
+     * Get cheDataCadastro
+     *
+     * @return \DateTime
+     */
+    public function getCheDataCadastro()
+    {
+        return $this->cheDataCadastro;
+    }
+
+    /**
+     * Set cheEmailEnvio
+     *
+     * @param string $cheEmailEnvio
+     *
+     * @return TbChecklist
+     */
+    public function setCheEmailEnvio($cheEmailEnvio)
+    {
+        $this->cheEmailEnvio = $cheEmailEnvio;
+
+        return $this;
+    }
+
+    /**
+     * Get cheEmailEnvio
+     *
+     * @return string
+     */
+    public function getCheEmailEnvio()
+    {
+        return $this->cheEmailEnvio;
+    }
+
+    /**
+     * Set cheAtivo
+     *
+     * @param string $cheAtivo
+     *
+     * @return TbChecklist
+     */
+    public function setCheAtivo($cheAtivo)
+    {
+        $this->cheAtivo = $cheAtivo;
+
+        return $this;
+    }
+
+    /**
+     * Get cheAtivo
+     *
+     * @return string
+     */
+    public function getCheAtivo()
+    {
+        return $this->cheAtivo;
+    }
+
+    /**
+     * Get cheCodigo
+     *
+     * @return integer
+     */
+    public function getCheCodigo()
+    {
+        return $this->cheCodigo;
+    }
+
+    /**
+     * Set usuCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo
+     *
+     * @return TbChecklist
+     */
+    public function setUsuCodigo(\SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo = null)
+    {
+        $this->usuCodigo = $usuCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get usuCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbUsuario
+     */
+    public function getUsuCodigo()
+    {
+        return $this->usuCodigo;
+    }
+
+    /**
+     * Set depCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbDepartamento $depCodigo
+     *
+     * @return TbChecklist
+     */
+    public function setDepCodigo(\SA\AtendimentoBundle\Entity\TbDepartamento $depCodigo = null)
+    {
+        $this->depCodigo = $depCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get depCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbDepartamento
+     */
+    public function getDepCodigo()
+    {
+        return $this->depCodigo;
+    }
+}

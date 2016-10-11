@@ -59,5 +59,110 @@ class TbCalculoAtendimento
     private $solCodigo;
 
 
-}
 
+    /**
+     * Set teaDataAcao
+     *
+     * @param \DateTime $teaDataAcao
+     *
+     * @return TbCalculoAtendimento
+     */
+    public function setTeaDataAcao($teaDataAcao)
+    {
+        $this->teaDataAcao = $teaDataAcao;
+
+        return $this;
+    }
+
+    /**
+     * Get teaDataAcao
+     *
+     * @return \DateTime
+     */
+    public function getTeaDataAcao()
+    {
+        return $this->teaDataAcao;
+    }
+
+    /**
+     * Get teaCodigo
+     *
+     * @return integer
+     */
+    public function getTeaCodigo()
+    {
+        return $this->teaCodigo;
+    }
+
+    /**
+     * Set usuCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo
+     *
+     * @return TbCalculoAtendimento
+     */
+    public function setUsuCodigo(\SA\AtendimentoBundle\Entity\TbUsuario $usuCodigo = null)
+    {
+        $this->usuCodigo = $usuCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get usuCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbUsuario
+     */
+    public function getUsuCodigo()
+    {
+        return $this->usuCodigo;
+    }
+
+    /**
+     * Set staCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbStatus $staCodigo
+     *
+     * @return TbCalculoAtendimento
+     */
+    public function setStaCodigo(\SA\AtendimentoBundle\Entity\TbStatus $staCodigo = null)
+    {
+        $this->staCodigo = $staCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get staCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbStatus
+     */
+    public function getStaCodigo()
+    {
+        return $this->staCodigo;
+    }
+
+    /**
+     * Set solCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbSolicitacao $solCodigo
+     *
+     * @return TbCalculoAtendimento
+     */
+    public function setSolCodigo(\SA\AtendimentoBundle\Entity\TbSolicitacao $solCodigo = null)
+    {
+        $this->solCodigo = $solCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get solCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbSolicitacao
+     */
+    public function getSolCodigo()
+    {
+        return $this->solCodigo;
+    }
+}

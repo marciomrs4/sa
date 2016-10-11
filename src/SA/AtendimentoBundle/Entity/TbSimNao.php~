@@ -29,5 +29,38 @@ class TbSimNao
     private $snCodigo;
 
 
-}
 
+    /**
+     * Set snDescricao
+     *
+     * @param string $snDescricao
+     *
+     * @return TbSimNao
+     */
+    public function setSnDescricao($snDescricao)
+    {
+        $this->snDescricao = $snDescricao;
+
+        return $this;
+    }
+
+    /**
+     * Get snDescricao
+     *
+     * @return string
+     */
+    public function getSnDescricao()
+    {
+        return $this->snDescricao;
+    }
+
+    /**
+     * Get snCodigo
+     *
+     * @return integer
+     */
+    public function getSnCodigo()
+    {
+        return $this->snCodigo;
+    }
+}

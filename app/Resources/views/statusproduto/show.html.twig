@@ -1,0 +1,71 @@
+    {% extends ':template:template.html.twig' %}
+
+
+
+    {% block contentheader %}
+
+    <section class="content-header">
+        <h1>
+            StatusProduto
+            <small>Mostrar</small>
+        </h1>
+    </section>
+
+    {% endblock %}
+
+    {% block panelheading %}
+
+        <div class="row">
+
+    <div class="col-md-2 col-sm-3 col-xs-3">
+
+        <a href="{{ path('cadastro_statusproduto_index') }}" class="btn btn-primary btn-sm">
+            <span class="fa fa-reply"></span>
+            Voltar
+        </a>
+
+    </div>
+        <div class="col-md-2 col-sm-3 col-xs-3">
+
+            <a href="{{ path('cadastro_statusproduto_edit', { 'id': statusProduto.id }) }}" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-edit"></span>
+                Editar
+            </a>
+
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-3">
+            {{ form_start(delete_form) }}
+            <button type="submit" class="btn btn-danger btn-sm">
+                <span class="glyphicon glyphicon-trash"></span>
+                Deletar
+            </button>
+            {{ form_end(delete_form) }}
+
+        </div>
+</div>{% endblock %}
+
+
+
+    {% block panelbody %}
+
+    <div class="table table-responsive">
+        <table class="table table-bordered table-condensed">
+            <tbody>
+                <tr>
+                    <th>Descricao</th>
+                        <td>{{ statusProduto.descricao }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                        <td>{{ statusProduto.status }}</td>
+                </tr>
+                <tr>
+                    <th>Id</th>
+                        <td>{{ statusProduto.id }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    {% endblock %}

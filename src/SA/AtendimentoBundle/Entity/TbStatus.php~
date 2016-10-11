@@ -29,5 +29,38 @@ class TbStatus
     private $staCodigo;
 
 
-}
 
+    /**
+     * Set staDescricao
+     *
+     * @param string $staDescricao
+     *
+     * @return TbStatus
+     */
+    public function setStaDescricao($staDescricao)
+    {
+        $this->staDescricao = $staDescricao;
+
+        return $this;
+    }
+
+    /**
+     * Get staDescricao
+     *
+     * @return string
+     */
+    public function getStaDescricao()
+    {
+        return $this->staDescricao;
+    }
+
+    /**
+     * Get staCodigo
+     *
+     * @return integer
+     */
+    public function getStaCodigo()
+    {
+        return $this->staCodigo;
+    }
+}

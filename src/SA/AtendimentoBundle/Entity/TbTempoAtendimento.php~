@@ -39,5 +39,62 @@ class TbTempoAtendimento
     private $depCodigo;
 
 
-}
 
+    /**
+     * Set tatDescricao
+     *
+     * @param string $tatDescricao
+     *
+     * @return TbTempoAtendimento
+     */
+    public function setTatDescricao($tatDescricao)
+    {
+        $this->tatDescricao = $tatDescricao;
+
+        return $this;
+    }
+
+    /**
+     * Get tatDescricao
+     *
+     * @return string
+     */
+    public function getTatDescricao()
+    {
+        return $this->tatDescricao;
+    }
+
+    /**
+     * Get tatCodigo
+     *
+     * @return integer
+     */
+    public function getTatCodigo()
+    {
+        return $this->tatCodigo;
+    }
+
+    /**
+     * Set depCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbDepartamento $depCodigo
+     *
+     * @return TbTempoAtendimento
+     */
+    public function setDepCodigo(\SA\AtendimentoBundle\Entity\TbDepartamento $depCodigo = null)
+    {
+        $this->depCodigo = $depCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get depCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbDepartamento
+     */
+    public function getDepCodigo()
+    {
+        return $this->depCodigo;
+    }
+}

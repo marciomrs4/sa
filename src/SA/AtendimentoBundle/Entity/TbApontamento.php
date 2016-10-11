@@ -57,6 +57,17 @@ class TbApontamento
     private $usuCodigo;
 
     /**
+     * @var \SA\AtendimentoBundle\Entity\TipoLigacao
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TipoLigacao")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_ligacao", referencedColumnName="id")
+     * })
+     * @Assert\NotBlank(message="Selecione o tipo de ligação")
+     */
+    private $tipoLigacao;
+
+    /**
      * @var \SA\AtendimentoBundle\Entity\TbAtendimento
      *
      * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbAtendimento")
@@ -206,5 +217,29 @@ class TbApontamento
     public function getId()
     {
         return $this->getApCodigo();
+    }
+
+    /**
+     * Set tipoLigacao
+     *
+     * @param \SA\AtendimentoBundle\Entity\TipoLigacao $tipoLigacao
+     *
+     * @return TbApontamento
+     */
+    public function setTipoLigacao(\SA\AtendimentoBundle\Entity\TipoLigacao $tipoLigacao = null)
+    {
+        $this->tipoLigacao = $tipoLigacao;
+
+        return $this;
+    }
+
+    /**
+     * Get tipoLigacao
+     *
+     * @return \SA\AtendimentoBundle\Entity\TipoLigacao
+     */
+    public function getTipoLigacao()
+    {
+        return $this->tipoLigacao;
     }
 }

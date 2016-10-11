@@ -13,9 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class TbTipoResposta
 {
     /**
-     * @var integer
      *
      * @ORM\Column(name="at_codigo", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbTipoAtendimento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="at_codigo", referencedColumnName="at_codigo")
+     * })
      */
     private $atCodigo;
 
@@ -50,5 +53,120 @@ class TbTipoResposta
     private $tirCodigo;
 
 
-}
 
+    /**
+     * Set atCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbTipoAtendimento $atCodigo
+     *
+     * @return TbTipoResposta
+     */
+    public function setAtCodigo(\SA\AtendimentoBundle\Entity\TbTipoAtendimento $atCodigo)
+    {
+        $this->atCodigo = $atCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get atCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbTipoAtendimento
+     */
+    public function getAtCodigo()
+    {
+        return $this->atCodigo;
+    }
+
+    /**
+     * Set tirTitulo
+     *
+     * @param string $tirTitulo
+     *
+     * @return TbTipoResposta
+     */
+    public function setTirTitulo($tirTitulo)
+    {
+        $this->tirTitulo = $tirTitulo;
+
+        return $this;
+    }
+
+    /**
+     * Get tirTitulo
+     *
+     * @return string
+     */
+    public function getTirTitulo()
+    {
+        return $this->tirTitulo;
+    }
+
+    /**
+     * Set tirDescricao
+     *
+     * @param string $tirDescricao
+     *
+     * @return TbTipoResposta
+     */
+    public function setTirDescricao($tirDescricao)
+    {
+        $this->tirDescricao = $tirDescricao;
+
+        return $this;
+    }
+
+    /**
+     * Get tirDescricao
+     *
+     * @return string
+     */
+    public function getTirDescricao()
+    {
+        return $this->tirDescricao;
+    }
+
+    /**
+     * Set tirStatus
+     *
+     * @param string $tirStatus
+     *
+     * @return TbTipoResposta
+     */
+    public function setTirStatus($tirStatus)
+    {
+        $this->tirStatus = $tirStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get tirStatus
+     *
+     * @return string
+     */
+    public function getTirStatus()
+    {
+        return $this->tirStatus;
+    }
+
+    /**
+     * Get tirCodigo
+     *
+     * @return integer
+     */
+    public function getTirCodigo()
+    {
+        return $this->tirCodigo;
+    }
+
+    public function __toString()
+    {
+        return $this->tirDescricao;
+    }
+
+    public function getId()
+    {
+        return $this->getTirCodigo();
+    }
+}

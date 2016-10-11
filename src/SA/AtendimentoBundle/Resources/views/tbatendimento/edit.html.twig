@@ -141,12 +141,18 @@
     </div>
 
     <div class="row">
-        <div class="form-group col-md-1 col-sm-3 col-xs-3">
+        <div class="form-group col-md-2 col-sm-3 col-xs-3">
             {{ form_label(form.atLocalidade) }}
-            {{ form_errors(form.atLocalidade) }}
             {{ form_widget(form.atLocalidade) }}
+            {{ form_errors(form.atLocalidade) }}
+        </div>
+        <div class="form-group col-md-2 col-sm-3 col-xs-3">
+            {{ form_label(form.tipoLigacao) }}
+            {{ form_widget(form.tipoLigacao) }}
+            {{ form_errors(form.tipoLigacao) }}
         </div>
     </div>
+
 {% endblock %}
 
 {% block panelfooter %}

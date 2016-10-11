@@ -76,6 +76,11 @@ class TbAtendimentoType extends AbstractType
                     'Sim'=>1
                 ],
                 'choices_as_values' => true])
+            ->add('tipoLigacao',EntityType::class,array(
+                'label'=>'Tipo de ligação',
+                'class'=>'SA\AtendimentoBundle\Entity\TipoLigacao',
+                'attr'=>array('class'=>'input-sm'),
+                'placeholder'=>'Selecione'))
         ;
 
         $builder->addEventSubscriber(new AddTipoResposta());

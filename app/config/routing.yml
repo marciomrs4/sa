@@ -1,3 +1,27 @@
+sa_atendimento_apontamento_produto:
+    resource: "@SAAtendimentoBundle/Controller/ApontamentoProdutoController.php"
+    type:     annotation
+
+sa_atendimento_produto:
+    resource: "@SAAtendimentoBundle/Controller/ProdutoController.php"
+    type:     annotation
+
+sa_atendimento_tipo_ligacao:
+    resource: "@SAAtendimentoBundle/Controller/TipoLigacaoController.php"
+    type:     annotation
+
+sa_atendimento_status_produto:
+    resource: "@SAAtendimentoBundle/Controller/StatusProdutoController.php"
+    type:     annotation
+
+sa_atendimento_contato_atendimento:
+    resource: "@SAAtendimentoBundle/Controller/ContatoAtendimentoController.php"
+    type:     annotation
+
+sa_atendimento_contato_atendimento:
+    resource: "@SAAtendimentoBundle/Controller/ContatoAtendimentoController.php"
+    type:     annotation
+
 sa_atendimento_tb_acesso:
     resource: "@SAAtendimentoBundle/Controller/TbAcessoController.php"
     type:     annotation

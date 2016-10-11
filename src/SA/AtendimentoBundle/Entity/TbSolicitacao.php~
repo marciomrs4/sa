@@ -63,5 +63,134 @@ class TbSolicitacao
     private $proCodigo;
 
 
-}
 
+    /**
+     * Set usuCodigoSolicitante
+     *
+     * @param integer $usuCodigoSolicitante
+     *
+     * @return TbSolicitacao
+     */
+    public function setUsuCodigoSolicitante($usuCodigoSolicitante)
+    {
+        $this->usuCodigoSolicitante = $usuCodigoSolicitante;
+
+        return $this;
+    }
+
+    /**
+     * Get usuCodigoSolicitante
+     *
+     * @return integer
+     */
+    public function getUsuCodigoSolicitante()
+    {
+        return $this->usuCodigoSolicitante;
+    }
+
+    /**
+     * Set depCodigoSolicitado
+     *
+     * @param integer $depCodigoSolicitado
+     *
+     * @return TbSolicitacao
+     */
+    public function setDepCodigoSolicitado($depCodigoSolicitado)
+    {
+        $this->depCodigoSolicitado = $depCodigoSolicitado;
+
+        return $this;
+    }
+
+    /**
+     * Get depCodigoSolicitado
+     *
+     * @return integer
+     */
+    public function getDepCodigoSolicitado()
+    {
+        return $this->depCodigoSolicitado;
+    }
+
+    /**
+     * Set solDescricaoSolicitacao
+     *
+     * @param string $solDescricaoSolicitacao
+     *
+     * @return TbSolicitacao
+     */
+    public function setSolDescricaoSolicitacao($solDescricaoSolicitacao)
+    {
+        $this->solDescricaoSolicitacao = $solDescricaoSolicitacao;
+
+        return $this;
+    }
+
+    /**
+     * Get solDescricaoSolicitacao
+     *
+     * @return string
+     */
+    public function getSolDescricaoSolicitacao()
+    {
+        return $this->solDescricaoSolicitacao;
+    }
+
+    /**
+     * Get solCodigo
+     *
+     * @return integer
+     */
+    public function getSolCodigo()
+    {
+        return $this->solCodigo;
+    }
+
+    /**
+     * Set staCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbStatus $staCodigo
+     *
+     * @return TbSolicitacao
+     */
+    public function setStaCodigo(\SA\AtendimentoBundle\Entity\TbStatus $staCodigo = null)
+    {
+        $this->staCodigo = $staCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get staCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbStatus
+     */
+    public function getStaCodigo()
+    {
+        return $this->staCodigo;
+    }
+
+    /**
+     * Set proCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbProblema $proCodigo
+     *
+     * @return TbSolicitacao
+     */
+    public function setProCodigo(\SA\AtendimentoBundle\Entity\TbProblema $proCodigo = null)
+    {
+        $this->proCodigo = $proCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get proCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbProblema
+     */
+    public function getProCodigo()
+    {
+        return $this->proCodigo;
+    }
+}

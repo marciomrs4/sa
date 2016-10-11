@@ -164,6 +164,17 @@ class TbAtendimento
      */
     private $tipoResposta;
 
+    /**
+     * @var \SA\AtendimentoBundle\Entity\TipoLigacao
+     *
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TipoLigacao")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_ligacao", referencedColumnName="id")
+     * })
+     * @Assert\NotBlank(message="Selecione o Tipo de Ligação ")
+     */
+    private $tipoLigacao;
+
 
     public function __construct()
     {
@@ -652,4 +663,28 @@ class TbAtendimento
         return $this->getAtCodigo();
     }
 
+
+    /**
+     * Set tipoLigacao
+     *
+     * @param \SA\AtendimentoBundle\Entity\TipoLigacao $tipoLigacao
+     *
+     * @return TbAtendimento
+     */
+    public function setTipoLigacao(\SA\AtendimentoBundle\Entity\TipoLigacao $tipoLigacao = null)
+    {
+        $this->tipoLigacao = $tipoLigacao;
+
+        return $this;
+    }
+
+    /**
+     * Get tipoLigacao
+     *
+     * @return \SA\AtendimentoBundle\Entity\TipoLigacao
+     */
+    public function getTipoLigacao()
+    {
+        return $this->tipoLigacao;
+    }
 }

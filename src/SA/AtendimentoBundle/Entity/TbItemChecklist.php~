@@ -53,5 +53,110 @@ class TbItemChecklist
     private $cheCodigo;
 
 
-}
 
+    /**
+     * Set ichTituloTarefa
+     *
+     * @param string $ichTituloTarefa
+     *
+     * @return TbItemChecklist
+     */
+    public function setIchTituloTarefa($ichTituloTarefa)
+    {
+        $this->ichTituloTarefa = $ichTituloTarefa;
+
+        return $this;
+    }
+
+    /**
+     * Get ichTituloTarefa
+     *
+     * @return string
+     */
+    public function getIchTituloTarefa()
+    {
+        return $this->ichTituloTarefa;
+    }
+
+    /**
+     * Set ichAtivo
+     *
+     * @param string $ichAtivo
+     *
+     * @return TbItemChecklist
+     */
+    public function setIchAtivo($ichAtivo)
+    {
+        $this->ichAtivo = $ichAtivo;
+
+        return $this;
+    }
+
+    /**
+     * Get ichAtivo
+     *
+     * @return string
+     */
+    public function getIchAtivo()
+    {
+        return $this->ichAtivo;
+    }
+
+    /**
+     * Set ichLink
+     *
+     * @param string $ichLink
+     *
+     * @return TbItemChecklist
+     */
+    public function setIchLink($ichLink)
+    {
+        $this->ichLink = $ichLink;
+
+        return $this;
+    }
+
+    /**
+     * Get ichLink
+     *
+     * @return string
+     */
+    public function getIchLink()
+    {
+        return $this->ichLink;
+    }
+
+    /**
+     * Get ichCodigo
+     *
+     * @return integer
+     */
+    public function getIchCodigo()
+    {
+        return $this->ichCodigo;
+    }
+
+    /**
+     * Set cheCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbChecklist $cheCodigo
+     *
+     * @return TbItemChecklist
+     */
+    public function setCheCodigo(\SA\AtendimentoBundle\Entity\TbChecklist $cheCodigo = null)
+    {
+        $this->cheCodigo = $cheCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get cheCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbChecklist
+     */
+    public function getCheCodigo()
+    {
+        return $this->cheCodigo;
+    }
+}

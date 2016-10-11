@@ -29,5 +29,43 @@ class TbTipoAcesso
     private $tacCodigo;
 
 
-}
 
+    /**
+     * Set tacDescricao
+     *
+     * @param string $tacDescricao
+     *
+     * @return TbTipoAcesso
+     */
+    public function setTacDescricao($tacDescricao)
+    {
+        $this->tacDescricao = $tacDescricao;
+
+        return $this;
+    }
+
+    /**
+     * Get tacDescricao
+     *
+     * @return string
+     */
+    public function getTacDescricao()
+    {
+        return $this->tacDescricao;
+    }
+
+    /**
+     * Get tacCodigo
+     *
+     * @return integer
+     */
+    public function getTacCodigo()
+    {
+        return $this->tacCodigo;
+    }
+
+    public function __toString()
+    {
+        return $this->getTacDescricao();
+    }
+}

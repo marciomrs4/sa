@@ -49,5 +49,86 @@ class TbProblema
     private $priCodigo;
 
 
-}
 
+    /**
+     * Set proDescricao
+     *
+     * @param string $proDescricao
+     *
+     * @return TbProblema
+     */
+    public function setProDescricao($proDescricao)
+    {
+        $this->proDescricao = $proDescricao;
+
+        return $this;
+    }
+
+    /**
+     * Get proDescricao
+     *
+     * @return string
+     */
+    public function getProDescricao()
+    {
+        return $this->proDescricao;
+    }
+
+    /**
+     * Get proCodigo
+     *
+     * @return integer
+     */
+    public function getProCodigo()
+    {
+        return $this->proCodigo;
+    }
+
+    /**
+     * Set depCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbDepartamento $depCodigo
+     *
+     * @return TbProblema
+     */
+    public function setDepCodigo(\SA\AtendimentoBundle\Entity\TbDepartamento $depCodigo = null)
+    {
+        $this->depCodigo = $depCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get depCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbDepartamento
+     */
+    public function getDepCodigo()
+    {
+        return $this->depCodigo;
+    }
+
+    /**
+     * Set priCodigo
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbPrioridade $priCodigo
+     *
+     * @return TbProblema
+     */
+    public function setPriCodigo(\SA\AtendimentoBundle\Entity\TbPrioridade $priCodigo = null)
+    {
+        $this->priCodigo = $priCodigo;
+
+        return $this;
+    }
+
+    /**
+     * Get priCodigo
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbPrioridade
+     */
+    public function getPriCodigo()
+    {
+        return $this->priCodigo;
+    }
+}
