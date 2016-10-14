@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use SA\AtendimentoBundle\Entity\Produto;
 use SA\AtendimentoBundle\Entity\ApontamentoProduto;
 use SA\AtendimentoBundle\Form\ApontamentoProdutoType;
 
@@ -19,14 +20,15 @@ class ApontamentoProdutoController extends Controller
     /**
      * Lists all ApontamentoProduto entities.
      *
-     * @Route("/", name="cadastro_apontamentoproduto_index")
+     * @Route("/{produto}", name="cadastro_apontamentoproduto_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Produto $produto)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $apontamentoProdutos = $em->getRepository('SAAtendimentoBundle:ApontamentoProduto')->findAll();
+        $apontamentoProdutos = $em->getRepository('SAAtendimentoBundle:ApontamentoProduto')
+            ->findBy(array('produto' => $produto));
 
         return $this->render('apontamentoproduto/index.html.twig', array(
             'apontamentoProdutos' => $apontamentoProdutos,
@@ -36,25 +38,35 @@ class ApontamentoProdutoController extends Controller
     /**
      * Creates a new ApontamentoProduto entity.
      *
-     * @Route("/new", name="cadastro_apontamentoproduto_new")
+     * @Route("/new/{produto}", name="cadastro_apontamentoproduto_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Produto $produto)
     {
         $apontamentoProduto = new ApontamentoProduto();
+
+        $apontamentoProduto->setProduto($produto);
+
         $form = $this->createForm('SA\AtendimentoBundle\Form\ApontamentoProdutoType', $apontamentoProduto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $apontamentoProduto->setUsuarioId($this->getUser()->getUsuCodigo());
+
+            $produto->setStatus($apontamentoProduto->getStatus());
+
+            $em->persist($produto);
             $em->persist($apontamentoProduto);
             $em->flush();
 
-            return $this->redirectToRoute('cadastro_apontamentoproduto_show', array('id' => $apontamentoProduto->getId()));
+            return $this->redirectToRoute('cadastro_produto_show', array('id' => $produto->getId()));
         }
 
         return $this->render('apontamentoproduto/new.html.twig', array(
             'apontamentoProduto' => $apontamentoProduto,
+            'produto' => $produto,
             'form' => $form->createView(),
         ));
     }

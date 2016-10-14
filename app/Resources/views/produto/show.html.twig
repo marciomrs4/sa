@@ -40,7 +40,7 @@
      </div>
 
      <div class="col-md-6 col-sm-12 col-xs-12">
-         {{ render(controller('SAAtendimentoBundle:TbApontamento:index',{ 'atendimento' : produto.atendimento.atCodigo })) }}
+         {{ render(controller('SAAtendimentoBundle:ApontamentoProduto:index',{ 'produto' : produto.id })) }}
      </div>
 
  {% endblock %}
@@ -67,6 +67,7 @@
 
             </div>
 
+            {% if produto.status.id == 1%}
             <div class="col-md-2 col-sm-3 col-xs-3">
 
                 <a href="{{ path('cadastro_produto_edit', { 'id': produto.id }) }}" class="btn btn-primary btn-sm">
@@ -75,6 +76,18 @@
                 </a>
 
             </div>
+            {% endif %}
+
+            {% if produto.status.id != 3%}
+            <div class="col-md-2 col-sm-3 col-xs-3">
+
+                <a href="{{ path('cadastro_apontamentoproduto_new', { 'produto': produto.id }) }}" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-book"></span>
+                    Apontamento Produto
+                </a>
+            </div>
+            {% endif %}
+
         </div>
     {% endblock %}
 
@@ -100,6 +113,10 @@
                 <tr>
                     <th>Quantidade</th>
                     <td>{{ produto.quantidade }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{{ produto.status.descricao }}</td>
                 </tr>
                 </tbody>
             </table>

@@ -91,6 +91,28 @@ class TbApontamentoController extends Controller
 
             $dadosApontamento = $request->request->get('apontamento');
 
+            if($dadosApontamento['satCodigo'] == 3){
+
+                $produto = $this->getDoctrine()
+                    ->getRepository('SAAtendimentoBundle:Produto')
+                    ->getProdutoPendente($atendimento->getId());
+
+                if($produto){
+
+                    $message = array('type'=>'warning',
+                                     'description'=>'Existem produtos pendentes e este atendimento não pode ser finalizado!');
+                    $this->addFlash('notice',$message);
+
+                    return $this->render('@SAAtendimento/tbapontamento/new.html.twig', array(
+                        'tbApontamento' => $tbApontamento,
+                        'form' => $form->createView(),
+                        'tbAtendimento' => $atendimento
+                    ));
+
+                }
+
+            }
+
             $tbApontamento->setUsuCodigo($this->getUser()->getUsuCodigo())
                           ->setApDataApontamento($date)
                           ->setAtCodigo($atendimento);

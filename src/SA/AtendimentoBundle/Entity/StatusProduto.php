@@ -94,4 +94,9 @@ class StatusProduto
     {
         return $this->id;
     }
+
+    public function __toString()
+    {
+        return $this->getDescricao();
+    }
 }

@@ -38,7 +38,7 @@
         <span class="fa fa-reply"></span>
         Voltar
     </a>
-
+{% if tbAtendimento.satCodigo.satCodigo != 3 %}
     <a href="{{ path('atendimento_edit', { 'id': tbAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
         <span class="glyphicon glyphicon-edit"></span>
         Editar
@@ -48,7 +48,8 @@
         <span class="glyphicon glyphicon-book"></span>
         Novo Apontamento
     </a>
-
+{% endif %}
+    
     <div class="btn-group">
         <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="glyphicon glyphicon-earphone"></span>

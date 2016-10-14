@@ -20,9 +20,12 @@ class ApontamentoProduto
     private $dataCriacao;
 
     /**
-     * @var integer
+     * @var \SA\AtendimentoBundle\Entity\TbUsuario
      *
-     * @ORM\Column(name="usuario_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbUsuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="usu_codigo")
+     * })
      */
     private $usuarioId;
 
@@ -73,6 +76,11 @@ class ApontamentoProduto
     private $tipoLigacao;
 
 
+    public function __construct()
+    {
+        $this->dataCriacao = new \DateTime('now');
+    }
+
 
     /**
      * Set dataCriacao
@@ -97,30 +105,7 @@ class ApontamentoProduto
     {
         return $this->dataCriacao;
     }
-
-    /**
-     * Set usuarioId
-     *
-     * @param integer $usuarioId
-     *
-     * @return ApontamentoProduto
-     */
-    public function setUsuarioId($usuarioId)
-    {
-        $this->usuarioId = $usuarioId;
-
-        return $this;
-    }
-
-    /**
-     * Get usuarioId
-     *
-     * @return integer
-     */
-    public function getUsuarioId()
-    {
-        return $this->usuarioId;
-    }
+    
 
     /**
      * Set descricao
@@ -226,5 +211,29 @@ class ApontamentoProduto
     public function getTipoLigacao()
     {
         return $this->tipoLigacao;
+    }
+
+    /**
+     * Set usuarioId
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbUsuario $usuarioId
+     *
+     * @return ApontamentoProduto
+     */
+    public function setUsuarioId(\SA\AtendimentoBundle\Entity\TbUsuario $usuarioId = null)
+    {
+        $this->usuarioId = $usuarioId;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioId
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbUsuario
+     */
+    public function getUsuarioId()
+    {
+        return $this->usuarioId;
     }
 }

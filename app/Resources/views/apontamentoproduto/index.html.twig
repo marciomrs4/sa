@@ -1,4 +1,46 @@
-    {% extends ':template:template.html.twig' %}
+
+<div class="box box-primary collapsed-box">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            <button type="button" class="btn btn-primary btn-xs" data-widget="collapse">
+                <i class="fa fa-plus"></i>
+                Apontamento(s) do produto
+            </button>
+        </h3>
+
+        <div class="box-tools pull-right">
+
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body" style="display: none;">
+        <table class="table table-bordered table-responsive table-condensed">
+            <thead>
+            <tr>
+                <th>Data apontamento</th>
+                <th>Atendente</th>
+                <th>Apontamento</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for apontamentoProduto in apontamentoProdutos %}
+                <tr>
+                    <td>{{ apontamentoProduto.dataCriacao |date('d-m-Y H:i:s') }}</a></td>
+                    <td>{{ apontamentoProduto.usuarioId.usuNome }}</td>
+                    <td>{{ apontamentoProduto.descricao }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    <!-- /.box-body -->
+</div>
+
+{#
+
+{% extends ':template:template.html.twig' %}
 
 
     {% block contentheader %}
@@ -59,3 +101,4 @@
 
 
     {% endblock %}
+#}

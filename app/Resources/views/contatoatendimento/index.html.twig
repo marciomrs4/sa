@@ -47,15 +47,17 @@
  {% endblock %}
 
     {% block panelheading %}
-        <a href="{{ path('contatoatendimento_new', { 'atendimento' : atendimento }) }}" class="btn btn-primary btn-sm">
-            <span class="glyphicon glyphicon-plus"></span>
-            Novo Contato
-        </a>
 
         <a href="{{ path('atendimento_show', { 'id': atendimento}) }}" class="btn btn-primary btn-sm">
             <span class="fa fa-phone-square"></span>
             Mostrar Atendimento
         </a>
+
+        <a href="{{ path('contatoatendimento_new', { 'atendimento' : atendimento }) }}" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus"></span>
+            Novo Contato
+        </a>
+
     {% endblock %}
 
     {% block panelbody %}

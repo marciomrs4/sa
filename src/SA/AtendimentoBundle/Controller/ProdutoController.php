@@ -28,7 +28,7 @@ class ProdutoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $produtos = $em->getRepository('SAAtendimentoBundle:Produto')
-            ->findBy(array('atendimento' => $atendimento));
+            ->findBy(array('atendimento' => $atendimento),array('id' => 'DESC'));
 
         return $this->render('produto/index.html.twig', array(
             'produtos' => $produtos,
@@ -62,14 +62,21 @@ class ProdutoController extends Controller
             $em->persist($produto);
             $em->flush();
 
-            return $this->redirectToRoute('atendimento_show', array('id' => $atendimento->getId()));
+            return $this->redirectToRoute('cadastro_produto_index', array('atendimento' => $atendimento->getId()));
         }
 
-        return $this->render('produto/new.html.twig', array(
-            'produto' => $produto,
-            'form' => $form->createView(),
-            'atendimento' => $atendimento
-        ));
+        if($atendimento->getSatCodigo()->getSatCodigo() == 3){
+
+            return $this->redirectToRoute('cadastro_produto_index',array('atendimento' => $atendimento->getId()));
+
+        }else {
+
+            return $this->render('produto/new.html.twig', array(
+                'produto' => $produto,
+                'form' => $form->createView(),
+                'atendimento' => $atendimento
+            ));
+        }
     }
 
     /**
