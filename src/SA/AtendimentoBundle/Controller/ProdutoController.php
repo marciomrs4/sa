@@ -3,6 +3,7 @@
 namespace SA\AtendimentoBundle\Controller;
 
 use SA\AtendimentoBundle\Entity\TbAtendimento;
+use SA\AtendimentoBundle\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -71,8 +72,16 @@ class ProdutoController extends Controller
 
         }else {
 
+            $rest = array();
+            $rest['protocolo'] = $atendimento->getAtProcesso();
+            $rest['uri'] = 'protocolo';
+            $rest['url'] = $this->getParameter('webservice_url');
+
+            $httpCliente = new HttpClient(array(),$rest);
+
             return $this->render('produto/new.html.twig', array(
                 'produto' => $produto,
+                'resultData' => $httpCliente->getData(),
                 'form' => $form->createView(),
                 'atendimento' => $atendimento
             ));

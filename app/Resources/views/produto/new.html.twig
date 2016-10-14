@@ -100,4 +100,18 @@
 
         {{ form_end(form) }}
 
+
+        {#{{ dump(listproduto) }}#}
+
+        {% for cliente in resultData %}
+
+            {{ cliente.autor }} | {{ cliente.protocolo }}
+            <br>
+
+                {% for itens in cliente.itens %}
+                    {{ itens.codigoTP }} | {{ itens.codigoSCODES }} | {{ itens.descricao }} | {{ itens.quantidade }} <br>
+                {% endfor %}
+
+        {% endfor %}
+
     {% endblock %}

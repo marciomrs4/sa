@@ -48,7 +48,7 @@ class HttpClientTest extends WebTestCase
 ]';
 
         $body = (string)$resp->getBody();
-        //$this->assertEquals($content,$body,'Houve algum erro');
+        $this->assertEquals($content,$body,'Houve algum erro');
     }
 
     public function testStringReturn()
