@@ -72,12 +72,9 @@ class ProdutoController extends Controller
 
         }else {
 
-            $rest = array();
-            $rest['protocolo'] = $atendimento->getAtProcesso();
-            $rest['uri'] = 'protocolo';
-            $rest['url'] = $this->getParameter('webservice_url');
-
-            $httpCliente = new HttpClient(array(),$rest);
+            $httpCliente = $this->get('http.client');
+            $httpCliente->setCodigo($atendimento->getAtProcesso())
+                        ->setSearch('protocolo');
 
             return $this->render('produto/new.html.twig', array(
                 'produto' => $produto,
@@ -96,19 +93,14 @@ class ProdutoController extends Controller
      */
     public function showAction(Produto $produto)
     {
-        $deleteForm = $this->createDeleteForm($produto);
 
-        $rest = array();
-        $rest['protocolo'] = str_replace('/','-',$produto->getCodigoScodes());
-        $rest['uri'] = 'posicaoestoque';
-        $rest['url'] = $this->getParameter('webservice_url');
-
-        $httpCliente = new HttpClient(array(),$rest);
+        $httpCliente = $this->get('http.client');
+        $httpCliente->setCodigo(str_replace('/','-',$produto->getCodigoScodes()))
+                    ->setSearch('posicaoestoque');
 
         return $this->render('produto/show.html.twig', array(
             'produto' => $produto,
-            'estoque' => $httpCliente->getData(),
-            'delete_form' => $deleteForm->createView(),
+            'estoque' => $httpCliente->getData()
         ));
     }
 

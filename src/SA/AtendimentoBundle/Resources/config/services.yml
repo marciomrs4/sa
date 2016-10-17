@@ -6,3 +6,8 @@ services:
      report.atendimentoanalitico:
           class: SA\AtendimentoBundle\Report\ReportAtendimentoAnalitico
           arguments: ["@service_container"]
+#HttpCliente to request Lois Estoque
+     http.client:
+          class: SA\AtendimentoBundle\HttpClient\HttpClient
+          calls:
+              - [setUrl, ["%webservice_url%"]]

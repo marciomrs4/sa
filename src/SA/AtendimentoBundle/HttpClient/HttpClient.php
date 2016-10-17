@@ -14,18 +14,13 @@ use GuzzleHttp\Client;
 class HttpClient extends Client
 {
 
-    private $protocolo;
+    private $codigo;
     private $url;
-    private $uri;
+    private $search;
 
-    public function __construct(array $config, array $rest = array())
+    public function __construct(array $config = [])
     {
         parent::__construct($config);
-
-        $this->setProtocolo($rest['protocolo'])
-             ->setUri($rest['uri'])
-             ->setUrl($rest['url']);
-
     }
 
     /**
@@ -46,48 +41,57 @@ class HttpClient extends Client
         return $this;
     }
 
-    public function setProtocolo($protocolo)
+    public function setCodigo($codigo)
     {
-        $this->protocolo = ($protocolo == '') ? '-' : $protocolo;
+        $this->codigo = ($codigo == '') ? '-' : $codigo;
         return $this;
     }
 
-    public function getProtocolo()
+    public function getCodigo()
     {
-        return $this->protocolo;
+        return $this->codigo;
     }
 
 
     /**
      * @return mixed
      */
-    public function getUri()
+    public function getSearch()
     {
-        return $this->uri;
+        return $this->search;
     }
 
     /**
-     * @param mixed $uri
+     * @param mixed $search
      * @return HttpClient
      */
-    public function setUri($uri)
+    public function setSearch($search)
     {
-        $this->uri = $uri;
+        $this->search = $search;
         return $this;
     }
 
+    /**
+     * @return \Psr\Http\Message\StreamInterface
+     */
     private function doRequest()
     {
-        $resp = $this->request('GET',$this->getUrl().$this->getUri().'/'.$this->getProtocolo());
+        $response = $this->request('GET',
+                                    $this->getUrl().$this->getSearch().'/'.$this->getCodigo());
 
-        return  $resp->getBody();
+        return  $response;
     }
 
+    /**
+     * @return mixed
+     */
     public function getData()
     {
-        $file =  $this->doRequest()->getContents();
+        $data =  $this->doRequest()
+                      ->getBody()
+                      ->getContents();
 
-        return \GuzzleHttp\json_decode($file);
+        return \GuzzleHttp\json_decode($data);
 
     }
 
