@@ -48,9 +48,12 @@ class Produto
     private $dataCriacao;
 
     /**
-     * @var integer
+     * @var \SA\AtendimentoBundle\Entity\TbUsuario
      *
-     * @ORM\Column(name="usuario_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbUsuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="usu_codigo")
+     * })
      */
     private $usuarioId;
 
@@ -210,29 +213,7 @@ class Produto
         return $this->dataCriacao;
     }
 
-    /**
-     * Set usuarioId
-     *
-     * @param integer $usuarioId
-     *
-     * @return Produto
-     */
-    public function setUsuarioId($usuarioId)
-    {
-        $this->usuarioId = $usuarioId;
 
-        return $this;
-    }
-
-    /**
-     * Get usuarioId
-     *
-     * @return integer
-     */
-    public function getUsuarioId()
-    {
-        return $this->usuarioId;
-    }
 
     /**
      * Get id
@@ -290,5 +271,29 @@ class Produto
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set usuarioId
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbUsuario $usuarioId
+     *
+     * @return Produto
+     */
+    public function setUsuarioId(\SA\AtendimentoBundle\Entity\TbUsuario $usuarioId = null)
+    {
+        $this->usuarioId = $usuarioId;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioId
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbUsuario
+     */
+    public function getUsuarioId()
+    {
+        return $this->usuarioId;
     }
 }

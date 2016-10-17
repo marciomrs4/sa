@@ -100,18 +100,102 @@
 
         {{ form_end(form) }}
 
-
-        {#{{ dump(listproduto) }}#}
-
-        {% for cliente in resultData %}
-
-            {{ cliente.autor }} | {{ cliente.protocolo }}
-            <br>
-
-                {% for itens in cliente.itens %}
-                    {{ itens.codigoTP }} | {{ itens.codigoSCODES }} | {{ itens.descricao }} | {{ itens.quantidade }} <br>
-                {% endfor %}
-
-        {% endfor %}
-
     {% endblock %}
+
+
+{% block panelfooter %}
+
+    {#{{ dump(listproduto) }}#}
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Informações LoIS Estoque</h3>
+
+            {% for cliente in resultData %}
+
+            <div>
+                <table class="table table-bordered table-condensed">
+                    <tbody>
+                    <tr>
+                        <td><b>Autor:</b> {{ cliente.autor }}</td>
+                        <td><b>Protocolo:</b> {{ cliente.protocolo }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-responsive table-condensed">
+
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Linha</th>
+                        <th>Código TP</th>
+                        <th>Código SCODES</th>
+                        <th>Descrição</th>
+                        <th>Quantidade</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for itens in cliente.itens %}
+                        <tr>
+                            <td>
+                                <button class="btn btn-primary btn-xs copy-item">
+                                    <span class="glyphicon glyphicon-duplicate"></span>
+                                </button>
+                            </td>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ itens.codigoTP }}</td>
+                            <td>{{ itens.codigoSCODES }}</td>
+                            <td>{{ itens.descricao }}</td>
+                            <td>{{ itens.quantidade }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.table-responsive -->
+        </div>
+        <!-- /.box-body -->
+
+        <!-- /.box-footer -->
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+    <script>
+    $(document).ready(function () {
+
+
+        $('tr').click(function () {
+
+            var linha = [];
+
+            $(this).find('td').each(function(i) {
+                linha[i] = ($(this).html());
+            });
+
+
+            $("#produto_codigoTp").val(linha[2]);
+            $("#produto_codigoScodes").val(linha[3]);
+            $("#produto_descricao").val(linha[4]);
+            $("#produto_quantidade").val(linha[5]);
+
+        });
+
+    });
+
+</script>
+
+{% endblock %}

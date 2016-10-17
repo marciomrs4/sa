@@ -68,24 +68,24 @@
             </div>
 
             {% if produto.status.id == 1%}
-            <div class="col-md-2 col-sm-3 col-xs-3">
+                <div class="col-md-2 col-sm-3 col-xs-3">
 
-                <a href="{{ path('cadastro_produto_edit', { 'id': produto.id }) }}" class="btn btn-primary btn-sm">
-                    <span class="glyphicon glyphicon-edit"></span>
-                    Editar
-                </a>
+                    <a href="{{ path('cadastro_produto_edit', { 'id': produto.id }) }}" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        Editar
+                    </a>
 
-            </div>
+                </div>
             {% endif %}
 
             {% if produto.status.id != 3%}
-            <div class="col-md-2 col-sm-3 col-xs-3">
+                <div class="col-md-2 col-sm-3 col-xs-3">
 
-                <a href="{{ path('cadastro_apontamentoproduto_new', { 'produto': produto.id }) }}" class="btn btn-primary btn-sm">
-                    <span class="glyphicon glyphicon-book"></span>
-                    Apontamento Produto
-                </a>
-            </div>
+                    <a href="{{ path('cadastro_apontamentoproduto_new', { 'produto': produto.id }) }}" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-book"></span>
+                        Apontamento Produto
+                    </a>
+                </div>
             {% endif %}
 
         </div>
@@ -122,5 +122,73 @@
             </table>
         </div>
 
+
+        <div class="box box-info">
+            <div class="box-header with-border">
+                {% for item in estoque %}
+
+                {% if loop.first %}
+
+                <h3 class="box-title">Informações LoIS Estoque</h3>
+
+                <div>
+                    <table class="table table-bordered table-condensed">
+                        <tbody>
+                        <tr>
+                            <td><b>Código TP:</b> {{ item.codigoTP }}</td>
+                            <td><b>Código SCODES:</b> {{ item.codigoSCODES }}</td>
+                            <td><b>Total Disponivel: </b>{{ item.totalDisponivel }}</td>
+                            <td><b>Total Reservado: </b>{{ item.totalReservado }}</td>
+                            <td><b>Status: </b>{{ item.status }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-responsive table-condensed">
+
+                        <thead>
+                        <tr>
+                            <th>Linha</th>
+                            <th>Reservado para</th>
+                            <th>Quantidade</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% else %}
+
+                            {% set pacienteName = produto.atendimento.atPaciente ~ ' - ' ~ produto.atendimento.atProcesso %}
+                            {% if pacienteName == item.autor %}
+                                <tr class="success">
+                                    <td>{{ loop.index-1 }}</td>
+                                    <td>{{ item.autor }}</td>
+                                    <td>{{ item.qtdeReservada }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>{{ loop.index-1 }}</td>
+                                    <td>{{ item.autor }}</td>
+                                    <td>{{ item.qtdeReservada }}</td>
+                                </tr>
+                            {% endif %}
+
+                        {% endif %}
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.box-body -->
+
+            <!-- /.box-footer -->
+        </div>
 
     {% endblock %}

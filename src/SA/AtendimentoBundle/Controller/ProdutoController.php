@@ -98,8 +98,16 @@ class ProdutoController extends Controller
     {
         $deleteForm = $this->createDeleteForm($produto);
 
+        $rest = array();
+        $rest['protocolo'] = str_replace('/','-',$produto->getCodigoScodes());
+        $rest['uri'] = 'posicaoestoque';
+        $rest['url'] = $this->getParameter('webservice_url');
+
+        $httpCliente = new HttpClient(array(),$rest);
+
         return $this->render('produto/show.html.twig', array(
             'produto' => $produto,
+            'estoque' => $httpCliente->getData(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -121,7 +129,7 @@ class ProdutoController extends Controller
             $em->persist($produto);
             $em->flush();
 
-            return $this->redirectToRoute('cadastro_produto_edit', array('id' => $produto->getId()));
+            return $this->redirectToRoute('cadastro_produto_show', array('id' => $produto->getId()));
         }
 
         return $this->render('produto/edit.html.twig', array(

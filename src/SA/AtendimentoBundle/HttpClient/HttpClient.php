@@ -16,8 +16,8 @@ class HttpClient extends Client
 
     private $protocolo;
     private $url;
-
     private $uri;
+
     public function __construct(array $config, array $rest = array())
     {
         parent::__construct($config);
@@ -48,7 +48,7 @@ class HttpClient extends Client
 
     public function setProtocolo($protocolo)
     {
-        $this->protocolo = $protocolo;
+        $this->protocolo = ($protocolo == '') ? '-' : $protocolo;
         return $this;
     }
 

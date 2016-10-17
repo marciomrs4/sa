@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Produto
  *
  * @ORM\Table(name="produto", indexes={@ORM\Index(name="fk_atendimento_produto_idx", columns={"atendimento_id"}), @ORM\Index(name="fk_status_produto_idx", columns={"status_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="SA\AtendimentoBundle\Repository\ProdutoRepository")
  */
 class Produto
 {
@@ -48,9 +48,12 @@ class Produto
     private $dataCriacao;
 
     /**
-     * @var integer
+     * @var \SA\AtendimentoBundle\Entity\TbUsuario
      *
-     * @ORM\Column(name="usuario_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbUsuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="usu_codigo")
+     * })
      */
     private $usuarioId;
 
@@ -83,6 +86,11 @@ class Produto
      */
     private $status;
 
+
+    public function __construct()
+    {
+        $this->dataCriacao = new \DateTime('now');
+    }
 
 
     /**
@@ -205,29 +213,7 @@ class Produto
         return $this->dataCriacao;
     }
 
-    /**
-     * Set usuarioId
-     *
-     * @param integer $usuarioId
-     *
-     * @return Produto
-     */
-    public function setUsuarioId($usuarioId)
-    {
-        $this->usuarioId = $usuarioId;
 
-        return $this;
-    }
-
-    /**
-     * Get usuarioId
-     *
-     * @return integer
-     */
-    public function getUsuarioId()
-    {
-        return $this->usuarioId;
-    }
 
     /**
      * Get id
