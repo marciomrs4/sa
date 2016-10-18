@@ -3,7 +3,6 @@
 namespace SA\AtendimentoBundle\Controller;
 
 use SA\AtendimentoBundle\Entity\TbAtendimento;
-use SA\AtendimentoBundle\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -72,9 +71,9 @@ class ProdutoController extends Controller
 
         }else {
 
-            $httpCliente = $this->get('http.client');
-            $httpCliente->setCodigo($atendimento->getAtProcesso())
-                        ->setSearch('protocolo');
+            $httpCliente = $this->get('http.client')
+                                ->setCodigo($atendimento->getAtProcesso())
+                                ->setSearch('protocolo');
 
             return $this->render('produto/new.html.twig', array(
                 'produto' => $produto,
@@ -94,9 +93,9 @@ class ProdutoController extends Controller
     public function showAction(Produto $produto)
     {
 
-        $httpCliente = $this->get('http.client');
-        $httpCliente->setCodigo(str_replace('/','-',$produto->getCodigoScodes()))
-                    ->setSearch('posicaoestoque');
+        $httpCliente = $this->get('http.client')
+                            ->setCodigo(str_replace('/','-',$produto->getCodigoScodes()))
+                            ->setSearch('posicaoestoque');
 
         return $this->render('produto/show.html.twig', array(
             'produto' => $produto,

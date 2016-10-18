@@ -15,16 +15,38 @@ use \Doctrine\ORM\EntityRepository;
 class ProdutoRepository extends EntityRepository
 {
 
-    public function getProdutoPendente($atendimentoId)
+    public function reportProduto($reportProdutoForm)
     {
-        return $this->getEntityManager()
-            ->createQuery("SELECT p
-                           FROM SAAtendimentoBundle:Produto p
-                           WHERE p.status != 3
-                           AND p.atendimento = :atendimento")
-            ->setParameter('atendimento',$atendimentoId)
-            ->getResult();
+        $query = ("SELECT id, codigo_tp AS 'codigoTp', atendimento_id AS 'atendimento',
+                          descricao AS 'descricao', data_criacao AS 'dataCriacao' ,
+                           (SELECT descricao FROM status_produto WHERE id = status_id) AS 'status',
+                           ATE.at_paciente AS 'paciente', ATE.at_processo AS 'processo'
+                    FROM produto AS PRO
+                    INNER JOIN tb_atendimento AS ATE
+                    ON PRO.atendimento_id = ATE.at_codigo
+                    WHERE PRO.codigo_tp LIKE ?
+                    AND PRO.descricao LIKE ?
+                    AND PRO.status_id LIKE ?
+                    AND PRO.data_criacao >= ?
+                    AND PRO.data_criacao <= ?
+                    ORDER BY PRO.codigo_tp");
+
+        $stmt =  $this->getEntityManager()
+            ->getConnection()
+            ->prepare($query);
+
+        $dataInicial = $reportProdutoForm['dataInicial'].' 00:00:01';
+        $dataFinal = $reportProdutoForm['dataFinal'].' 23:59:59';
+
+            $stmt->execute(array("%{$reportProdutoForm['codigoTp']}%",
+                                 "%{$reportProdutoForm['descricao']}%",
+                                 "%{$reportProdutoForm['status']}%",
+                                    $dataInicial,
+                                    $dataFinal));
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     }
+
 
 }

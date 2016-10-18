@@ -144,11 +144,13 @@
 
                     {% for itens in cliente.itens %}
                         <tr>
+
                             <td>
                                 <button class="btn btn-primary btn-xs copy-item">
                                     <span class="glyphicon glyphicon-duplicate"></span>
                                 </button>
                             </td>
+
                             <td>{{ loop.index }}</td>
                             <td>{{ itens.codigoTP }}</td>
                             <td>{{ itens.codigoSCODES }}</td>
