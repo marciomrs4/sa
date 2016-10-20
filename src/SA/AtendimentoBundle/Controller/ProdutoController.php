@@ -13,7 +13,7 @@ use SA\AtendimentoBundle\Form\ProdutoType;
 /**
  * Produto controller.
  *
- * @Route("/cadastro/produto")
+ * @Route("/atendimento/produto")
  */
 class ProdutoController extends Controller
 {

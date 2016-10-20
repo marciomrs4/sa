@@ -13,7 +13,7 @@ use SA\AtendimentoBundle\Form\ContatoAtendimentoType;
 /**
  * ContatoAtendimento controller.
  *
- * @Route("/contatoatendimento")
+ * @Route("/atendimento/contatoatendimento")
  */
 class ContatoAtendimentoController extends Controller
 {
