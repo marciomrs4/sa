@@ -38,13 +38,28 @@ class ProdutoRepository extends EntityRepository
         $dataInicial = $reportProdutoForm['dataInicial'].' 00:00:01';
         $dataFinal = $reportProdutoForm['dataFinal'].' 23:59:59';
 
-            $stmt->execute(array("%{$reportProdutoForm['codigoTp']}%",
-                                 "%{$reportProdutoForm['descricao']}%",
-                                 "%{$reportProdutoForm['status']}%",
-                                    $dataInicial,
-                                    $dataFinal));
+        $stmt->execute(array("%{$reportProdutoForm['codigoTp']}%",
+            "%{$reportProdutoForm['descricao']}%",
+            "%{$reportProdutoForm['status']}%",
+            $dataInicial,
+            $dataFinal));
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+    }
+
+
+
+
+    public function getProdutoPendente($atendimentoId)
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT p
+                           FROM SAAtendimentoBundle:Produto p
+                           WHERE p.status != 3
+                          AND p.atendimento = :atendimento")
+            ->setParameter('atendimento',$atendimentoId)
+            ->getResult();
 
     }
 
