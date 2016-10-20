@@ -10,7 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use SA\AtendimentoBundle\Form\ProdutoReportType;
 
 
-
+/**
+ * Protudot controller.
+ *
+ * @Route("/search")
+ */
 class ProdutoReportController extends Controller
 {
     /**

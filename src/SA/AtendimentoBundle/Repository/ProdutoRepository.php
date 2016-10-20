@@ -41,8 +41,8 @@ class ProdutoRepository extends EntityRepository
         $stmt->execute(array("%{$reportProdutoForm['codigoTp']}%",
             "%{$reportProdutoForm['descricao']}%",
             "%{$reportProdutoForm['status']}%",
-            $dataInicial,
-            $dataFinal));
+               $dataInicial,
+               $dataFinal));
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 

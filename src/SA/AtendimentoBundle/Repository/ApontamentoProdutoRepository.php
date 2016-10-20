@@ -13,33 +13,24 @@ use Doctrine\ORM\Query\Expr;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class ApontamentoRepository extends EntityRepository
+class ApontamentoProdutoRepository extends EntityRepository
 {
-
-    public function getAtendimentoByApontamento($apCodigo)
-    {
-        return $this->createQueryBuilder('AT')
-             ->where('AT.apCodigo = :apCodigo')
-            ->setParameter('apCodigo',$apCodigo)
-            ->getQuery()
-            ->getResult();
-    }
 
     public function reportIndicadorProdutividade($data)
     {
 
         $query = ("(SELECT (SELECT usu_nome
                                 FROM tb_usuario
-                                WHERE usu_codigo = APO.usu_codigo) AS 'usuario',
+                                WHERE usu_codigo = PRO.usuario_id) AS 'usuario',
                         sum(CASE tipo_ligacao WHEN 1 THEN 1 ELSE 0 END) AS 'ativo',
                         sum(CASE tipo_ligacao WHEN 2 THEN 1 ELSE 0 END) AS 'receptivo',
                         count(tipo_ligacao) AS 'total'
-                    FROM tb_apontamento AS APO
+                    FROM apontamento_produto AS PRO
                         WHERE tipo_ligacao IS NOT NULL
-                        AND ap_data_apontamento > :data_inicial
-                        AND ap_data_apontamento < :data_final
-                        GROUP BY usu_codigo
-                        ORDER BY usu_codigo)
+                        AND data_criacao > :data_inicial
+                        AND data_criacao < :data_final
+                        GROUP BY usuario_id
+                        ORDER BY usuario_id)
 
                         UNION
 
@@ -47,12 +38,11 @@ class ApontamentoRepository extends EntityRepository
                         sum(CASE tipo_ligacao WHEN 1 THEN 1 ELSE 0 END) AS 'ativo',
                         sum(CASE tipo_ligacao WHEN 2 THEN 1 ELSE 0 END) AS 'receptivo',
                         count(tipo_ligacao) AS 'total'
-                    FROM tb_apontamento AS APO
+                    FROM apontamento_produto AS PRO
                         WHERE tipo_ligacao IS NOT NULL
-                        AND ap_data_apontamento > :data_inicial
-                        AND ap_data_apontamento < :data_final
-                        ORDER BY usu_codigo);
-                    ");
+                        AND data_criacao > :data_inicial
+                        AND data_criacao < :data_final
+                        ORDER BY usuario_id)");
 
         $stmt = $this->getEntityManager()
             ->getConnection()

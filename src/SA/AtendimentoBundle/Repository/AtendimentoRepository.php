@@ -18,14 +18,14 @@ class AtendimentoRepository extends EntityRepository
 
     private function emptyValue($value)
     {
+        $value = trim($value);
+
         if($value == ''){
             return '%';
         }
         return $value;
 
     }
-
-
 
     public function getAllList($data)
     {
@@ -130,16 +130,7 @@ class AtendimentoRepository extends EntityRepository
 
     public function listAtendimentoByPeriod($start, $end)
     {
-        /*
-         return $this->createQueryBuilder('AT')
-            ->where('AT.satCodigo = 3')
-            ->andWhere('AT.atDataCadastro >= :start')
-            ->andWhere('AT.atDataCadastro <= :end')
-            ->setParameters(array('start' => $start, 'end' => $end))
-            ->orderBy('AT.atCodigo','DESC')
-            ->getQuery()
-            ->getResult();
-        */
+
         $query = ("SELECT ATE.at_codigo AS atCodigo, concat(USU.usu_nome,' ', USU.usu_sobrenome) AS usuCodigo,
                           at_paciente AS atPaciente, SAT.sat_descricao AS satCodigo, at_data_cadastro_real AS atDataCadastroReal,
                         (SELECT max(ap_data_apontamento) FROM tb_apontamento WHERE ATE.at_codigo = at_codigo) AS dataFechamento,
@@ -214,6 +205,45 @@ class AtendimentoRepository extends EntityRepository
 
         $stmt->execute(array("{$start}",
             "{$end}"));
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+    }
+
+    public function reportIndicadorProdutividade($data)
+    {
+
+        $query = ("(SELECT (SELECT usu_nome
+                                FROM tb_usuario
+                                WHERE usu_codigo = ATE.usu_codigo) AS 'usuario',
+                        sum(CASE tipo_ligacao WHEN 1 THEN 1 ELSE 0 END) AS 'ativo',
+                        sum(CASE tipo_ligacao WHEN 2 THEN 1 ELSE 0 END) AS 'receptivo',
+                        count(tipo_ligacao) AS 'total'
+                    FROM tb_atendimento AS ATE
+                        WHERE tipo_ligacao IS NOT NULL
+                        AND at_data_cadastro_real > :data_inicial
+                        AND at_data_cadastro_real < :data_final
+                        GROUP BY usu_codigo
+                        ORDER BY usu_codigo)
+
+                        UNION
+
+                    (SELECT 'TOTAL',
+                        sum(CASE tipo_ligacao WHEN 1 THEN 1 ELSE 0 END) AS 'ativo',
+                        sum(CASE tipo_ligacao WHEN 2 THEN 1 ELSE 0 END) AS 'receptivo',
+                        count(tipo_ligacao) AS 'total'
+                    FROM tb_atendimento AS ATE
+                        WHERE tipo_ligacao IS NOT NULL
+                        AND at_data_cadastro_real > :data_inicial
+                        AND at_data_cadastro_real < :data_final
+                        ORDER BY usu_codigo);");
+
+        $stmt = $this->getEntityManager()
+            ->getConnection()
+            ->prepare($query);
+
+        $stmt->execute(array(':data_inicial' => $data['dataInicial'],
+                             ':data_final' => $data['dataFinal']));
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 

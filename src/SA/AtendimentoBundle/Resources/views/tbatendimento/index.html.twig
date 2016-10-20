@@ -168,7 +168,7 @@
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
 
-                    {% if tbAtendimento.satCodigo != 'FINALIZADO' %}
+                    {% if tbAtendimento.satCodigo == 'PENDENTE' %}
                         <a href="{{ path('atendimento_edit',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs link-search"
                            data-toggle="tooltip" title="Editar Atendimento">
                             <span class="glyphicon glyphicon-edit"></span>
