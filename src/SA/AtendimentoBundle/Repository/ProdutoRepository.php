@@ -63,14 +63,16 @@ class ProdutoRepository extends EntityRepository
 
     }
 
-    public function getProdutoNaoConcluido($codigoTp)
+    public function getProdutoNaoConcluido($codigoTp,$atendimentoId)
     {
         return $this->getEntityManager()
             ->createQuery("SELECT p
                               FROM SAAtendimentoBundle:Produto p
                               WHERE p.status != 3
-                              AND p.codigoTp = :codigoTp")
+                              AND p.codigoTp = :codigoTp
+                              AND p.atendimento = :atendimentoId")
             ->setParameter('codigoTp',$codigoTp)
+            ->setParameter('atendimentoId',$atendimentoId)
             ->getResult();
 
     }
