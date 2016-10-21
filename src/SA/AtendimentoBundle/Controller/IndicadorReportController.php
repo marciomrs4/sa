@@ -41,6 +41,9 @@ class IndicadorReportController extends Controller
 
             $data = $request->request->get('indicador_produtividade');
 
+            $data['dataInicial'] = $data['dataInicial'].' 00:00:01';
+            $data['dataFinal'] = $data['dataFinal'].' 23:59:59';
+
             $atendimentos = $this->getDoctrine()
                 ->getRepository('SAAtendimentoBundle:TbAtendimento')
                 ->reportIndicadorProdutividade($data);

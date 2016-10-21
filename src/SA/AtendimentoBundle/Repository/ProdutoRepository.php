@@ -63,5 +63,17 @@ class ProdutoRepository extends EntityRepository
 
     }
 
+    public function getProdutoNaoConcluido($codigoTp)
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT p
+                              FROM SAAtendimentoBundle:Produto p
+                              WHERE p.status != 3
+                              AND p.codigoTp = :codigoTp")
+            ->setParameter('codigoTp',$codigoTp)
+            ->getResult();
+
+    }
+
 
 }

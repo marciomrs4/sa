@@ -59,6 +59,21 @@ class ProdutoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $produtoNaoConcluido = $em->getRepository('SAAtendimentoBundle:Produto')
+                ->getProdutoNaoConcluido($produto->getCodigoTp());
+
+            if($produtoNaoConcluido){
+
+                $message = array('type'=>'warning',
+                    'description'=>'Este produto não está concluído e não pode ser adcionado!');
+                $this->addFlash('notice',$message);
+
+                return $this->redirectToRoute('cadastro_produto_new',array('atendimento' => $atendimento->getId()));
+
+            }
+
+
             $em->persist($produto);
             $em->flush();
 
