@@ -135,10 +135,26 @@
                     <table class="table table-bordered table-condensed">
                         <tbody>
                         <tr>
-                            <td><b>Código TP:</b> {{ item.codigoTP }}</td>
-                            <td><b>Código SCODES:</b> {{ item.codigoSCODES }}</td>
-                            <td><b>Total Disponivel: </b>{{ item.totalDisponivel }}</td>
-                            <td><b>Total Reservado: </b>{{ item.totalReservado }}</td>
+                            <td><b>Código TP:</b>
+                                {% if item.codigoTP is defined %}
+                                    {{ item.codigoTP }}
+                                {% endif %}
+                            </td>
+                            <td><b>Código SCODES:</b>
+                                {% if item.codigoSCODES is defined %}
+                                    {{ item.codigoSCODES }}
+                                {% endif %}
+                            </td>
+                            <td><b>Total Disponivel: </b>
+                                {% if item.totalDisponivel is defined %}
+                                    {{ item.totalDisponivel }}
+                                {% endif %}
+                            </td>
+                            <td><b>Total Reservado: </b>
+                                {% if item.totalReservado is defined %}
+                                    {{ item.totalReservado }}
+                                {% endif %}
+                            </td>
                             <td><b>Status: </b>{{ item.status }}</td>
                         </tr>
                         </tbody>

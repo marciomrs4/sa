@@ -67,7 +67,7 @@ class ProdutoController extends Controller
             if($produtoNaoConcluido){
 
                 $message = array('type'=>'warning',
-                    'description'=>'Este produto não está concluído e não pode ser adcionado!');
+                    'description'=>'Este produto não pode ser adicionado, pois existe um cadastro pendente!');
                 $this->addFlash('notice',$message);
 
                 return $this->redirectToRoute('cadastro_produto_new',array('atendimento' => $atendimento->getId()));

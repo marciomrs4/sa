@@ -125,10 +125,20 @@
 
             {% for cliente in resultData %}
 
+            {% if cliente.autor == atendimento.atPaciente %}
+                {% set info = 'success' %}
+            {% endif %}
+
             <div>
                 <table class="table table-bordered table-condensed">
                     <tbody>
+                    {% if info is defined %}
+                    <tr class="{{ info }}">
+                        <td><span class="fa fa-thumbs-o-up"></span></td>
+                        {% else %}
                     <tr>
+                        {% endif %}
+
                         <td><b>Autor:</b> {{ cliente.autor }}</td>
                         <td><b>Protocolo:</b> {{ cliente.protocolo }}</td>
                     </tr>
@@ -186,30 +196,30 @@
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
+    {{ parent() }}
 
     <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
 
 
-        $('tr').click(function () {
+            $('tr').click(function () {
 
-            var linha = [];
+                var linha = [];
 
-            $(this).find('td').each(function(i) {
-                linha[i] = ($(this).html());
+                $(this).find('td').each(function(i) {
+                    linha[i] = ($(this).html());
+                });
+
+
+                $("#produto_codigoTp").val(linha[2]);
+                $("#produto_codigoScodes").val(linha[3]);
+                $("#produto_descricao").val(linha[4]);
+                $("#produto_quantidade").val(linha[5]);
+
             });
-
-
-            $("#produto_codigoTp").val(linha[2]);
-            $("#produto_codigoScodes").val(linha[3]);
-            $("#produto_descricao").val(linha[4]);
-            $("#produto_quantidade").val(linha[5]);
 
         });
 
-    });
-
-</script>
+    </script>
 
 {% endblock %}
