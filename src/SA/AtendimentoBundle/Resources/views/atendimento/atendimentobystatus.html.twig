@@ -94,15 +94,11 @@
 
         {% endfor %}
 
-        {% for item in atedimento %}
-            {{ item.Quantidade }}
-        {% endfor %}
-
     </div>
 
         <div class="panel panel-default">
             <div class="panel-body">
-                <svg id="test1"></svg>
+                <svg id="chart"></svg>
             </div>
         </div>
 
@@ -125,19 +121,20 @@
                     .labelThreshold(.01)
                     .duration(500)
                     .labelType("percent")
+                    .valueFormat(d3.format('.0f'))
                     ;
 
-            d3.select("#test1")
-                    .datum(exampleData())
+            d3.select("#chart")
+                    .datum(getData())
                     .transition().duration(10350)
                     .call(chart);
 
             return chart;
         });
 
-        //Pie chart example data. Note how there is only a single array of key-value pairs.
-        function exampleData() {
-            return {{ atedimento|raw }}
+        //Pie chart data. is only a single array of key-value pairs.
+        function getData() {
+            return {{ atedimentoJSON|raw }}
         }
 
     </script>

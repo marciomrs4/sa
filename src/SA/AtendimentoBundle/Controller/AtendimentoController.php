@@ -3,13 +3,11 @@
 namespace SA\AtendimentoBundle\Controller;
 
 use SA\AtendimentoBundle\Form\ListAtendimentoByPeriodType;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SA\AtendimentoBundle\Entity\TbAtendimento;
-use Symfony\Component\HttpFoundation\Response;
 use SA\AtendimentoBundle\Form\AtendimentoAnaliticoSearchType;
 use SA\AtendimentoBundle\Report;
 
@@ -184,6 +182,7 @@ class AtendimentoController extends Controller
 
     /**
      * @Route("/report/atendimentobystatus",name="atendimento_status")
+     * @Method("GET|POST")
      */
     public function atendimentoByStatusAction(Request $request)
     {
@@ -209,12 +208,10 @@ class AtendimentoController extends Controller
             $form->handleRequest($request);
         }
 
-        $atendimento = \GuzzleHttp\json_encode($tbAtendimentos);
-
         return $this->render('@SAAtendimento/atendimento/atendimentobystatus.html.twig',array(
             'form' => $form->createView(),
             'tbAtendimentos' => $tbAtendimentos,
-            'atedimento' => $atendimento
+            'atedimentoJSON' => json_encode($tbAtendimentos)
         ));
 
     }
