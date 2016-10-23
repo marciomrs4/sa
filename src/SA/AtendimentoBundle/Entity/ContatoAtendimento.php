@@ -50,7 +50,7 @@ class ContatoAtendimento
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_update", type="datetime", nullable=false)
+     * @ORM\Column(name="date_update", type="datetime", nullable=true)
      */
     private $dateUpdate;
 
@@ -64,7 +64,7 @@ class ContatoAtendimento
     /**
      * @var string
      *
-     * @ORM\Column(name="user_update", type="string", length=255, nullable=false)
+     * @ORM\Column(name="user_update", type="string", length=255, nullable=true)
      */
     private $userUpdate;
 

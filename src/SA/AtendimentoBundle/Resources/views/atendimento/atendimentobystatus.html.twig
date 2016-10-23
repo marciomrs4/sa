@@ -1,5 +1,23 @@
 {% extends '@SAAtendimento/tbatendimento/template/template.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/nv.d3.css') }}">
+
+    <style>
+
+        svg {
+            display: block;
+            float: left;
+            height: 350px !important;
+            width: 450px !important;
+        }
+
+    </style>
+
+{% endblock %}
+
 {% block contentheader %}
     <section class="content-header">
         <h1>
@@ -35,11 +53,12 @@
 
             <div class="panel-footer">
 
-                <button class="btn btn-default btn-sm">
+                <div class="input-load">
+                <button class="btn btn-default btn-sm input-search">
                     <span class="glyphicon glyphicon-search"></span>
                     Procurar
                 </button>
-
+                </div>
                 {{ form_end(form) }}
 
             </div>
@@ -74,6 +93,53 @@
             </div>
 
         {% endfor %}
+
+        {% for item in atedimento %}
+            {{ item.Quantidade }}
+        {% endfor %}
+
     </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <svg id="test1"></svg>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/d3.min.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/nv.d3.js') }}"></script>
+
+    <script>
+        //Regular pie chart example
+        nv.addGraph(function() {
+            var chart = nv.models.pieChart()
+                    .y(function(d) { return d.Quantidade })
+                    .x(function(d) { return d.Status })
+                    .showLabels(true)
+                    .labelThreshold(.01)
+                    .duration(500)
+                    .labelType("percent")
+                    ;
+
+            d3.select("#test1")
+                    .datum(exampleData())
+                    .transition().duration(10350)
+                    .call(chart);
+
+            return chart;
+        });
+
+        //Pie chart example data. Note how there is only a single array of key-value pairs.
+        function exampleData() {
+            return {{ atedimento|raw }}
+        }
+
+    </script>
 
 {% endblock %}

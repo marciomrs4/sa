@@ -3,8 +3,6 @@
 namespace SA\AtendimentoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Proxies\__CG__\SA\AtendimentoBundle\Entity\TbTipoAtendimento;
-use SA\AtendimentoBundle\SAAtendimentoBundle;
 
 /**
  * TbTipoApontamento

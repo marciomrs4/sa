@@ -3,6 +3,7 @@
 namespace SA\AtendimentoBundle\Controller;
 
 use SA\AtendimentoBundle\Form\ListAtendimentoByPeriodType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -208,9 +209,12 @@ class AtendimentoController extends Controller
             $form->handleRequest($request);
         }
 
+        $atendimento = \GuzzleHttp\json_encode($tbAtendimentos);
+
         return $this->render('@SAAtendimento/atendimento/atendimentobystatus.html.twig',array(
             'form' => $form->createView(),
-            'tbAtendimentos' => $tbAtendimentos
+            'tbAtendimentos' => $tbAtendimentos,
+            'atedimento' => $atendimento
         ));
 
     }

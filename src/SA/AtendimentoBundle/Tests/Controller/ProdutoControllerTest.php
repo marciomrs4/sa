@@ -2,10 +2,26 @@
 
 namespace SA\AtendimentoBundle\Tests\Controller;
 
+use SA\AtendimentoBundle\Entity\Produto;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ProdutoControllerTest extends WebTestCase
 {
+
+    public function testPraTestar()
+    {
+        $this->assertEquals(1,1,'Deu erro');
+    }
+
+    public function testToTest()
+    {
+        $produto = new Produto();
+
+        $produto->setCodigoScodes('TP-0101');
+
+        $this->assertEquals($produto->getCodigoScodes(),'TP-0101','Deu Erro aqui');
+    }
+
     /*
     public function testCompleteScenario()
     {
