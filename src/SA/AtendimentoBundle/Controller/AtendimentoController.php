@@ -250,4 +250,22 @@ class AtendimentoController extends Controller
 
     }
 
+
+
+    /**
+     * @Route("/report/atendimentobyperiodcalendar",name="atendimento_calendar")
+     */
+    public function atendimentoByPeriodCalendarAction()
+    {
+        $tbAtendimentos = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('SAAtendimentoBundle:TbAtendimento')
+            ->atendimentoByPeriodCalendar();
+
+        return $this->render('@SAAtendimento/atendimento/atendimentobyperiodcalendar.html.twig',array(
+            'tbAtendimentos' => $tbAtendimentos
+        ));
+
+    }
+
 }

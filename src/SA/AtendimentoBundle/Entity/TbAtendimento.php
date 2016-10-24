@@ -100,7 +100,7 @@ class TbAtendimento
     /**
      * @var string
      *
-     * @ORM\Column(name="at_medicamento", type="string", length=255, nullable=false)
+     * @ORM\Column(name="at_medicamento", type="string", length=255, nullable=true)
      */
     private $atMedicamento;
 

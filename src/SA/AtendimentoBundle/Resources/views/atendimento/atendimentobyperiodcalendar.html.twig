@@ -1,0 +1,60 @@
+{% extends '@SAAtendimento/tbatendimento/template/template.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/fullcalendar.min.css') }}">
+{% endblock %}
+
+{% block contentheader %}
+    <section class="content-header">
+        <h1>
+            Atendimentos
+            <small>Quantidade de Atendimentos por dia</small>
+        </h1>
+    </section>
+{% endblock %}
+
+{% block panelheading%}
+
+    {#{{ dump(tbAtendimentos) }}#}
+
+{% endblock %}
+
+{% block panelbody %}
+
+    <div id="calendar">
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/moment.min.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/fullcalendar.min.js') }}"></script>
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('#calendar').fullCalendar({
+
+                header: {
+                    left: 'left',
+                    right: 'right',
+                    center: 'center'
+
+                },
+
+                dayNamesShort: ['Domingo', 'Segunda', 'Terça', 'Quarta',
+                                'Quinta', 'Sexta', 'Sabádo'],
+
+                events: {{ tbAtendimentos|json_encode|raw }}
+
+            });
+
+        });
+
+    </script>
+
+{% endblock %}

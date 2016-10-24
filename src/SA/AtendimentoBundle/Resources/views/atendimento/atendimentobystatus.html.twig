@@ -2,20 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-
     <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/nv.d3.css') }}">
-
-    <style>
-
-        svg {
-            display: block;
-            float: left;
-            height: 350px !important;
-            width: 450px !important;
-        }
-
-    </style>
-
 {% endblock %}
 
 {% block contentheader %}
@@ -54,10 +41,10 @@
             <div class="panel-footer">
 
                 <div class="input-load">
-                <button class="btn btn-default btn-sm input-search">
-                    <span class="glyphicon glyphicon-search"></span>
-                    Procurar
-                </button>
+                    <button class="btn btn-default btn-sm input-search">
+                        <span class="glyphicon glyphicon-search"></span>
+                        Procurar
+                    </button>
                 </div>
                 {{ form_end(form) }}
 
@@ -96,11 +83,17 @@
 
     </div>
 
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <svg id="chart"></svg>
-            </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <svg id="chart" style="display: block; float: left; height: 350px; width: 450px;">
+            </svg>
+
+            <svg id="barChart" style="display: block; float: right; height: 350px; width: 450px;">
+            </svg>
+
         </div>
+    </div>
+
 
 {% endblock %}
 
@@ -121,8 +114,7 @@
                     .labelThreshold(.01)
                     .duration(500)
                     .labelType("percent")
-                    .valueFormat(d3.format('.0f'))
-                    ;
+                    .valueFormat(d3.format('.0f'));
 
             d3.select("#chart")
                     .datum(getData())
@@ -138,6 +130,39 @@
         function getData() {
             return {{ atedimentoJSON|raw }}
         }
+
+
+        nv.addGraph(function() {
+            var chart = nv.models.discreteBarChart()
+                    .x(function(d) { return d.Status })    //Specify the data accessors.
+                    .y(function(d) { return d.Quantidade })
+                    .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
+                    .showValues(true)       //...instead, show the bar value right on top of each bar.
+                    .valueFormat(d3.format('.0f'));
+
+            d3.select('#barChart')
+                    .datum(getDataToChart())
+                    .call(chart);
+
+            nv.utils.windowResize(chart.update);
+
+            return chart;
+        });
+
+        //Each bar represents a single discrete quantity.
+        function getDataToChart() {
+
+            {#return {{ atedimentoJSON|raw }}#}
+
+            return  [
+                        {
+                            key: "Atendimento por Status",
+                            values: getData()
+                        }
+                    ]
+
+        }
+
 
     </script>
 

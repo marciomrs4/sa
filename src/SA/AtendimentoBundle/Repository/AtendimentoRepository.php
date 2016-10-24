@@ -210,6 +210,29 @@ class AtendimentoRepository extends EntityRepository
 
     }
 
+    public function atendimentoByPeriodCalendar()
+    {
+
+        $query = ("SELECT date_format(at_data_cadastro_real,'%Y-%m-%d') 'start',
+                           count(date_format(at_data_cadastro_real,'%d')) as 'title'
+                    FROM tb_atendimento
+                    WHERE at_data_cadastro_real > '2016-09-01 00:00:01'
+                    AND at_data_cadastro_real < '2016-10-31 23:59:59'
+                    GROUP BY date_format(at_data_cadastro_real,'%d')");
+
+        $stmt = $this->getEntityManager()
+            ->getConnection()
+            ->prepare($query);
+
+        $date = new \DateTime('now');
+
+        $stmt->execute(array($date->modify('-15 days')->format('Y-m-d 00:00:01'),
+                             $date->modify('+15 days')->format('Y-m-d 23:59:59')));
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+    }
+
     public function reportIndicadorProdutividade($data)
     {
 
