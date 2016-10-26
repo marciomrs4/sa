@@ -247,7 +247,7 @@ class AtendimentoRepository extends EntityRepository
                         AND at_data_cadastro_real > :data_inicial
                         AND at_data_cadastro_real < :data_final
                         GROUP BY usu_codigo
-                        ORDER BY usu_codigo)
+                        ORDER BY 4)
 
                         UNION
 

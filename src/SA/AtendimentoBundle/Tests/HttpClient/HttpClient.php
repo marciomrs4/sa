@@ -15,75 +15,76 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class HttpClientTest extends WebTestCase
 {
 
+    protected $httpCliente;
+    protected $response;
+
+    public function setUp()
+    {
+        $this->httpCliente = new HttpClient();
+
+        $this->response = $this->httpCliente->request('GET','http://200.205.202.42:8880/udtp/dyn-mvc/rest/protocolo/011251182012');
+    }
+
+
     public function testDoRequest()
     {
 
-        $httpClient = new HttpClient();
+        $this->assertEquals(200,$this->response->getStatusCode());
 
-        $resp = $httpClient->request('GET','http://200.205.202.42:8880/udtp/dyn-mvc/rest/protocolo/011251182012');
-
-        //print_r($resp->getBody());
-
-        $this->assertEquals(200,$resp->getStatusCode());
-
-        $content = '[
-  {
-    "autor": "Karine Costa Vieira Santos",
-    "protocolo": "011251182012",
-    "itens": [
-      {
-        "codigoTP": "TP-0111",
-        "codigoSCODES": "1A00623/28/972/01/00",
-        "descricao": "insulina / glargina - 100 UI/ml - 3 ml - refil / UNIDADE / SEM MARCA",
-        "quantidade": 3
-      },
-      {
-        "codigoTP": "TP-0118",
-        "codigoSCODES": "1A00623/28/984/01/00",
-        "descricao": "insulina / lispro - 100 UI/ml - 3 ml - refil / UNIDADE / SEM MARCA",
-        "quantidade": 4
-      }
-    ]
-  }
-]';
-
-        $body = (string)$resp->getBody();
-        $this->assertEquals($content,$body,'Houve algum erro');
     }
 
+    /**
+     * @depends testDoRequest
+     */
+    public function testDoRequestRedeLocal()
+    {
+        $response = $this->httpCliente->request('GET','http://172.17.0.13/udtp/dyn-mvc/rest/protocolo/011251182012');
+
+        $this->assertEquals(200,$response->getStatusCode());
+    }
+
+    /**
+     * @depends testDoRequest
+     */
+    public function testDoRequestEstoque()
+    {
+        $response = $this->httpCliente->request('GET','http://200.205.202.42:8880/udtp/dyn-mvc/rest/posicaoestoque/-');
+        $this->assertEquals(200,$response->getStatusCode());
+    }
+
+    /**
+     * @depends testDoRequest
+     */
+    public function testDoRequestProtocolo()
+    {
+        $response = $this->httpCliente->request('GET','http://200.205.202.42:8880/udtp/dyn-mvc/rest/protocolo/-');
+        $this->assertEquals(200,$response->getStatusCode(),'Houve uma falha neste teste');
+    }
+
+    /**
+     * @depends testDoRequest
+     */
     public function testStringReturn()
     {
 
-        $httpClient = new HttpClient();
+        $body = $this->response->getBody()->getContents();
 
-        $resp = $httpClient->request('GET','http://200.205.202.42:8880/udtp/dyn-mvc/rest/protocolo/011251182012');
+        $this->assertNotEmpty($body,'Falha no retorno do request');
 
-        //print_r($resp->getBody());
+    }
 
-        $this->assertEquals(200,$resp->getStatusCode());
+    public function testValidadeMethodExists()
+    {
 
-        $content = '[
-  {
-    "autor": "Karine Costa Vieira Santos",
-    "protocolo": "011251182012",
-    "itens": [
-      {
-        "codigoTP": "TP-0111",
-        "codigoSCODES": "1A00623/28/972/01/00",
-        "descricao": "insulina / glargina - 100 UI/ml - 3 ml - refil / UNIDADE / SEM MARCA",
-        "quantidade": 3
-      },
-      {
-        "codigoTP": "TP-0118",
-        "codigoSCODES": "1A00623/28/984/01/00",
-        "descricao": "insulina / lispro - 100 UI/ml - 3 ml - refil / UNIDADE / SEM MARCA",
-        "quantidade": 4
-      }
-    ]
-  }
-]';
+        $this->httpCliente->setSearch('search')
+                          ->setCodigo('codigo')
+                          ->setUrl('url');
 
-        $body = (string)$resp->getBody();
-        //$this->assertEquals($content,$body,'Houve algum erro');
+        $this->assertEquals($this->httpCliente->getSearch(),'search','Erro no metodo');
+
+        $this->assertEquals($this->httpCliente->getCodigo(),'codigo','Erro no metodo');
+
+        $this->assertEquals($this->httpCliente->getUrl(),'url','Erro no metodo');
+
     }
 }

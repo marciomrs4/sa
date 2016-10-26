@@ -113,6 +113,7 @@
                     .showLabels(true)
                     .labelThreshold(.01)
                     .duration(500)
+                    .donut(false)
                     .labelType("percent")
                     .valueFormat(d3.format('.0f'));
 
@@ -152,15 +153,12 @@
         //Each bar represents a single discrete quantity.
         function getDataToChart() {
 
-            {#return {{ atedimentoJSON|raw }}#}
-
             return  [
                         {
                             key: "Atendimento por Status",
                             values: getData()
                         }
                     ]
-
         }
 
 
