@@ -247,7 +247,7 @@ class AtendimentoRepository extends EntityRepository
                         AND at_data_cadastro_real > :data_inicial
                         AND at_data_cadastro_real < :data_final
                         GROUP BY usu_codigo
-                        ORDER BY 4)
+                        ORDER BY usu_codigo)
 
                         UNION
 
@@ -259,7 +259,8 @@ class AtendimentoRepository extends EntityRepository
                         WHERE tipo_ligacao IS NOT NULL
                         AND at_data_cadastro_real > :data_inicial
                         AND at_data_cadastro_real < :data_final
-                        ORDER BY usu_codigo);");
+                        ORDER BY usu_codigo)
+                    ORDER BY 4;");
 
         $stmt = $this->getEntityManager()
             ->getConnection()

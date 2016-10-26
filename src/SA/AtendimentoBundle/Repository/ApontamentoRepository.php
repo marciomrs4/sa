@@ -51,7 +51,8 @@ class ApontamentoRepository extends EntityRepository
                         WHERE tipo_ligacao IS NOT NULL
                         AND ap_data_apontamento > :data_inicial
                         AND ap_data_apontamento < :data_final
-                        ORDER BY usu_codigo);
+                        ORDER BY usu_codigo)
+                    ORDER BY 4;
                     ");
 
         $stmt = $this->getEntityManager()

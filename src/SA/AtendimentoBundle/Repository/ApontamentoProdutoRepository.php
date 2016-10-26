@@ -42,7 +42,8 @@ class ApontamentoProdutoRepository extends EntityRepository
                         WHERE tipo_ligacao IS NOT NULL
                         AND data_criacao > :data_inicial
                         AND data_criacao < :data_final
-                        ORDER BY usuario_id)");
+                        ORDER BY usuario_id)
+                    ORDER BY 4");
 
         $stmt = $this->getEntityManager()
             ->getConnection()
