@@ -87,12 +87,18 @@ class HttpClient extends Client
      */
     public function getData()
     {
-        $data =  $this->doRequest()
-                      ->getBody()
-                      ->getContents();
+        if($this->doRequest()->getStatusCode() == 200) {
 
-        return \GuzzleHttp\json_decode($data);
+            $data = $this->doRequest()
+                ->getBody()
+                ->getContents();
 
+            return \GuzzleHttp\json_decode($data);
+
+        }else{
+            $data = json_encode(array('error' => 'Problema ao acessar a integracao'));
+            return \GuzzleHttp\json_decode($data);
+        }
     }
 
 }
