@@ -32,7 +32,11 @@
     {% block panelbody %}
 
         {{ form_start(form) }}
+
+        {{ form_row(form.tapCodigo) }}
+
         {{ form_widget(form) }}
+
         <button type="submit" class="btn btn-primary btn-sm">
             <span class="glyphicon glyphicon-floppy-disk"></span>
             Salvar
@@ -40,3 +44,25 @@
         {{ form_end(form) }}
 
     {% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script>
+
+        $('body').on('change',"#apontamento_produto_tapCodigo",function(){
+
+            $("#apontamento_produto_descricao").html($('#apontamento_produto_tapCodigo :selected').text());
+            //alert($(this).text());
+
+        });
+
+
+        $("#apontamento_produto_tapCodigo").select2();
+
+    </script>
+
+{% endblock %}
+

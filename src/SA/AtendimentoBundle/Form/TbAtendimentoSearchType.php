@@ -86,7 +86,7 @@ class TbAtendimentoSearchType extends AbstractType
                                                         'Sim'=>1
                                                     ],
                                                    'choices_as_values' => true])
-            ->add('atProcesso',TextType::class,['label'=>'Processo / Protocolo',
+            ->add('atProcesso',TextType::class,['label'=>'Protocolo',
                                                 'attr'=>['class'=>'input-sm']])
             ->add('atMedicamento',TextType::class,['label'=>'Produto',
                                                    'attr'=>['class'=>'input-sm']])

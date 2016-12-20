@@ -46,7 +46,7 @@ class TbAtendimentoType extends AbstractType
                                 ->orderBy('TbTipoProcesso.ttpDescricao')
                                 ->setParameter('status',1);
                         },'placeholder'=>'Selecione'))
-            ->add('atProcesso',TextType::class,['label'=>'Processo / Protocolo'])
+            ->add('atProcesso',TextType::class,['label'=>'Protocolo'])
             ->add('atMedicamento',TextareaType::class,['label'=>'Produto', 'attr' => ['rows' => '5']])
             ->add('taCodigo', EntityType::class,array(
                         'label'=>'Tipo de Atendimento',

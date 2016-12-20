@@ -34,7 +34,7 @@
                          <i class="fa fa-plus"></i>
                          Protocolo de Atendimento
                      </button>
-                     <span class="label label-default">{{ atendimento.atCodigo }}</span>
+                     <span class="label label-default">{{ atendimento.atPaciente }}</span>
                  </h3>
 
                  <div class="box-tools pull-right">
@@ -125,20 +125,12 @@
 
             {% for cliente in resultData %}
 
-            {% if cliente.autor == atendimento.atPaciente %}
-                {% set info = 'success' %}
-            {% endif %}
+            {% if cliente.autor|upper == atendimento.atPaciente|upper %}
 
             <div>
                 <table class="table table-bordered table-condensed">
                     <tbody>
-                    {% if info is defined %}
-                    <tr class="{{ info }}">
-                        <td><span class="fa fa-thumbs-o-up"></span></td>
-                        {% else %}
                     <tr>
-                        {% endif %}
-
                         <td><b>Autor:</b> {{ cliente.autor }}</td>
                         <td><b>Protocolo:</b> {{ cliente.protocolo }}</td>
                     </tr>
@@ -180,6 +172,10 @@
                             <td>{{ itens.quantidade }}</td>
                         </tr>
                     {% endfor %}
+
+                    {% else %}
+                        {# nao mostra da do paciente #}
+                    {% endif %}
 
                     {% endfor %}
                     </tbody>

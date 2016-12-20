@@ -2,6 +2,8 @@
 
 namespace SA\AtendimentoBundle\Controller;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -48,6 +50,22 @@ class ApontamentoProdutoController extends Controller
         $apontamentoProduto->setProduto($produto);
 
         $form = $this->createForm('SA\AtendimentoBundle\Form\ApontamentoProdutoType', $apontamentoProduto);
+
+        $tipoAtendimento = $produto->getAtendimento()->getTaCodigo();
+
+        $form->add('tapCodigo',EntityType::class,array('mapped'=>false,
+            'label'=>'Tipo de Apontamento',
+            'attr'=>array('class'=>'input-sm'),
+            'class'=>'SA\AtendimentoBundle\Entity\TbTipoApontamento',
+            'query_builder' => function(EntityRepository $er)use($tipoAtendimento){
+                return $er->createQueryBuilder('TipoApontamento')
+                    ->join('TipoApontamento.atCodigo','tipo')
+                    ->where('TipoApontamento.atCodigo = :tipoAtendimento')
+                    ->setParameter('tipoAtendimento',$tipoAtendimento)
+                    ->orderBy('tipo.atDescricao');
+            },
+            'placeholder' => 'Selecione'));
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
