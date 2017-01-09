@@ -20,3 +20,6 @@ parameters:
 
     # URL to WebService
     webservice_url: http://ip:port/uri
+
+    #Color of System
+    systemcolor: red

@@ -1,5 +1,7 @@
 parameters:
     template:
+    #Cor do sistema
+        systemcolor: "%systemcolor%"
     #Buttons
         buttons:
           buttonNew: Novo
