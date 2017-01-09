@@ -1,12 +1,19 @@
 {% extends ':template:template.html.twig' %}
 
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/dataTables.bootstrap.css') }}">
+
+{% endblock %}
 
     {% block contentheader %}
 
 
         <section class="content-header">
             <h1>
-                TbTipoDirecionamento
+                Tipo de Direcionamento
                 <small>Listar</small>
             </h1>
         </section>
@@ -24,10 +31,10 @@
 
     {% block panelbody %}
         <div class="table-responsive">
-            <table class="table table-bordered table-condensed table-hover table-striped">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
                 <thead>
                 <tr>
-                    <th>Ações</th>
+                    <th>Opções</th>
                     <th>Descrição</th>
                     <th>Status</th>
                 </tr>
@@ -36,10 +43,10 @@
                 {% for tbTipoDirecionamento in tbTipoDirecionamentos %}
                     <tr>
                         <td>
-                            <a href="{{ path('tipodirecionamento_show', { 'id': tbTipoDirecionamento.tdCodigo }) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ path('tipodirecionamento_show', { 'id': tbTipoDirecionamento.tdCodigo }) }}" class="btn btn-primary btn-xs">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
-                            <a href="{{ path('tipodirecionamento_edit', { 'id': tbTipoDirecionamento.tdCodigo }) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ path('tipodirecionamento_edit', { 'id': tbTipoDirecionamento.tdCodigo }) }}" class="btn btn-primary btn-xs">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </a>
                         </td>
@@ -60,3 +67,13 @@
 
 
     {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/mrs-dataTable.js') }}"></script>
+
+{% endblock %}

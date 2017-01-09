@@ -1,12 +1,19 @@
 {% extends ':template:template.html.twig' %}
 
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/dataTables.bootstrap.css') }}">
+
+{% endblock %}
 
     {% block contentheader %}
 
 
         <section class="content-header">
             <h1>
-                TbTipoAtendimento
+                Tipo de Atendimento
                 <small>Listar</small>
             </h1>
         </section>
@@ -23,15 +30,13 @@
 
     {% block panelbody %}
         <div class="table-responsive">
-            <table class="table table-bordered table-condensed table-hover table-striped">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
                 <thead>
                 <tr>
-                    <th>Mostrar</th>
-                    <th>Editar</th>
-                    <th>Atdescricao</th>
-                    <th>Atativo</th>
-                    <th>Attextopadrao</th>
-                    <th>Atcodigo</th>
+                    <th>Opções</th>
+                    <th>Descricao</th>
+                    <th>Status</th>
+                    <th>texto padrão</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,24 +44,24 @@
                     <tr>
                         <td>
 
-                            <a href="{{ path('tipoatendimento_show', { 'id': tbTipoAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ path('tipoatendimento_show', { 'id': tbTipoAtendimento.atCodigo }) }}" class="btn btn-primary btn-xs">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                Mostrar
                             </a>
-                        </td>
-                        <td>
-                            <a href="{{ path('tipoatendimento_edit', { 'id': tbTipoAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ path('tipoatendimento_edit', { 'id': tbTipoAtendimento.atCodigo }) }}" class="btn btn-primary btn-xs">
                                 <span class="glyphicon glyphicon-edit"></span>
-                                Editar
                             </a>
-
-
                         </td>
-                        <td><a href="{{ path('tipoatendimento_show', { 'id': tbTipoAtendimento.atCodigo }) }}">{{ tbTipoAtendimento.atDescricao }}</a></td>
-                        <td>{{ tbTipoAtendimento.atAtivo }}</td>
-                        <td>{{ tbTipoAtendimento.atTextoPadrao }}</td>
-                        <td>{{ tbTipoAtendimento.atCodigo }}</td>
+                        <td>{{ tbTipoAtendimento.atDescricao }}</td>
 
+                        <td>
+                            {% if tbTipoAtendimento.atAtivo == 1%}
+                                Ativo
+                            {% else %}
+                                Inativo
+                            {% endif %}
+                        </td>
+
+                        <td>{{ tbTipoAtendimento.atTextoPadrao }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -65,3 +70,12 @@
 
 
     {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/mrs-dataTable.js') }}"></script>
+
+{% endblock %}

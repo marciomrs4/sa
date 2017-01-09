@@ -1,15 +1,15 @@
-    {% extends ':template:template.html.twig' %}
+{% extends ':template:template.html.twig' %}
 
 
 
     {% block contentheader %}
 
-    <section class="content-header">
-        <h1>
-            TbTipoAtendimento
-            <small>Mostrar</small>
-        </h1>
-    </section>
+        <section class="content-header">
+            <h1>
+                Tipo de Atendimento
+                <small>Mostrar</small>
+            </h1>
+        </section>
 
     {% endblock %}
 
@@ -17,14 +17,14 @@
 
         <div class="row">
 
-    <div class="col-md-2 col-sm-3 col-xs-3">
+        <div class="col-md-2 col-sm-3 col-xs-3">
 
-        <a href="{{ path('tipoatendimento_index') }}" class="btn btn-primary btn-sm">
-            <span class="fa fa-reply"></span>
-            Voltar
-        </a>
+            <a href="{{ path('tipoatendimento_index') }}" class="btn btn-primary btn-sm">
+                <span class="fa fa-reply"></span>
+                Voltar
+            </a>
 
-    </div>
+        </div>
         <div class="col-md-2 col-sm-3 col-xs-3">
 
             <a href="{{ path('tipoatendimento_edit', { 'id': tbTipoAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
@@ -42,34 +42,37 @@
             {{ form_end(delete_form) }}
 
         </div>
-</div>{% endblock %}
+        </div>{% endblock %}
 
 
 
     {% block panelbody %}
 
-    <div class="table table-responsive">
-        <table class="table table-bordered table-condensed">
-            <tbody>
+        <div class="table table-responsive">
+            <table class="table table-bordered table-condensed">
+                <tbody>
                 <tr>
-                    <th>Atdescricao</th>
-                        <td>{{ tbTipoAtendimento.atDescricao }}</td>
+                    <th>Descricao</th>
+                    <td>{{ tbTipoAtendimento.atDescricao }}</td>
                 </tr>
                 <tr>
-                    <th>Atativo</th>
-                        <td>{{ tbTipoAtendimento.atAtivo }}</td>
+                    <th>Status</th>
+                    <td>
+                        {% if tbTipoAtendimento.atAtivo == 1%}
+                            Ativo
+                        {% else %}
+                            Inativo
+                        {% endif %}
+
+                    </td>
                 </tr>
                 <tr>
-                    <th>Attextopadrao</th>
-                        <td>{{ tbTipoAtendimento.atTextoPadrao }}</td>
+                    <th>Texto Padrao</th>
+                    <td>{{ tbTipoAtendimento.atTextoPadrao }}</td>
                 </tr>
-                <tr>
-                    <th>Atcodigo</th>
-                        <td>{{ tbTipoAtendimento.atCodigo }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
 
 
     {% endblock %}

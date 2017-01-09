@@ -93,7 +93,7 @@ class TbTipoRespostaController extends Controller
             $em->persist($tbTipoRespostum);
             $em->flush();
 
-            return $this->redirectToRoute('tiporesposta_edit', array('id' => $tbTipoRespostum->getId()));
+            return $this->redirectToRoute('tiporesposta_show', array('id' => $tbTipoRespostum->getId()));
         }
 
         return $this->render('tbtiporesposta/edit.html.twig', array(

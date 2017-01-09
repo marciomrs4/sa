@@ -92,7 +92,7 @@ class TbTipoAtendimentoController extends Controller
             $em->persist($tbTipoAtendimento);
             $em->flush();
 
-            return $this->redirectToRoute('tipoatendimento_edit', array('id' => $tbTipoAtendimento->getId()));
+            return $this->redirectToRoute('tipoatendimento_show', array('id' => $tbTipoAtendimento->getId()));
         }
 
         return $this->render('tbtipoatendimento/edit.html.twig', array(

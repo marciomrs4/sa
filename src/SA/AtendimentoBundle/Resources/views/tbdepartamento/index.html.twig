@@ -43,7 +43,7 @@
                             <div class="">
                                 <a href="{{ path('adm_departamento_new') }}" class="btn btn-primary btn-sm">
                                     <span class="glyphicon glyphicon-plus"></span>
-
+                                    Novo
                                 </a>
                             </div>
 
@@ -59,11 +59,10 @@
                         <table class="table table-bordered table-hover table-condensed table-striped table-datatable">
                             <thead>
                             <tr>
-                                <th>Ações</th>
+                                <th>Opções</th>
                                 <th>Descricao</th>
                                 <th>Email</th>
                                 <th>Listar Chamado</th>
-                                <th>Codigo</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -73,12 +72,12 @@
                                     <td>
 
 
-                                        <a href="{{ path('adm_departamento_show', { 'id': tbDepartamento.depCodigo }) }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ path('adm_departamento_show', { 'id': tbDepartamento.depCodigo }) }}" class="btn btn-primary btn-xs">
                                             <span class="glyphicon glyphicon-eye-open"></span>
 
                                         </a>
 
-                                        <a href="{{ path('adm_departamento_edit', { 'id': tbDepartamento.depCodigo }) }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ path('adm_departamento_edit', { 'id': tbDepartamento.depCodigo }) }}" class="btn btn-primary btn-xs">
                                             <span class="glyphicon glyphicon-edit"></span>
 
                                         </a>
@@ -88,10 +87,9 @@
 
                                     </td>
 
-                                    <td><a href="{{ path('adm_departamento_show', { 'id': tbDepartamento.depCodigo }) }}">{{ tbDepartamento.depDescricao }}</a></td>
+                                    <td>{{ tbDepartamento.depDescricao }}</td>
                                     <td>{{ tbDepartamento.depEmail }}</td>
                                     <td>{% if tbDepartamento.proPermiteListarChamado %}SIM{% else %}NÃO{% endif %}</td>
-                                    <td>{{ tbDepartamento.depCodigo }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>

@@ -3,6 +3,7 @@
 namespace SA\AtendimentoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * TbTipoResposta
@@ -14,11 +15,11 @@ class TbTipoResposta
 {
     /**
      *
-     * @ORM\Column(name="at_codigo", type="integer", nullable=false)
      * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbTipoAtendimento")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="at_codigo", referencedColumnName="at_codigo")
      * })
+     * @Assert\NotBlank(message="Tipo de Atendimento é Obrigatório")
      */
     private $atCodigo;
 

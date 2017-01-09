@@ -1,5 +1,12 @@
 {% extends ':template:template.html.twig' %}
 
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/dataTables.bootstrap.css') }}">
+
+{% endblock %}
 
 {% block contentheader %}
     <section class="content-header">
@@ -23,7 +30,7 @@
 
 
         <div class="table-responsive">
-            <table class="table table-bordered table-condensed table-hover table-striped">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
                 <thead>
                 <tr>
                     <th>Opções</th>
@@ -49,7 +56,7 @@
                             {% if tbTipoProcesso.ttpStatus == 1%}
                                 Ativo
                             {% else %}
-                             Inativo
+                                Inativo
                             {% endif %}
                         </td>
                     </tr>
@@ -60,3 +67,12 @@
 
 
     {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/mrs-dataTable.js') }}"></script>
+
+{% endblock %}

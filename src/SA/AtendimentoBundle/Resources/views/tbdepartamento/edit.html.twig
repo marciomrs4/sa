@@ -22,43 +22,19 @@
 
                     <div class="row">
 
-                        <div class="col-md-1 col-xs-2 col-sm-1">
 
-                            <!-- Single button -->
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-cog"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ path('adm_departamento_show',{ 'id': tbDepartamento.id }) }}">
-                                            <span class="glyphicon glyphicon-eye-open"></span>
-                                            Mostrar
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('adm_departamento_index') }}">
-                                            <span class="glyphicon glyphicon-list"></span>
-                                            Listar
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-1 col-xs-2 col-sm-1">
-                            <a href="{{ path('adm_departamento_index') }}" class="btn btn-primary">
+                        <div class="col-md-2 col-xs-2 col-sm-1">
+                            <a href="{{ path('adm_departamento_index') }}" class="btn btn-primary btn-sm">
                                 <span class="fa fa-reply"></span>
-                                {#{{ template.buttons.buttonReturn  }}#}
+                                Voltar
                             </a>
                         </div>
 
-                        <div class="col-md-1 col-xs-2 col-sm-1">
+                        <div class="col-md-2 col-xs-2 col-sm-1">
                             {{ form_start(delete_form) }}
-                            <button type="submit" class="btn btn-danger remover-form">
+                            <button type="submit" class="btn btn-danger btn-sm remover-form">
                                 <span class="glyphicon glyphicon-trash"></span>
-                                {#{{ template.buttons.buttonDelete }}#}
+                                Deletar
                             </button>
                             {{ form_end(delete_form) }}
                         </div>
@@ -70,9 +46,9 @@
 
                     {{ form_start(edit_form) }}
                     {{ form_widget(edit_form) }}
-                    <button type="submit" class="btn btn-primary" value="{{ template.buttons.buttonSave }}">
+                    <button type="submit" class="btn btn-primary btn-sm" value="{{ template.buttons.buttonSave }}">
                         <span class="glyphicon glyphicon-floppy-disk"></span>
-                        {#{{ template.buttons.buttonSave }}#}
+                        Salvar
                     </button>
                     {{ form_end(edit_form) }}
 

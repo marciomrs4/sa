@@ -51,7 +51,14 @@
                         <td>{{ tbTipoRespostum.atCodigo }}</td>
                         <td>{{ tbTipoRespostum.tirTitulo }}</td>
                         <td>{{ tbTipoRespostum.tirDescricao }}</td>
-                        <td>{{ tbTipoRespostum.tirStatus }}</td>
+
+                        <td>
+                            {% if tbTipoRespostum.tirStatus %}
+                                Ativo
+                            {% else %}
+                                Inativo
+                            {% endif %}
+                        </td>
 
                     </tr>
                 {% endfor %}

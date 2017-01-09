@@ -6,7 +6,7 @@
 
     <section class="content-header">
         <h1>
-            TbTipoResposta
+            Tipo Resposta
             <small>Mostrar</small>
         </h1>
     </section>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-2 col-sm-3 col-xs-3">
             {{ form_start(delete_form) }}
-            <button type="submit" class="btn btn-danger btn-sm">
+            <button type="submit" class="btn btn-danger btn-sm remover-form">
                 <span class="glyphicon glyphicon-trash"></span>
                 Deletar
             </button>
@@ -52,26 +52,28 @@
         <table class="table table-bordered table-condensed">
             <tbody>
                 <tr>
-                    <th>Atcodigo</th>
+                    <th>Tipo de Atendimento</th>
                         <td>{{ tbTipoRespostum.atCodigo }}</td>
                 </tr>
                 <tr>
-                    <th>Tirtitulo</th>
+                    <th>Titulo</th>
                         <td>{{ tbTipoRespostum.tirTitulo }}</td>
                 </tr>
                 <tr>
-                    <th>Tirdescricao</th>
+                    <th>Descrição</th>
                         <td>{{ tbTipoRespostum.tirDescricao }}</td>
                 </tr>
                 <tr>
-                    <th>Tirstatus</th>
-                        <td>{{ tbTipoRespostum.tirStatus }}</td>
+                    <th>Status</th>
+                    <td>
+                        {% if tbTipoRespostum.tirStatus %}
+                            Ativo
+                        {% else %}
+                            Inativo
+                        {% endif %}
+                    </td>
                 </tr>
-                <tr>
-                    <th>Tircodigo</th>
-                        <td>{{ tbTipoRespostum.tirCodigo }}</td>
-                </tr>
-            </tbody>
+             </tbody>
         </table>
     </div>
 

@@ -92,7 +92,7 @@ class TbTipoApontamentoController extends Controller
             $em->persist($tbTipoApontamento);
             $em->flush();
 
-            return $this->redirectToRoute('tipoapontamento_edit', array('id' => $tbTipoApontamento->getId()));
+            return $this->redirectToRoute('tipoapontamento_show', array('id' => $tbTipoApontamento->getId()));
         }
 
         return $this->render('tbtipoapontamento/edit.html.twig', array(

@@ -1,7 +1,13 @@
 {% extends ':template:base.html.twig' %}
 
-
-{% block contentheader %}{% endblock %}
+{% block contentheader %}
+    <section class="content-header">
+        <h1>
+            Departamento
+            <small>Novo</small>
+        </h1>
+    </section>
+{% endblock %}
 
 {% block content %}
 
@@ -11,7 +17,10 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Novo Departamento</h3>
+                        <a href="{{ path('adm_departamento_index') }}" class="btn btn-primary btn-sm">
+                            <span class="fa fa-reply"></span>
+                            Voltar
+                        </a>
                 </div>
                 <div class="panel-body">
 
@@ -25,10 +34,7 @@
 
                 </div>
                 <div class="panel-footer">
-                    <a href="{{ path('adm_departamento_index') }}" class="btn btn-primary">
-                        <span class="fa fa-reply"></span>
-                        {#{{ template.buttons.buttonReturn }}#}
-                    </a>
+
                 </div>
             </div>
 

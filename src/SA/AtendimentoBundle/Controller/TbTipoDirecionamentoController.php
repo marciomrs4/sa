@@ -93,7 +93,7 @@ class TbTipoDirecionamentoController extends Controller
             $em->persist($tbTipoDirecionamento);
             $em->flush();
 
-            return $this->redirectToRoute('tipodirecionamento_edit', array('id' => $tbTipoDirecionamento->getId()));
+            return $this->redirectToRoute('tipodirecionamento_show', array('id' => $tbTipoDirecionamento->getId()));
         }
 
         return $this->render('tbtipodirecionamento/edit.html.twig', array(
