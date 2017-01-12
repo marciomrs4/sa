@@ -139,10 +139,11 @@
                     .y(function(d) { return d.Quantidade })
                     .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
                     .showValues(true)       //...instead, show the bar value right on top of each bar.
-                    .valueFormat(d3.format('.0f'));
+
 
             d3.select('#barChart')
                     .datum(getDataToChart())
+                    .transition().duration(500)
                     .call(chart);
 
             nv.utils.windowResize(chart.update);

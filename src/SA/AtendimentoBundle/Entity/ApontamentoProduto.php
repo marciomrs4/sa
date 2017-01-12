@@ -3,6 +3,7 @@
 namespace SA\AtendimentoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ApontamentoProduto
@@ -33,6 +34,7 @@ class ApontamentoProduto
      * @var string
      *
      * @ORM\Column(name="descricao", type="text", length=65535, nullable=false)
+     * @Assert\NotBlank(message="O Campo descrição é obrigatório")
      */
     private $descricao;
 
@@ -72,6 +74,7 @@ class ApontamentoProduto
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="tipo_ligacao", referencedColumnName="id")
      * })
+     * @Assert\NotBlank(message="O Campo Tipo de Ligação é obrigatório")
      */
     private $tipoLigacao;
 
