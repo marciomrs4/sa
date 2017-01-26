@@ -1,0 +1,162 @@
+{% extends '@SAAtendimento/tbatendimento/template/template.html.twig' %}
+
+{% block contentheader %}
+    <section class="content-header">
+        <h1>
+            Produto por Descrição
+            <small>Listagem: {{ medicamentos|length }} resultado(s)</small>
+        </h1>
+    </section>
+{% endblock %}
+
+{% block firstrow %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        <div class="box box-primary">
+            <div class="panel-body">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                <div class="row">
+
+                    <div class="form-group col-md-4 col-sm-3 col-xs-6">
+                        {{ form_row(form.atMedicamento) }}
+                    </div>
+                    <div class="form-group col-md-2 col-sm-3 col-xs-6">
+                        {{ form_row(form.satCodigo) }}
+                    </div>
+                    <div class="form-group col-md-2 col-sm-3 col-xs-6">
+                        {{ form_row(form.dataInicial) }}
+                    </div>
+                    <div class="form-group col-md-2 col-sm-3 col-xs-6">
+                        {{ form_row(form.dataFinal) }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="panel-footer">
+
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="input-load">
+                            <button class="btn btn-default btn-sm input-search">
+                                <span class="glyphicon glyphicon-search"></span>
+                                Procurar
+                            </button>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    {#{{ dump(data) }}#}
+    {#{{ dump(produtos) }}#}
+
+{% endblock %}
+
+{% block panelheading%}
+
+{% endblock %}
+
+{% block panelbody %}
+
+
+
+
+    <div class="table table-responsive">
+        <table class="table table-bordered table-hover table-condensed table-striped">
+            <thead>
+            <tr>
+                <th>Opções</th>
+                <th>Protocolo de Atendimento</th>
+                <th>Descrição do produto</th>
+                <th>Data do Atendimento</th>
+                <th>Data de Retorno</th>
+                <th>Status</th>
+                <th>Tipo de Atendimento</th>
+                <th>Paciente</th>
+                <th>Atendente Inicial</th>
+                <th>Atendente Atual</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for medicamento in medicamentos %}
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <a href="{{ path('atendimento_show',{'id': medicamento.atCodigo }) }}"
+                                   class="btn btn-primary btn-xs link-search"
+                                   data-toggle="tooltip" data-placement="right"
+                                   title="Mostrar Atendimento">
+                                    <span class="fa fa-phone-square"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ medicamento.atCodigo }}</td>
+                    <td>{{ medicamento.atMedicamento }}</td>
+                    <td>{{ medicamento.atDataCadastroReal|date('d-m-Y H:i:s') }}</td>
+                    <td>{% if medicamento.atDataRetorno %}{{ medicamento.atDataRetorno|date('d-m-Y') }}{% endif %}</td>
+                    <td>{{ medicamento.satCodigo }}</td>
+                    <td>{{ medicamento.taCodigo }}</td>
+                    <td>{{ medicamento.atPaciente }}</td>
+                    <td>{{ medicamento.usuCodigo }}</td>
+                    <td>{{ medicamento.atendente }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ path('report_produto_to_excel') }}" id="link"></a>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery-download.js') }}"></script>
+
+    <script>
+
+        $(document).ready(function(){
+
+            var url = $('#link').attr('href');
+
+            $('#exceldownload').click(function(){
+
+                $('#exceldownload').attr('disabled','disabled');
+
+
+                $.fileDownload(url,{
+                    httpMethod: "GET",
+                    data:{
+                        codigoTp : $('#report_produto_codigoTp').val(),
+                        descricao : $('#report_produto_descricao').val(),
+                        status : $('#report_produto_status').val(),
+                        dataInicial : $('#report_produto_dataInicial').val(),
+                        dataFinal: $('#report_produto_dataFinal').val()
+                    }
+                });
+
+
+            });
+
+        });
+
+    </script>
+
+{% endblock %}

@@ -145,6 +145,7 @@
                     <ul class="treeview-menu">
                         <li><a href="{{ path('atendimento_index') }}"><i class="fa fa-phone-square"></i>Atendimento</a></li>
                         <li><a href="{{ path('report_produto') }}"><i class="glyphicon glyphicon-shopping-cart"></i>Produto</a></li>
+                        <li><a href="{{ path('report_atendimento_medicamento') }}"><i class="fa fa-eyedropper"></i>Produto por Descrição</a></li>
                         <li><a href="{{ path('atendimento_search') }}"><i class="fa fa-search"></i> Pesquisar</a></li>
                         {% if is_granted('ROLE_Técnico-ADM') %}
                         <li><a href="{{ path('atendimento_analitico') }}"><i class="fa fa-file-text-o"></i> Atendimento Analitico</a></li>

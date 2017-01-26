@@ -3,6 +3,7 @@
 namespace SA\AtendimentoBundle\Controller;
 
 use SA\AtendimentoBundle\Form\ListAtendimentoByPeriodType;
+use SA\AtendimentoBundle\Form\MedicamentoReportType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -265,6 +266,41 @@ class AtendimentoController extends Controller
         return $this->render('@SAAtendimento/atendimento/atendimentobyperiodcalendar.html.twig',array(
             'tbAtendimentos' => $tbAtendimentos
         ));
+
+    }
+
+    /**
+     * @Route("/report/atendimentobymedicamento",name="report_atendimento_medicamento")
+     * @Method("GET|POST")
+     */
+    public function atendimentoByMedicamentoAction(Request $request)
+    {
+
+        $form = $this->createForm(MedicamentoReportType::class);
+
+        $date = new \DateTime('now');
+
+        $form->get('dataFinal')
+            ->setData($date);
+
+        $form->get('dataInicial')
+            ->setData($date->modify('-30 days'));
+
+        $form->handleRequest($request);
+
+        $medicamentos = '';
+
+        if($form->isSubmitted()){
+
+            $medicamentos = $this->getDoctrine()
+                ->getRepository('SAAtendimentoBundle:TbAtendimento')
+                ->getAtendimentoByMedicamento($request->request->get('medicamento_report'));
+        }
+
+        return $this->render('@SAAtendimento/atendimento/medicamentoreport.html.twig',[
+            'form' => $form->createView(),
+            'medicamentos' => $medicamentos
+        ]);
 
     }
 
