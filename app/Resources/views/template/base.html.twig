@@ -78,7 +78,9 @@
 
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="hidden-xs">
+                                {% if app.user %}
                                 {{ app.user.usuCodigo.usuNome }}
+                                {% endif %}
                             </span>
 
                         </a>
@@ -88,8 +90,10 @@
                             <li class="user-header">
                                 <h1 class="box-default ">UDTP</h1>
                                 <p>
+                                    {% if app.user %}
                                     {{ app.user.usuCodigo.usuNome }} {{ app.user.usuCodigo.usuSobrenome }}
                                     <small>{{ app.user.usuCodigo.usuEmail }}</small>
+                                    {% endif %}
                                 </p>
 
                             </li>

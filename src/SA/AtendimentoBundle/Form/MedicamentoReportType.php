@@ -31,9 +31,7 @@ class MedicamentoReportType extends AbstractType
                 'attr'=>array('class'=>'input-sm')))
             ->add('dataFinal',DateType::class,array('mapped'=>false,
                 'widget' => 'single_text',
-                'attr'=>array('class'=>'input-sm')))
-
-        ;
+                'attr'=>array('class'=>'input-sm')));
     }
 
     /**
