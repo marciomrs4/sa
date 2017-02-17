@@ -17,7 +17,7 @@ class ProdutoRepository extends EntityRepository
 
     public function reportProduto($reportProdutoForm)
     {
-        $query = ("SELECT id, codigo_tp AS 'codigoTp', atendimento_id AS 'atendimento',
+        $query = ("SELECT id, codigo_tp AS 'codigoTp', codigo_scodes AS 'codigoScodes' ,atendimento_id AS 'atendimento',
                           descricao AS 'descricao', data_criacao AS 'dataCriacao' ,
                            (SELECT descricao FROM status_produto WHERE id = status_id) AS 'status',
                            ATE.at_paciente AS 'paciente', ATE.at_processo AS 'processo'
@@ -25,6 +25,7 @@ class ProdutoRepository extends EntityRepository
                     INNER JOIN tb_atendimento AS ATE
                     ON PRO.atendimento_id = ATE.at_codigo
                     WHERE PRO.codigo_tp LIKE ?
+                    AND PRO.codigo_scodes LIKE ?
                     AND PRO.descricao LIKE ?
                     AND PRO.status_id LIKE ?
                     AND PRO.data_criacao >= ?
@@ -39,6 +40,7 @@ class ProdutoRepository extends EntityRepository
         $dataFinal = $reportProdutoForm['dataFinal'].' 23:59:59';
 
         $stmt->execute(array("%{$reportProdutoForm['codigoTp']}%",
+            "%{$reportProdutoForm['codigoScodes']}%",
             "%{$reportProdutoForm['descricao']}%",
             "%{$reportProdutoForm['status']}%",
                $dataInicial,

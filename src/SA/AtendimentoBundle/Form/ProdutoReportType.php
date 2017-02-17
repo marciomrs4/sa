@@ -22,6 +22,9 @@ class ProdutoReportType extends AbstractType
             ->add('codigoTp',TextType::class,array(
                 'label'=>'Código TP',
                 'attr'=>array('class'=>'input-sm')))
+            ->add('codigoScodes',TextType::class,array(
+                'label'=>'Código Scodes',
+                'attr'=>array('class'=>'input-sm')))
             ->add('descricao',TextType::class,array(
                 'label'=>'Descrição',
                 'attr'=>array('class'=>'input-sm')))

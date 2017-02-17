@@ -77,6 +77,7 @@
                 </a>
 
             </div>
+
         </div>
     {% endblock %}
 
@@ -188,6 +189,8 @@
 
         <!-- /.box-footer -->
     </div>
+    <a href="{{ path('get_produto_scodes') }}" id="scodes"></a>
+    </div>
 
 {% endblock %}
 
@@ -196,7 +199,6 @@
 
     <script>
         $(document).ready(function () {
-
 
             $('tr').click(function () {
 
@@ -211,6 +213,33 @@
                 $("#produto_codigoScodes").val(linha[3]);
                 $("#produto_descricao").val(linha[4]);
                 $("#produto_quantidade").val(linha[5]);
+
+            });
+
+            $('#produto_codigoScodes').focusout(function(e){
+
+                e.preventDefault();
+
+                var valor = $('#produto_codigoScodes').val();
+
+                var valor = valor.trim().split('/').join('-');
+
+                var url = $("#scodes").attr('href');
+
+                var url = url+'/'+valor;
+
+                $.get(url,function(data){
+
+                    $.each(data, function (key, val) {
+                        $("#produto_codigoTp").val(val.codigoTp);
+                        $("#produto_descricao").val(val.descricao);
+                    });
+
+                }).fail(function() {
+                    alert("Produto não encontrado!");
+                    $("#produto_codigoTp").val('');
+                    $("#produto_descricao").val('');
+                });
 
             });
 

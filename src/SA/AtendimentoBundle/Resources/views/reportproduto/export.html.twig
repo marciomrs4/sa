@@ -1,4 +1,4 @@
-Codigo TP; Data Criação; Descrição; Status; Paciente; Protocolo
+Data Criação; Codigo TP; Codigo Scodes; Descrição; Status; Paciente; Protocolo
 {% for produto in produtos %}
-    {{ produto.codigoTp}};{{ produto.dataCriacao |date('d-m-Y') }};{{ produto.descricao }};{{ produto.status }};{{ produto.paciente }};{{ produto.processo }}
+   {{ produto.dataCriacao |date('d-m-Y') }}; {{ produto.codigoTp}};{{ produto.codigoScodes}};{{ produto.descricao }};{{ produto.status }};{{ produto.paciente }};{{ produto.processo }}
 {% endfor %}

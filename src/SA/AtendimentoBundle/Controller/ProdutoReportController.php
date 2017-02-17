@@ -58,6 +58,7 @@ class ProdutoReportController extends Controller
     {
 
         $data['codigoTp'] = $request->query->get('codigoTp');
+        $data['codigoScodes'] = $request->query->get('codigoScodes');
         $data['descricao'] = $request->query->get('descricao');
         $data['status'] = $request->query->get('status');
         $data['dataInicial'] = $request->query->get('dataInicial');

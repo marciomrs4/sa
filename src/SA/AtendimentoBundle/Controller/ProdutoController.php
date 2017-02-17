@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SA\AtendimentoBundle\Entity\Produto;
 use SA\AtendimentoBundle\Form\ProdutoType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Produto controller.
@@ -51,8 +52,8 @@ class ProdutoController extends Controller
             ->find(1);
 
         $produto->setAtendimento($atendimento)
-                ->setStatus($statusProduto)
-                ->setUsuarioId($this->getUser()->getUsuCodigo());
+            ->setStatus($statusProduto)
+            ->setUsuarioId($this->getUser()->getUsuCodigo());
 
         $form = $this->createForm('SA\AtendimentoBundle\Form\ProdutoType', $produto);
         $form->handleRequest($request);
@@ -62,7 +63,7 @@ class ProdutoController extends Controller
 
             $produtoNaoConcluido = $em->getRepository('SAAtendimentoBundle:Produto')
                 ->getProdutoNaoConcluido($produto->getCodigoTp(),
-                                         $atendimento->getId());
+                    $atendimento->getId());
 
             if($produtoNaoConcluido){
 
@@ -88,8 +89,8 @@ class ProdutoController extends Controller
         }else {
 
             $httpCliente = $this->get('http.client')
-                                ->setCodigo($atendimento->getAtProcesso())
-                                ->setSearch('protocolo');
+                ->setCodigo($atendimento->getAtProcesso())
+                ->setSearch('protocolo');
 
             return $this->render('produto/new.html.twig', array(
                 'produto' => $produto,
@@ -110,8 +111,8 @@ class ProdutoController extends Controller
     {
 
         $httpCliente = $this->get('http.client')
-                            ->setCodigo(str_replace('/','-',$produto->getCodigoScodes()))
-                            ->setSearch('posicaoestoque');
+            ->setCodigo(str_replace('/','-',$produto->getCodigoScodes()))
+            ->setSearch('posicaoestoque');
 
         return $this->render('produto/show.html.twig', array(
             'produto' => $produto,
@@ -179,6 +180,23 @@ class ProdutoController extends Controller
             ->setAction($this->generateUrl('cadastro_produto_delete', array('id' => $produto->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
+    }
+
+    /**
+     * @Route("/produto/{codigoScodes}", defaults={"codigoScodes" : "-"}, name="get_produto_scodes")
+     *
+     */
+    public function getProdutoInformationAction($codigoScodes)
+    {
+        if(!$codigoScodes){
+            throw $this->createNotFoundException('Not Found');
+        }
+
+        $httpCliente = $this->get('http.client')
+            ->setCodigo($codigoScodes)
+            ->setSearch('produto');
+
+        return new JsonResponse($httpCliente->getData());
     }
 }

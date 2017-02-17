@@ -91,5 +91,48 @@
         </button>
         {{ form_end(edit_form) }}
 
+        <a href="{{ path('get_produto_scodes') }}" id="scodes"></a>
+
     {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function () {
+
+            $('#produto_codigoScodes').focusout(function(e){
+
+                e.preventDefault();
+
+                var valor = $('#produto_codigoScodes').val();
+
+                var valor = valor.trim().split('/').join('-');
+
+                var url = $("#scodes").attr('href');
+
+                var url = url+'/'+valor;
+
+                $.get(url,function(data){
+
+                    $.each(data, function (key, val) {
+
+                        $("#produto_codigoTp").val(val.codigoTp);
+                        $("#produto_descricao").val(val.descricao);
+
+                    });
+
+                }).fail(function() {
+                    alert("Produto não encontrado!");
+                    $("#produto_codigoTp").val('');
+                    $("#produto_descricao").val('');
+                });
+
+            });
+
+        });
+
+    </script>
+
+{% endblock %}
 
