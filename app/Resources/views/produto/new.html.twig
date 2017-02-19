@@ -94,6 +94,14 @@
 
             <div class="form-group col-md-3 col-sm-6 col-xs-6">
                 {{ form_row(form.codigoScodes) }}
+                <span class="help-block" style="display: none">
+                    <ul class="list-unstyled">
+                        <li>
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            Produto não encontrado.
+                        </li>
+                    </ul>
+                </span>
             </div>
 
             <div class="form-group col-md-5 col-sm-6 col-xs-6">
@@ -231,12 +239,13 @@
                 $.get(url,function(data){
 
                     $.each(data, function (key, val) {
+                        $(".help-block").hide();
                         $("#produto_codigoTp").val(val.codigoTp);
                         $("#produto_descricao").val(val.descricao);
                     });
 
                 }).fail(function() {
-                    alert("Produto não encontrado!");
+                    $(".help-block").show();
                     $("#produto_codigoTp").val('');
                     $("#produto_descricao").val('');
                 });

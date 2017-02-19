@@ -62,8 +62,8 @@ class ProdutoController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $produtoNaoConcluido = $em->getRepository('SAAtendimentoBundle:Produto')
-                ->getProdutoNaoConcluido($produto->getCodigoTp(),
-                    $atendimento->getId());
+                ->getProdutoNaoConcluido($produto->getCodigoScodes(),
+                                         $atendimento->getId());
 
             if($produtoNaoConcluido){
 
