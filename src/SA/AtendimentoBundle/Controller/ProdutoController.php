@@ -134,6 +134,21 @@ class ProdutoController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $produtoNaoConcluido = $em->getRepository('SAAtendimentoBundle:Produto')
+                ->getProdutoNaoConcluido($produto->getCodigoScodes(),
+                    $produto->getAtendimento()->getId());
+
+            if($produtoNaoConcluido){
+
+                $message = array('type'=>'warning',
+                                 'description'=>'Este produto não pode ser adicionado, pois existe um cadastro com o mesmo produto não finalizado!');
+                $this->addFlash('notice',$message);
+
+                return $this->redirectToRoute('cadastro_produto_edit',array('id' => $produto->getId()));
+
+            }
+
             $em->persist($produto);
             $em->flush();
 
