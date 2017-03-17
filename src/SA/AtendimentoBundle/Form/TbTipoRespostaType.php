@@ -19,7 +19,7 @@ class TbTipoRespostaType extends AbstractType
     {
         $builder
             ->add('atCodigo',null,array('label'=>'Tipo de Atendimento'))
-            ->add('tirTitulo',TextType::class,array('label'=>'Titulo'))
+            //->add('tirTitulo',TextType::class,array('label'=>'Titulo'))
             ->add('tirDescricao',TextType::class,array('label'=>'Descrição'))
             ->add('tirStatus',ChoiceType::class,array('label'=>'Status',
                   'choices'=>array('1'=>'Ativo','0'=>'Inativo')))

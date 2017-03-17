@@ -62,6 +62,7 @@ class AddTipoResposta implements EventSubscriberInterface
             'query_builder' => function(EntityRepository $er) use ($tipoAtendimento){
                 return $er->createQueryBuilder('TbTipoResposta')
                     ->where('TbTipoResposta.atCodigo = :tipoResposta')
+                    ->andWhere('TbTipoResposta.tirStatus = 1')
                     ->orderBy('TbTipoResposta.tirDescricao')
                     ->setParameter('tipoResposta', $tipoAtendimento);
             },

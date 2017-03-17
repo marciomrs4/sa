@@ -26,7 +26,7 @@ class TbTipoResposta
     /**
      * @var string
      *
-     * @ORM\Column(name="tir_titulo", type="string", length=255, nullable=false)
+     * @ORM\Column(name="tir_titulo", type="string", length=255, nullable=true)
      */
     private $tirTitulo;
 
@@ -34,6 +34,7 @@ class TbTipoResposta
      * @var string
      *
      * @ORM\Column(name="tir_descricao", type="text", length=65535, nullable=false)
+     * @Assert\NotBlank(message="Descrição é Obrigatório")
      */
     private $tirDescricao;
 

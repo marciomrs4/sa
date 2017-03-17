@@ -1,5 +1,13 @@
 {% extends ':template:template.html.twig' %}
 
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/dataTables.bootstrap.css') }}">
+
+{% endblock %}
+
 
     {% block contentheader %}
 
@@ -24,12 +32,11 @@
 
     {% block panelbody %}
         <div class="table-responsive">
-            <table class="table table-bordered table-condensed table-hover table-striped">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
                 <thead>
                 <tr>
                     <th>Opções</th>
                     <th>Tipo de Atendimento</th>
-                    <th>Titulo</th>
                     <th>Descrição</th>
                     <th>Status</th>
                 </tr>
@@ -49,7 +56,6 @@
                             </a>
                         </td>
                         <td>{{ tbTipoRespostum.atCodigo }}</td>
-                        <td>{{ tbTipoRespostum.tirTitulo }}</td>
                         <td>{{ tbTipoRespostum.tirDescricao }}</td>
 
                         <td>
@@ -68,3 +74,12 @@
 
 
     {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/mrs-dataTable.js') }}"></script>
+
+{% endblock %}
