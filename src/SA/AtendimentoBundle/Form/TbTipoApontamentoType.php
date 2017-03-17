@@ -18,11 +18,11 @@ class TbTipoApontamentoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('tapTitulo',TextType::class,array('label'=>'Titulo'))
+            //->add('tapTitulo',TextType::class,array('label'=>'Titulo'))
+            ->add('atCodigo',null,array('label'=>'Tipo de Atendimento'))
             ->add('tapDescricao', TextareaType::class,array('label'=>'Descrição'))
             ->add('tapStatus',ChoiceType::class,array('label'=>'Status',
                 'choices' => array('1'=>'Ativo','2'=>'Inativo')))
-            ->add('atCodigo',null,array('label'=>'Tipo de Atendimento'))
         ;
     }
     

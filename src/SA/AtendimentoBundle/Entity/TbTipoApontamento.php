@@ -3,7 +3,7 @@
 namespace SA\AtendimentoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * TbTipoApontamento
  *
@@ -25,7 +25,7 @@ class TbTipoApontamento
     /**
      * @var string
      *
-     * @ORM\Column(name="tap_titulo", type="string", length=255, nullable=false)
+     * @ORM\Column(name="tap_titulo", type="string", length=255, nullable=true)
      */
     private $tapTitulo;
 
@@ -33,6 +33,7 @@ class TbTipoApontamento
      * @var string
      *
      * @ORM\Column(name="tap_descricao", type="text", length=65535, nullable=false)
+     * @Assert\NotBlank(message="Descrição é Obrigatório")
      */
     private $tapDescricao;
 
@@ -162,7 +163,7 @@ class TbTipoApontamento
 
     public function __toString()
     {
-        return $this->getTapTitulo();
+        return $this->getTapDescricao();
     }
 
     public function getId()

@@ -1,6 +1,14 @@
 {% extends ':template:template.html.twig' %}
 
 
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/saatendimento/css/dataTables.bootstrap.css') }}">
+
+{% endblock %}
+
     {% block contentheader %}
 
 
@@ -24,12 +32,11 @@
 
     {% block panelbody %}
         <div class="table-responsive">
-            <table class="table table-bordered table-condensed table-hover table-striped">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
                 <thead>
                 <tr>
-
                     <th>Opções</th>
-                    <th>Titulo</th>
+                    <th>Tipo de Atendimento</th>
                     <th>Descrição</th>
                     <th>Status</th>
                 </tr>
@@ -45,7 +52,7 @@
                                 <span class="glyphicon glyphicon-edit"></span>
                             </a>
                         </td>
-                        <td>{{ tbTipoApontamento.tapTitulo }}</td>
+                        <td>{{ tbTipoApontamento.atCodigo.atDescricao }}</td>
                         <td>{{ tbTipoApontamento.tapDescricao }}</td>
                         <td>
                             {% if tbTipoApontamento.tapStatus == 1 %}
@@ -54,7 +61,6 @@
                                 Inativo
                             {% endif %}
                         </td>
-                        <td>{{ tbTipoApontamento.atCodigo.atDescricao }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -63,3 +69,12 @@
 
 
     {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bundles/saatendimento/js/mrs-dataTable.js') }}"></script>
+
+{% endblock %}

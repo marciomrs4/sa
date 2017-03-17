@@ -61,6 +61,7 @@ class ApontamentoProdutoController extends Controller
                 return $er->createQueryBuilder('TipoApontamento')
                     ->join('TipoApontamento.atCodigo','tipo')
                     ->where('TipoApontamento.atCodigo = :tipoAtendimento')
+                    ->andWhere('TipoApontamento.tapStatus = 1')
                     ->setParameter('tipoAtendimento',$tipoAtendimento)
                     ->orderBy('tipo.atDescricao');
             },
