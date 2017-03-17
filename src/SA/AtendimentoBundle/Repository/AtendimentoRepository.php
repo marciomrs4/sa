@@ -63,9 +63,9 @@ class AtendimentoRepository extends EntityRepository
 					AND ATE.at_paciente LIKE ?
 					AND ATE.ttp_codigo LIKE ?
 					AND ATE.at_localidade = ?
-					AND (ATE.at_processo LIKE ? OR ATE.at_processo IS NULL)
-					AND (ATE.at_medicamento LIKE ? OR ATE.at_medicamento IS NULL)
-					AND at_data_retorno >= ? AND at_data_retorno <= ?
+					AND ATE.at_processo LIKE ?
+					AND at_data_retorno >= ?
+					AND at_data_retorno <= ?
 					ORDER BY 1 DESC
 					LIMIT 500;
 				");
@@ -83,7 +83,6 @@ class AtendimentoRepository extends EntityRepository
                 "%{$this->emptyValue($data['ttpCodigo'])}%",
                 "{$data['atLocalidade']}",
                 "%{$this->emptyValue($data['atProcesso'])}%",
-                "%{$this->emptyValue($data['atMedicamento'])}%",
                 $data['atDataRetornoA'],
                 $data['atDataRetornoB']
             ));
