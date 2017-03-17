@@ -27,13 +27,6 @@ class TbTipoAtendimento
     private $atAtivo = '1';
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="at_texto_padrao", type="text", length=65535, nullable=true)
-     */
-    private $atTextoPadrao;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="at_codigo", type="integer")
@@ -92,29 +85,6 @@ class TbTipoAtendimento
         return $this->atAtivo;
     }
 
-    /**
-     * Set atTextoPadrao
-     *
-     * @param string $atTextoPadrao
-     *
-     * @return TbTipoAtendimento
-     */
-    public function setAtTextoPadrao($atTextoPadrao)
-    {
-        $this->atTextoPadrao = $atTextoPadrao;
-
-        return $this;
-    }
-
-    /**
-     * Get atTextoPadrao
-     *
-     * @return string
-     */
-    public function getAtTextoPadrao()
-    {
-        return $this->atTextoPadrao;
-    }
 
     /**
      * Get atCodigo

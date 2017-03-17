@@ -17,32 +17,32 @@
 
         <div class="row">
 
-        <div class="col-md-2 col-sm-3 col-xs-3">
+            <div class="col-md-2 col-sm-3 col-xs-3">
 
-            <a href="{{ path('tipoatendimento_index') }}" class="btn btn-primary btn-sm">
-                <span class="fa fa-reply"></span>
-                Voltar
-            </a>
+                <a href="{{ path('tipoatendimento_index') }}" class="btn btn-primary btn-sm">
+                    <span class="fa fa-reply"></span>
+                    Voltar
+                </a>
 
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-3">
+
+                <a href="{{ path('tipoatendimento_edit', { 'id': tbTipoAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Editar
+                </a>
+
+            </div>
+            {#<div class="col-md-2 col-sm-3 col-xs-3">#}
+                {#{{ form_start(delete_form) }}#}
+                {#<button type="submit" class="btn btn-danger btn-sm">#}
+                    {#<span class="glyphicon glyphicon-trash"></span>#}
+                    {#Deletar#}
+                {#</button>#}
+                {#{{ form_end(delete_form) }}#}
+            {#</div>#}
         </div>
-        <div class="col-md-2 col-sm-3 col-xs-3">
-
-            <a href="{{ path('tipoatendimento_edit', { 'id': tbTipoAtendimento.atCodigo }) }}" class="btn btn-primary btn-sm">
-                <span class="glyphicon glyphicon-edit"></span>
-                Editar
-            </a>
-
-        </div>
-        <div class="col-md-2 col-sm-3 col-xs-3">
-            {{ form_start(delete_form) }}
-            <button type="submit" class="btn btn-danger btn-sm">
-                <span class="glyphicon glyphicon-trash"></span>
-                Deletar
-            </button>
-            {{ form_end(delete_form) }}
-
-        </div>
-        </div>{% endblock %}
+    {% endblock %}
 
 
 
@@ -65,10 +65,6 @@
                         {% endif %}
 
                     </td>
-                </tr>
-                <tr>
-                    <th>Texto Padrao</th>
-                    <td>{{ tbTipoAtendimento.atTextoPadrao }}</td>
                 </tr>
                 </tbody>
             </table>

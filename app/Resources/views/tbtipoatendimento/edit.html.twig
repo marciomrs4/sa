@@ -1,14 +1,14 @@
-    {% extends ':template:template.html.twig' %}
+{% extends ':template:template.html.twig' %}
 
 
     {% block contentheader %}
 
-    <section class="content-header">
-        <h1>
-            Tipo de Atendimento
-            <small>Editar</small>
-        </h1>
-    </section>
+        <section class="content-header">
+            <h1>
+                Tipo de Atendimento
+                <small>Editar</small>
+            </h1>
+        </section>
 
     {% endblock %}
 
@@ -16,35 +16,35 @@
 
         <div class="row">
 
-    <div class="col-md-2 col-sm-3 col-xs-3">
+            <div class="col-md-2 col-sm-3 col-xs-3">
 
-        <a href="{{ path('tipoatendimento_index') }}" class="btn btn-primary btn-sm">
-            <span class="fa fa-reply"></span>
-            Voltar
-        </a>
+                <a href="{{ path('tipoatendimento_index') }}" class="btn btn-primary btn-sm">
+                    <span class="fa fa-reply"></span>
+                    Voltar
+                </a>
 
-    </div>
-        <div class="col-md-2 col-sm-3 col-xs-3">
-            {{ form_start(delete_form) }}
-            <button type="submit" class="btn btn-danger btn-sm remover-form">
-                <span class="glyphicon glyphicon-trash"></span>
-                Deletar
-            </button>
-            {{ form_end(delete_form) }}
-
+            </div>
+            {#<div class="col-md-2 col-sm-3 col-xs-3">#}
+                {#{{ form_start(delete_form) }}#}
+                {#<button type="submit" class="btn btn-danger btn-sm remover-form">#}
+                    {#<span class="glyphicon glyphicon-trash"></span>#}
+                    {#Deletar#}
+                {#</button>#}
+                {#{{ form_end(delete_form) }}#}
+            {#</div>#}
         </div>
-</div>{% endblock %}
+    {% endblock %}
 
     {% block panelbody %}
 
 
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    <button type="submit" class="btn btn-primary btn-sm">
-        <span class="glyphicon glyphicon-floppy-disk"></span>
-        Salvar
-    </button>
-    {{ form_end(edit_form) }}
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <button type="submit" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            Salvar
+        </button>
+        {{ form_end(edit_form) }}
 
     {% endblock %}
 

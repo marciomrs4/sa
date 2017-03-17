@@ -20,8 +20,7 @@ class TbTipoAtendimentoType extends AbstractType
         $builder
             ->add('atDescricao',TextType::class,array('label'=>'Descrição'))
             ->add('atAtivo',ChoiceType::class,array('label'=>'Status',
-                'choices'=>array('1'=>'Ativo','2'=>'Inativo')))
-            ->add('atTextoPadrao',TextareaType::class,array('label'=>'Texto Padrão'))
+                  'choices'=>array('1'=>'Ativo','2'=>'Inativo')))
         ;
     }
     
