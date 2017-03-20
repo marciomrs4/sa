@@ -3,6 +3,7 @@
 namespace SA\AtendimentoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Produto
@@ -16,6 +17,7 @@ class Produto
      * @var string
      *
      * @ORM\Column(name="codigo_tp", type="string", length=45, nullable=false)
+     * @Assert\NotBlank(message="Código TP é Obrigátório")
      */
     private $codigoTp;
 
@@ -23,6 +25,7 @@ class Produto
      * @var string
      *
      * @ORM\Column(name="codigo_scodes", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Código SCODES é Obrigátório")
      */
     private $codigoScodes;
 
@@ -30,6 +33,7 @@ class Produto
      * @var string
      *
      * @ORM\Column(name="descricao", type="string", length=800, nullable=false)
+     * @Assert\NotBlank(message="O campo de Descrição")
      */
     private $descricao;
 
@@ -37,6 +41,7 @@ class Produto
      * @var integer
      *
      * @ORM\Column(name="quantidade", type="integer", nullable=false)
+     * @Assert\NotBlank(message="O campo quantidade é obrigatório")
      */
     private $quantidade;
 
