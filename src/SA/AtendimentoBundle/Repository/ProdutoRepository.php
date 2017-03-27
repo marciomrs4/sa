@@ -20,7 +20,8 @@ class ProdutoRepository extends EntityRepository
         $query = ("SELECT id, codigo_tp AS 'codigoTp', codigo_scodes AS 'codigoScodes' ,atendimento_id AS 'atendimento',
                           descricao AS 'descricao', data_criacao AS 'dataCriacao' ,
                            (SELECT descricao FROM status_produto WHERE id = status_id) AS 'status',
-                           ATE.at_paciente AS 'paciente', ATE.at_processo AS 'processo'
+                           ATE.at_paciente AS 'paciente', ATE.at_processo AS 'processo',
+                           (SELECT ttp_descricao FROM tb_tipo_processo AS TTP WHERE TTP.ttp_codigo = ATE.ttp_codigo) AS 'tipoProcesso'
                     FROM produto AS PRO
                     INNER JOIN tb_atendimento AS ATE
                     ON PRO.atendimento_id = ATE.at_codigo

@@ -42,15 +42,15 @@ class ProdutoReportType extends AbstractType
         ;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'SA\AtendimentoBundle\Entity\Produto'
-        ));
-    }
+//    /**
+//     * @param OptionsResolver $resolver
+//     */
+//    public function configureOptions(OptionsResolver $resolver)
+//    {
+//        $resolver->setDefaults(array(
+//            'data_class' => 'SA\AtendimentoBundle\Entity\Produto'
+//        ));
+//    }
 
     public function getBlockPrefix()
     {

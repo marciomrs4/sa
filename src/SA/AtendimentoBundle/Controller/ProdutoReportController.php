@@ -33,11 +33,13 @@ class ProdutoReportController extends Controller
         $form->get('dataInicial')
             ->setData($date->modify('-30 days'));
 
-        $form->handleRequest($request);
+        //$form->handleRequest($request);
 
         $produto = '';
 
-        if($form->isSubmitted()){
+        if($request->getMethod() == 'POST'){
+
+            $form->handleRequest($request);
 
             $produto = $this->getDoctrine()
                 ->getRepository('SAAtendimentoBundle:Produto')
