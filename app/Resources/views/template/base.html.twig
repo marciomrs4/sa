@@ -167,7 +167,9 @@
                         <li><a href="{{ path('list_atendimento_period') }}"><i class="fa fa-file-text-o"></i>Tempo de Atendimento</a></li>
                         <li><a href={{ path('atendimento_status') }}><i class="fa fa-file-text-o"></i>Atendimento por Status</a></li>
                         <li><a href="{{ path('atendimento_tipo_status') }}"><i class="fa fa-file-text-o"></i>Tipo de Atendimento</a></li>
+                        {% if is_granted('ROLE_Técnico-ADM') %}
                         <li><a href="{{ path('report_indicador_produtividade') }}"><i class="fa fa-clock-o"></i>Indicador de Produtividade</a></li>
+                        {% endif %}
                     </ul>
                 </li>
 

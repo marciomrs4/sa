@@ -23,6 +23,11 @@ class IndicadorReportController extends Controller
      */
     public function indexAction(Request $request)
     {
+        if(!$this->get('security.authorization_checker')->isGranted('ROLE_Técnico-ADM')){
+
+            throw $this->createAccessDeniedException();
+
+        }
 
         $form = $this->createForm(IndicadorProdutividadeType::class);
 
