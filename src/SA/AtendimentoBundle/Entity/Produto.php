@@ -53,6 +53,13 @@ class Produto
     private $dataCriacao;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_retorno", type="date", nullable=true)
+     */
+    private $dataRetorno;
+
+    /**
      * @var \SA\AtendimentoBundle\Entity\TbUsuario
      *
      * @ORM\ManyToOne(targetEntity="SA\AtendimentoBundle\Entity\TbUsuario")
@@ -94,7 +101,9 @@ class Produto
 
     public function __construct()
     {
-        $this->dataCriacao = new \DateTime('now');
+        $data = new \DateTime('now');
+        $this->dataCriacao = $data;
+        $this->dataRetorno = $data;
     }
 
 
@@ -300,5 +309,29 @@ class Produto
     public function getUsuarioId()
     {
         return $this->usuarioId;
+    }
+
+    /**
+     * Set dataRetorno
+     *
+     * @param \DateTime $dataRetorno
+     *
+     * @return Produto
+     */
+    public function setDataRetorno($dataRetorno)
+    {
+        $this->dataRetorno = $dataRetorno;
+
+        return $this;
+    }
+
+    /**
+     * Get dataRetorno
+     *
+     * @return \DateTime
+     */
+    public function getDataRetorno()
+    {
+        return $this->dataRetorno;
     }
 }

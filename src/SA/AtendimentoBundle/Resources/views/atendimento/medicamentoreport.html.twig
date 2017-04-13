@@ -120,7 +120,6 @@
         </table>
     </div>
 
-    <a href="{{ path('report_produto_to_excel') }}" id="link"></a>
 
 {% endblock %}
 
@@ -129,34 +128,5 @@
     {{ parent() }}
 
     <script src="{{ asset('bundles/saatendimento/js/jquery-download.js') }}"></script>
-
-    <script>
-
-        $(document).ready(function(){
-
-            var url = $('#link').attr('href');
-
-            $('#exceldownload').click(function(){
-
-                $('#exceldownload').attr('disabled','disabled');
-
-
-                $.fileDownload(url,{
-                    httpMethod: "GET",
-                    data:{
-                        codigoTp : $('#report_produto_codigoTp').val(),
-                        descricao : $('#report_produto_descricao').val(),
-                        status : $('#report_produto_status').val(),
-                        dataInicial : $('#report_produto_dataInicial').val(),
-                        dataFinal: $('#report_produto_dataFinal').val()
-                    }
-                });
-
-
-            });
-
-        });
-
-    </script>
 
 {% endblock %}

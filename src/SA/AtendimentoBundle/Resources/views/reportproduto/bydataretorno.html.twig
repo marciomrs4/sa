@@ -3,7 +3,7 @@
 {% block contentheader %}
     <section class="content-header">
         <h1>
-            Produto
+            Produto por data de Retorno
             <small>Listagem: {{ produtos|length }} resultado(s)</small>
         </h1>
     </section>
@@ -92,7 +92,7 @@
             <thead>
             <tr>
                 <th>Opções</th>
-                <th>Data Criação</th>
+                <th>Data de Retorno</th>
                 <th>Codigo TP</th>
                 <th>Codigo Scodes</th>
                 <th>Descrição</th>
@@ -139,7 +139,7 @@
         </table>
     </div>
 
-    <a href="{{ path('report_produto_to_excel') }}" id="link"></a>
+    <a href="{{ path('report_excel_bydataretorno') }}" id="link"></a>
 
 {% endblock %}
 

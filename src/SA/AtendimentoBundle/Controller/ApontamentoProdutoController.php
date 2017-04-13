@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SA\AtendimentoBundle\Entity\Produto;
 use SA\AtendimentoBundle\Entity\ApontamentoProduto;
 use SA\AtendimentoBundle\Form\ApontamentoProdutoType;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * ApontamentoProduto controller.
@@ -74,7 +75,8 @@ class ApontamentoProdutoController extends Controller
 
             $apontamentoProduto->setUsuarioId($this->getUser()->getUsuCodigo());
 
-            $produto->setStatus($apontamentoProduto->getStatus());
+            $produto->setStatus($apontamentoProduto->getStatus())
+            ->setDataRetorno(new \DateTime('now'));
 
             $em->persist($produto);
             $em->persist($apontamentoProduto);

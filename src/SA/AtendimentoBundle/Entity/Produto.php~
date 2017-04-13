@@ -3,6 +3,7 @@
 namespace SA\AtendimentoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Produto
@@ -16,6 +17,7 @@ class Produto
      * @var string
      *
      * @ORM\Column(name="codigo_tp", type="string", length=45, nullable=false)
+     * @Assert\NotBlank(message="Código TP é Obrigátório")
      */
     private $codigoTp;
 
@@ -23,13 +25,15 @@ class Produto
      * @var string
      *
      * @ORM\Column(name="codigo_scodes", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Código SCODES é Obrigátório")
      */
     private $codigoScodes;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="descricao", type="string", length=255, nullable=false)
+     * @ORM\Column(name="descricao", type="string", length=800, nullable=false)
+     * @Assert\NotBlank(message="O campo de Descrição")
      */
     private $descricao;
 
@@ -37,6 +41,7 @@ class Produto
      * @var integer
      *
      * @ORM\Column(name="quantidade", type="integer", nullable=false)
+     * @Assert\NotBlank(message="O campo quantidade é obrigatório")
      */
     private $quantidade;
 
@@ -46,6 +51,13 @@ class Produto
      * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
      */
     private $dataCriacao;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_retorno", type="date", nullable=false)
+     */
+    private $dataRetorno;
 
     /**
      * @var \SA\AtendimentoBundle\Entity\TbUsuario
@@ -271,5 +283,29 @@ class Produto
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set usuarioId
+     *
+     * @param \SA\AtendimentoBundle\Entity\TbUsuario $usuarioId
+     *
+     * @return Produto
+     */
+    public function setUsuarioId(\SA\AtendimentoBundle\Entity\TbUsuario $usuarioId = null)
+    {
+        $this->usuarioId = $usuarioId;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioId
+     *
+     * @return \SA\AtendimentoBundle\Entity\TbUsuario
+     */
+    public function getUsuarioId()
+    {
+        return $this->usuarioId;
     }
 }

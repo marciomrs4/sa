@@ -15,7 +15,7 @@ use \Doctrine\ORM\EntityRepository;
 class ProdutoRepository extends EntityRepository
 {
 
-    public function reportProduto($reportProdutoForm)
+    public function reportProdutoByDataCadastro($reportProdutoForm)
     {
         $query = ("SELECT id, codigo_tp AS 'codigoTp', codigo_scodes AS 'codigoScodes' ,atendimento_id AS 'atendimento',
                           descricao AS 'descricao', data_criacao AS 'dataCriacao' ,
@@ -51,7 +51,41 @@ class ProdutoRepository extends EntityRepository
 
     }
 
+    public function reportProdutoByDataRetorno($reportProdutoForm)
+    {
+        $query = ("SELECT id, codigo_tp AS 'codigoTp', codigo_scodes AS 'codigoScodes' ,atendimento_id AS 'atendimento',
+                          descricao AS 'descricao', data_retorno AS 'dataCriacao' ,
+                           (SELECT descricao FROM status_produto WHERE id = status_id) AS 'status',
+                           ATE.at_paciente AS 'paciente', ATE.at_processo AS 'processo',
+                           (SELECT ttp_descricao FROM tb_tipo_processo AS TTP WHERE TTP.ttp_codigo = ATE.ttp_codigo) AS 'tipoProcesso'
+                    FROM produto AS PRO
+                    INNER JOIN tb_atendimento AS ATE
+                    ON PRO.atendimento_id = ATE.at_codigo
+                    WHERE PRO.codigo_tp LIKE ?
+                    AND PRO.codigo_scodes LIKE ?
+                    AND PRO.descricao LIKE ?
+                    AND PRO.status_id LIKE ?
+                    AND PRO.data_retorno >= ?
+                    AND PRO.data_retorno <= ?
+                    ORDER BY PRO.codigo_tp");
 
+        $stmt =  $this->getEntityManager()
+            ->getConnection()
+            ->prepare($query);
+
+        $dataInicial = $reportProdutoForm['dataInicial'].' 00:00:01';
+        $dataFinal = $reportProdutoForm['dataFinal'].' 23:59:59';
+
+        $stmt->execute(array("%{$reportProdutoForm['codigoTp']}%",
+            "%{$reportProdutoForm['codigoScodes']}%",
+            "%{$reportProdutoForm['descricao']}%",
+            "%{$reportProdutoForm['status']}%",
+            $dataInicial,
+            $dataFinal));
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+    }
 
 
     public function getProdutoPendente($atendimentoId)
