@@ -73,8 +73,8 @@ class ProdutoRepository extends EntityRepository
             ->getConnection()
             ->prepare($query);
 
-        $dataInicial = $reportProdutoForm['dataInicial'].' 00:00:01';
-        $dataFinal = $reportProdutoForm['dataFinal'].' 23:59:59';
+        $dataInicial = $reportProdutoForm['dataInicial'];
+        $dataFinal = $reportProdutoForm['dataFinal'];
 
         $stmt->execute(array("%{$reportProdutoForm['codigoTp']}%",
             "%{$reportProdutoForm['codigoScodes']}%",

@@ -76,7 +76,7 @@ class ApontamentoProdutoController extends Controller
             $apontamentoProduto->setUsuarioId($this->getUser()->getUsuCodigo());
 
             $produto->setStatus($apontamentoProduto->getStatus())
-            ->setDataRetorno(new \DateTime('now'));
+                    ->setDataRetorno(new \DateTime('now'));
 
             $em->persist($produto);
             $em->persist($apontamentoProduto);
