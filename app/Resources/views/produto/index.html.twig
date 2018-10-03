@@ -71,6 +71,7 @@
                 <thead>
                 <tr>
                     <th>Opções</th>
+                    <th>Data de criação</th>
                     <th>Codigo TP</th>
                     <th>Codigo SCODES</th>
                     <th>Descrição</th>
@@ -86,6 +87,7 @@
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
                         </td>
+                        <td>{{ produto.dataCriacao | date('d-m-Y')}}</td>
                         <td>{{ produto.codigoTp }}</td>
                         <td>{{ produto.codigoScodes }}</td>
                         <td>{{ produto.descricao }}</td>

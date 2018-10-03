@@ -86,6 +86,10 @@ sa_atendimento_tb_departamento:
     resource: "@SAAtendimentoBundle/Controller/TbDepartamentoController.php"
     type:     annotation
 
+sa_atendimento_user:
+    resource: "@SAAtendimentoBundle/Controller/AccessUserController.php"
+    type:     annotation
+
 sa_atendimento:
     resource: "@SAAtendimentoBundle/Controller"
     type: annotation

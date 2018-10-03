@@ -99,6 +99,10 @@
             <table class="table table-bordered table-condensed">
                 <tbody>
                 <tr>
+                    <th>Data de Criação</th>
+                    <td>{{ produto.dataCriacao | date('d-m-Y') }}</td>
+                </tr>
+                <tr>
                     <th>Codigo TP</th>
                     <td>{{ produto.codigoTp }}</td>
                 </tr>

@@ -46,6 +46,7 @@ security:
     access_control:
            - { path: ^/home, roles: ROLE_Solicitante }
            - { path: ^/atendimento, roles: ROLE_Solicitante }
+           - { path: ^/user, roles: ROLE_Solicitante }
            - { path: ^/apontamento, roles: ROLE_Solicitante }
            - { path: ^/search, roles: ROLE_Solicitante }
            - { path: ^/cadastro, roles: ROLE_Técnico-ADM }
