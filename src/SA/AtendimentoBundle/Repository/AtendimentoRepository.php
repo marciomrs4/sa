@@ -27,6 +27,53 @@ class AtendimentoRepository extends EntityRepository
 
     }
 
+    public function getAllAtendimentoByCodigo($codigo)
+    {
+
+
+        $query = ("SELECT ATE.at_codigo AS atCodigo,
+                          at_data_cadastro_real AS atDataCadastroReal,
+						  at_data_retorno AS atDataRetorno,
+                         SAT.sat_descricao AS satCodigo,
+					      TA.at_descricao AS taCodigo,
+                          at_paciente AS atPaciente,
+                          concat(USU.usu_nome,' ', USU.usu_sobrenome) AS usuCodigo,
+                          	(SELECT concat(usu_nome,' ', usu_sobrenome )
+		                      FROM tb_usuario
+		                        WHERE usu_codigo =
+		                        (SELECT usu_codigo
+								  FROM tb_apontamento
+								  WHERE ap_codigo =
+								    (SELECT max(ap_codigo)
+									  FROM tb_apontamento
+									  WHERE at_codigo = ATE.at_codigo))) AS atendente
+					FROM tb_atendimento AS ATE
+					INNER JOIN tb_status_atendimento AS SAT
+					ON ATE.sat_codigo = SAT.sat_codigo
+					INNER JOIN tb_tipo_atendimento AS TA
+					ON ATE.ta_codigo = TA.at_codigo
+					INNER JOIN tb_usuario AS USU
+					ON ATE.usu_codigo = USU.usu_codigo
+					INNER JOIN tb_tipo_direcionamento AS TD
+					ON ATE.td_codigo = TD.td_codigo
+					WHERE ATE.at_codigo = ?
+					ORDER BY 1 DESC
+					LIMIT 500;
+				");
+
+        $stmt = $this->getEntityManager()
+            ->getConnection()
+            ->prepare($query);
+
+        $stmt->execute(
+            array($this->emptyValue($codigo)
+            ));
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    }
+
+
     public function getAllList($data)
     {
 

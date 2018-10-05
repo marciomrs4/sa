@@ -1,0 +1,138 @@
+{% extends ':template:template.html.twig' %}
+
+
+    {% block contentheader %}
+
+
+        <section class="content-header">
+            <h1>
+                Contato
+                <small>Pesquisar</small>
+            </h1>
+        </section>
+
+
+    {% endblock %}
+
+{% block firstrow %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        <div class="box box-primary">
+            <div class="panel-body">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                <div class="row">
+
+                    <div class="form-group col-md-2 col-sm-3 col-xs-6">
+                        {{ form_row(form.numeroTelefone) }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="panel-footer">
+
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="input-load">
+                            <button class="btn btn-default btn-sm input-search">
+                                <span class="glyphicon glyphicon-search"></span>
+                                Procurar
+                            </button>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+{% block panelheading %}
+
+
+{% endblock %}
+
+{% block panelbody %}
+    <div class="table table-responsive">
+        <table class="table table-bordered table-hover table-condensed table-striped">
+            <thead>
+            <tr>
+                <th>Opções</th>
+                <th>Protocolo de Atendimento</th>
+                <th>Data do Atendimento</th>
+                <th>Data de Retorno</th>
+                <th>Status</th>
+                <th>Tipo de Atendimento</th>
+                <th>Paciente</th>
+                <th>Atendente Inicial</th>
+                <th>Atendente Atual</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tbAtendimento in tbAtendimentos %}
+                <tr>
+                    <td>
+                        <a href="{{ path('atendimento_show',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs link-search"
+                           data-toggle="tooltip" title="Mostrar Atendimento">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+
+                        {% if tbAtendimento.satCodigo == 'PENDENTE' %}
+                            <a href="{{ path('atendimento_edit',{'id': tbAtendimento.atCodigo}) }}" class="btn btn-primary btn-xs link-search"
+                               data-toggle="tooltip" title="Editar Atendimento">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                        {% endif %}
+
+                    </td>
+                    <td>{{ tbAtendimento.atCodigo }}</td>
+                    <td>{{ tbAtendimento.atDataCadastroReal|date('d-m-Y H:i:s') }}</td>
+                    <td>{% if tbAtendimento.atDataRetorno %}{{ tbAtendimento.atDataRetorno|date('d-m-Y') }}{% endif %}</td>
+                    <td>{{ tbAtendimento.satCodigo }}</td>
+                    <td>{{ tbAtendimento.taCodigo }}</td>
+                    <td>{{ tbAtendimento.atPaciente }}</td>
+                    <td>{{ tbAtendimento.usuCodigo }}</td>
+                    <td>{{ tbAtendimento.atendente }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/saatendimento/js/jquery.mask.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            var SPMaskBehavior = function (val) {
+                        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+                    },
+                    spOptions = {
+                        onKeyPress: function(val, e, field, options) {
+                            field.mask(SPMaskBehavior.apply({}, arguments), options);
+                        }
+                    };
+
+            $('.telefone').mask(SPMaskBehavior,spOptions);
+
+        });
+    </script>
+
+{% endblock %}
