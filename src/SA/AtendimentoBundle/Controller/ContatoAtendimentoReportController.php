@@ -37,6 +37,11 @@ class ContatoAtendimentoReportController extends Controller
                 ->findBy(array('numeroTelefone' => $telefone['numeroTelefone']));
 
 
+            $contatosAtendimento = $this->getDoctrine()
+                ->getRepository('SAAtendimentoBundle:TbAtendimento')
+                ->findBy(array('atTeletone' => $telefone['numeroTelefone']));
+
+
             foreach ($contatos as $contato) {
 
                 $tbAtendimentos[] = $this->getDoctrine()
@@ -44,6 +49,15 @@ class ContatoAtendimentoReportController extends Controller
                     ->getAllAtendimentoByCodigo($contato->getAtendimentoId());
 
             }
+
+            foreach ($contatosAtendimento as $contato) {
+
+                $tbAtendimentos[] = $this->getDoctrine()
+                    ->getRepository('SAAtendimentoBundle:TbAtendimento')
+                    ->getAllAtendimentoByCodigo($contato->getId());
+
+            }
+            
         }
 
 
